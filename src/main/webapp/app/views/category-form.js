@@ -46,8 +46,7 @@ define([
             this.model.save(null, {
                 success: function (model) {
                     alert('Success!', 'Item saved successfully', 'alert-success');
-                    var rout = new Router();
-                    rout.navigate('categories', {trigger: true});
+                    route.navigate('categories', {trigger: true});
                 },
                 error: function () {
                     alert('Error', 'An error occurred while trying to delete this item', 'alert-error');

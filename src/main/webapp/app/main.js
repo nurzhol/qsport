@@ -41,7 +41,7 @@ require([
   'routers/router'
 ], function (LoginView, Router) {
   // Initialize routing and start Backbone.history()
-  new Router();
+  route = new Router();
 
   // Initialize the application view
   new LoginView(function () {
