@@ -37,16 +37,12 @@ require.config({
 });
 
 require([
-  'views/login',
-  'routers/router'
-], function (LoginView, Router) {
-  // Initialize routing and start Backbone.history()
-  route = new Router();
+  'views/newspage'
+], function (NewsPageView) {
 
   // Initialize the application view
-  new LoginView(function () {
-    console.log("login callback");
-    Backbone.history.start();
+  new NewsPageView(function () {
+    console.log("NewsPageView callback");
   });
 });
 

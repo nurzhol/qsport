@@ -5,6 +5,7 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,6 +30,20 @@ public class News {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "news")
     private Set<Comment> comments = new HashSet<>();
+
+    @Column(name = "img_url")
+    private String imgUrl;
+
+
+    @Column(name = "category_name")
+    private String CategoryName;
+
+
+    @Column(name = "create_date")
+    private Date createDate = new Date();
+
+    @Column(name = "edited_date")
+    private Date editedDate = new Date();
 
     public Integer getId() {
         return id;
@@ -68,5 +83,38 @@ public class News {
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getEditedDate() {
+        return editedDate;
+    }
+
+    public void setEditedDate(Date editedDate) {
+        this.editedDate = editedDate;
+    }
+
+
+    public String getCategoryName() {
+        return CategoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        CategoryName = categoryName;
     }
 }

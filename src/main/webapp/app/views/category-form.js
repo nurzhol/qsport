@@ -6,9 +6,8 @@ define([
     'underscore',
     'backbone',
     'models/category',
-    'text!templates/category-form.html',
-    'routers/router'
-], function ($, _, Backbone, CategoryModel, CategoryFormTemplate, Router) {
+    'text!templates/category-form.html'
+], function ($, _, Backbone, CategoryModel, CategoryFormTemplate) {
     /**
      * User view which represents the user data grid
      */
@@ -52,7 +51,10 @@ define([
                     alert('Error', 'An error occurred while trying to delete this item', 'alert-error');
                 }
             });
+
+            this.undelegateEvents();
         },
+
         deleteItem: function () {
             this.model.destroy({
                 success: function () {

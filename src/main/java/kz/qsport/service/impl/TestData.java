@@ -53,8 +53,9 @@ public class TestData implements  InitializingBean {
         }*/
         for (int i = 0; i < 5; i++) {
             Category category = new Category();
-            category.setCategoryLabel("Категория Первая"+i);
+            category.setCategoryLabel("Категория "+i);
             category.setCategoryName("cat"+i);
+
 
             categoryRepository.save(category);
         }

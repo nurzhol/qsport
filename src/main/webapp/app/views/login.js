@@ -13,6 +13,7 @@ define([
   var LoginView = Backbone.View.extend({
     // Wired on the login modal
     el:'div.modal.login',
+
     // Listen view events on modal buttons
     events:{
       'click .modal-footer .btn:not(.btn-primary)':'cancel',

@@ -6,19 +6,19 @@ define([
   'backbone'
 ], function (_, Backbone) {
   /**
-   * CategoryModel Model
+   * NewsModel Model
    */
-  var CategoryModel = Backbone.Model.extend({
+  var NewsModel = Backbone.Model.extend({
 
-      urlRoot: 'data-rest/category',
+      urlRoot: 'data-rest/news',
+
       defaults:{
-          CategoryName:"111",
-          CategoryLabel:"Label111"
+          NewsTitle:"",
+          NewsDetail:"толтырыңыз"
       }
-
 
   });
 
   // Return the view as the Require module
-  return new CategoryModel();
+  return new NewsModel();
 });
