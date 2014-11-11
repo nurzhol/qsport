@@ -14,18 +14,28 @@
 
 
                     <div class="control-group">
-                        <label for="CategoryName" class="control-label">Category Name:</label>
+                        <label for="login" class="control-label">login:</label>
 
                         <div class="controls">
-                            <input type="text" id="CategoryName" name="CategoryName" value="<%= category.get('CategoryName') %>"/>
+                            <input type="text" id="login" name="login" value="<%= model.get('login') %>"/>
                             <span class="help-inline"></span>
                         </div>
                     </div>
+
                     <div class="control-group">
-                        <label for="CategoryLabel" class="control-label">Category Label:</label>
+                        <label for="password" class="control-label">password:</label>
 
                         <div class="controls">
-                            <input type="text" id="CategoryLabel" name="CategoryLabel" value="<%= category.get('CategoryLabel') %>"/>
+                            <input type="text" id="password" name="password" value="<%= model.get('password') %>"/>
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="fullname" class="control-label">fullname:</label>
+
+                        <div class="controls">
+                            <input type="text" id="fullname" name="fullname" value="<%= model.get('fullname') %>"/>
                             <span class="help-inline"></span>
                         </div>
                     </div>

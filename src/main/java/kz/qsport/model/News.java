@@ -34,11 +34,6 @@ public class News {
     @Column(name = "img_url")
     private String imgUrl;
 
-
-    @Column(name = "category_name")
-    private String CategoryName;
-
-
     @Column(name = "create_date")
     private Date createDate = new Date();
 
@@ -109,12 +104,4 @@ public class News {
         this.editedDate = editedDate;
     }
 
-
-    public String getCategoryName() {
-        return CategoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        CategoryName = categoryName;
-    }
 }

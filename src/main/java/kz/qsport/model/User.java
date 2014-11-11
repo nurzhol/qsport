@@ -45,7 +45,7 @@ public class User implements UserDetails {
   /**
    * Password of the user. No annotation here, the parameter will be automatically mapped in the table.
    */
-  @RestResource(exported = false)
+  //@RestResource(exported = false)
   private String password;
 
   /**

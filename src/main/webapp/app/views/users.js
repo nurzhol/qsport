@@ -5,49 +5,50 @@ define([
     'bootstrap',
     'underscore',
     'backbone',
-    'collections/news',
+    'collections/users',
     'text!templates/datagrid.html'
-], function ($, _, Backbone,  NewsCollection, NewsTemplate) {
+], function ($, _, Backbone,  UserCollection, UsersTemplate) {
     /**
      * User view which represents the user data grid
      */
-    var NewsView = Backbone.View.extend({
+    var UsersView = Backbone.View.extend({
         // The view generate a div tag
         tagName:'div',
         // Binding the users collection
-        model:NewsCollection,
+        model:UserCollection,
         // Binding the DataGridTemplate loaded by text plugin of Require
-        template:_.template(NewsTemplate),
+        template:_.template(UsersTemplate),
         // No events
         events:{
         },
         // View initialization with listening of the collection
         initialize:function () {
-            console.log('NewsView.initialize');
+            console.log('UsersView.initialize');
             this.model.on('reset', this.render, this);
         },
         // View rendering handler
         render:function () {
-            console.log("NewsView.render", this.model);
+            console.log("UsersView.render", this.model);
             $('.content').html(this.template({
-                link:'#news',
-                linkEdit:'#news/edit/',
+                link:'#users',
+                linkEdit:'#users/edit/',
                 columns:[
                     {
-                        title:'NewsTitle',
-                        key:'NewsTitle',
+                        title:'login',
+                        key:'login',
                         sort:true
                     },
                     {
-                        title:'NewsDetail',
-                        key:'NewsDetail',
+                        title:'password',
+                        key:'password',
                         sort:true
                     },
                     {
-                        title:'imgUrl',
-                        key:'imgUrl',
+                        title:'fullname',
+                        key:'fullname',
                         sort:true
                     }
+
                 ],
                 collection:this.model
             }));
@@ -55,5 +56,5 @@ define([
     });
 
     // Return the view as the Require module
-    return NewsView;
+    return UsersView;
 });

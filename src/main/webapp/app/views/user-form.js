@@ -5,64 +5,76 @@ define([
     'bootstrap',
     'underscore',
     'backbone',
-    'models/category',
-    'text!templates/category-form.html'
-], function ($, _, Backbone, CategoryModel, CategoryFormTemplate) {
+    'models/user',
+    'text!templates/user-form.html',
+    'collections/users'
+], function ($, _, Backbone, UserModel, UserFormTemplate, UsersCollection) {
     /**
      * User view which represents the user data grid
      */
-    var CategoryView = Backbone.View.extend({
+    var UsersOneView = Backbone.View.extend({
         // The view generate a div tag
         tagName: 'div',
 
         el: '.content',
         // Binding the users collection
-        model: CategoryModel,
+        model: UserModel,
+
+        categories: UsersCollection,
 
         editForm: false,
 
         // Binding the DataGridTemplate loaded by text plugin of Require
-        template: _.template(CategoryFormTemplate),
+        template: _.template(UserFormTemplate),
 
         events: {
-            "click .form-actions .save"   : "saveItem",
-            "click .form-actions .delete" : "deleteItem"
+            "click .form-actions .save": "saveItem",
+            "click .form-actions .delete": "deleteItem"
         },
+
 
         // View initialization with listening of the collection
         initialize: function () {
-            console.log('CategoryView.initialize');
+            console.log('UserOneView.initialize');
             //this.model.on('reset', this.render, this);
-            console.log("CategoryView.render", this.model);
+            console.log("UserOneView.render", this.model);
+
+            this.$el.html('Күтіңіз...');
 
             _.defer(_.bind(this.customRender, this));
         },
 
         customRender: function(){
-            $(this.el).html(this.template({ category: this.model, editBtn: this.editForm }));
+            $(this.el).html(this.template({ model: this.model, editBtn: this.editForm }));
         },
 
         saveItem: function () {
-            console.log("CategoryView.save started", this.model);
+            console.log("UserOneView.save started", this.model);
+
+            console.log("The saved file is" + $("#NewsCategoryId").val());
 
             this.model.set({
-                CategoryName:this.$("#CategoryName").val(),
-                CategoryLabel:this.$("#CategoryLabel").val()
+                login: this.$("#login").val(),
+                password: this.$("#password").val(),
+                fullname:  this.$("#fullname").val()
             });
 
             this.model.save(null, {
                 success: function (model) {
                     alert('Success!', 'Item saved successfully', 'alert-success');
-                    route.navigate('categories', {trigger: true});
+                    route.navigate('users', {trigger: true});
+
                 },
                 error: function () {
-                    alert('Error', 'An error occurred while trying to delete this item', 'alert-error');
+                    alert('Error', 'An error occurred while saving', 'alert-error');
+
                 }
             });
 
             this.undelegateEvents();
-        },
 
+
+        },
         deleteItem: function () {
             this.model.destroy({
                 success: function () {
@@ -76,5 +88,5 @@ define([
     });
 
     // Return the view as the Require module
-    return CategoryView;
+    return UsersOneView;
 });

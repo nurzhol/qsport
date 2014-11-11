@@ -26,6 +26,11 @@
         <%= column.key ? model.get( column.key ) : '' %>
         </td>
         <% } ) %>
+
+        <td>
+            <a href="<%= linkEdit + model.id %>"> Редактироваить </a>
+        </td>
+
     </tr>
     <% }) %>
     </tbody>

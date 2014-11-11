@@ -22,12 +22,14 @@ define([
 
         categories: CollectionCategories,
 
+        editForm: false,
+
         // Binding the DataGridTemplate loaded by text plugin of Require
         template: _.template(NewsFormTemplate),
 
         events: {
-            "click .form-actions .save"   : "saveItem",
-            "click .form-actions .delete" : "deleteItem"
+            "click .form-actions .save": "saveItem",
+            "click .form-actions .delete": "deleteItem"
         },
 
 
@@ -39,8 +41,8 @@ define([
 
             this.$el.html('Күтіңіз...');
             var self = this;
-            this.categories.fetch().done(function(){
-                $(self.el).html(self.template({ news: self.model , categories: self.categories}))
+            this.categories.fetch().done(function () {
+                $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm}))
             });
         },
 
@@ -52,29 +54,32 @@ define([
             var imageName = this.saveFile();
 
             this.model.set({
-                NewsTitle:this.$("#NewsTitle").val(),
-                NewsDetail:this.$("#NewsDetail").val(),
-                imgUrl:imageName,
-                CategoryName: $("#NewsCategoryId").val()
+                NewsTitle: this.$("#NewsTitle").val(),
+                NewsDetail: this.$("#NewsDetail").val(),
+                imgUrl: imageName,
+                category: {
+                    "rel": "news.News.category",
+                    "href": $("#NewsCategoryId").val() //"http://"+ window.location.host + "/data-rest/category/3"
+                }
             });
-
-
-
 
             this.model.save(null, {
                 success: function (model) {
                     alert('Success!', 'Item saved successfully', 'alert-success');
                     route.navigate('news', {trigger: true});
-                    this.model.destroy;
+
                 },
                 error: function () {
                     alert('Error', 'An error occurred while saving', 'alert-error');
-                    this.model.destroy;
+
                 }
             });
+
             this.undelegateEvents();
+
+
         },
-        saveFile: function() {
+        saveFile: function () {
             var picture = $('input[id="fileInput"]')[0].files[0];
             var pictureId = 'picture' + $.now() + '.' + this.getFileExt();
             var data = new FormData();
@@ -88,20 +93,20 @@ define([
                 contentType: false,
                 processData: false,
                 type: 'POST',
-                success: function(data){
+                success: function (data) {
                     console.log('Success!', 'Image saved successfully', 'alert-success');
                 },
-                error: function(data){
+                error: function (data) {
                     console.log('Error', 'An error occurred while uploading image', 'alert-error');
                 }
             });
 
             return pictureId;
         },
-        getFileExt: function() {
+        getFileExt: function () {
             var files = $('input[id="fileInput"]')[0].files;
             var ext = null;
-            if(files[0] != null){
+            if (files[0] != null) {
                 var filename = files[0].name.replace(/\\/g, '/').replace(/.*\//, '');
                 ext = filename.replace(/^.*\./, '').toLowerCase();
             }

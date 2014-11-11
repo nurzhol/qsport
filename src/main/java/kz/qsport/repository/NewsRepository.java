@@ -1,6 +1,5 @@
 package kz.qsport.repository;
 
-import kz.qsport.model.Category;
 import kz.qsport.model.News;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,8 +17,5 @@ import java.util.List;
  */
 @RestResource(exported = true, path = "news")
 public interface NewsRepository extends JpaRepository<News, Integer> {
-
-    @Query("select news from News news where news.CategoryName = :CategoryName order by news.createDate desc ")
-    List<News> findByCategoryName(@Param(value = "CategoryName") String CategoryName);
 
 }

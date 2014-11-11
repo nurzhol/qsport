@@ -7,20 +7,20 @@ define([
   'collections/Hateoas'
 ], function (_, Backbone, Hateoas) {
   /**
-   * NewsModel Model
+   * UserModel Model
    */
-  var NewsModel = Hateoas.Model.extend({
+  var UserModel = Hateoas.Model.extend({
 
-      urlRoot: 'data-rest/news',
+      urlRoot: 'data-rest/user',
 
       defaults:{
-          NewsTitle:"",
-          NewsDetail:"",
-          imgUrl:""
+          login:"",
+          password:"",
+          fullname:""
       }
 
   });
 
   // Return the view as the Require module
-  return new NewsModel();
+  return new UserModel();
 });

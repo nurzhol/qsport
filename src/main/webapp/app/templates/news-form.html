@@ -16,12 +16,12 @@
 
                         <div class="controls">
                             <select class="dropdown" id="NewsCategoryId">
-                            <% categories.each(function(model) { %>
-                            <option
-                                <%= 'value="' + model.get( 'CategoryName') + '"' %> >
-                                <%=  model.get( 'CategoryLabel' ) %>
-                            </option>
-                            <% }) %>
+                                <% categories.each(function(model) { %>
+                                <option
+                                <%= 'value="' + model.url + '"' %> >
+                                <%= model.get( 'CategoryLabel' ) %>
+                                </option>
+                                <% }) %>
                             </select>
                             <span class="help-inline"></span>
                         </div>
@@ -32,7 +32,7 @@
                         <label for="NewsTitle" class="control-label">Тақырыбы:</label>
 
                         <div class="controls">
-                            <input type="text" id="NewsTitle" name="NewsTitle" value="<%= news.get('NewsTitle') %>"/>
+                            <input type="text" id="NewsTitle" name="NewsTitle" value="<%= model.get('NewsTitle') %>"/>
                             <span class="help-inline"></span>
                         </div>
                     </div>
@@ -40,7 +40,8 @@
                         <label for="NewsDetail" class="control-label">Мәтіні:</label>
 
                         <div class="controls">
-                            <textarea class="field span12" id="NewsDetail"  name="NewsDetail"    value="<%= news.get('NewsDetail') %>" rows="6" cols="6" placeholder="Мәтін енгізіңіз"></textarea>
+                            <textarea class="field span12" id="NewsDetail" name="NewsDetail" rows="6" cols="6">
+                                <%= model.get('NewsDetail') %></textarea>
                             <span class="help-inline"></span>
                         </div>
                     </div>
@@ -53,10 +54,13 @@
                             <div style="position:relative;">
                                 <a class='btn btn-primary' href='javascript:;'>
                                     Суретті таңдаңыз...
-                                    <input type="file" id="fileInput" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'>
+                                    <input type="file" id="fileInput"
+                                           style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;'
+                                           name="file_source" size="40"
+                                           onchange='$("#upload-file-info").html($(this).val());'>
                                 </a>
                                 &nbsp;
-                                <span class='label label-info' id="upload-file-info"></span>
+                                <span class='label label-info' id="upload-file-info"><%= model.get('imgUrl') %></span>
                             </div>
                         </div>
                     </div>
@@ -69,7 +73,10 @@
 
         <div class="form-actions">
             <a href="#" class="btn btn-primary save">Save</a>
-            <a href="#" class="btn delete">Delete</a>
+
+            <%  if(editBtn) { %>
+                <a href="#" class="btn delete">Delete</a>
+            <%  } %>
         </div>
 
     </form>

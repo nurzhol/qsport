@@ -3,17 +3,18 @@
  */
 define([
   'underscore',
-  'backbone'
-], function (_, Backbone) {
+  'backbone',
+  'collections/Hateoas'
+], function (_, Backbone, Hateoas) {
   /**
    * CategoryModel Model
    */
-  var CategoryModel = Backbone.Model.extend({
+  var CategoryModel = Hateoas.Model.extend({
 
       urlRoot: 'data-rest/category',
       defaults:{
-          CategoryName:"111",
-          CategoryLabel:"Label111"
+          CategoryName:"",
+          CategoryLabel:""
       }
 
 

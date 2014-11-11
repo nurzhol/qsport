@@ -31,6 +31,7 @@ define([
             console.log("CategoriesView.render", this.model);
             $('.content').html(this.template({
                 link:'#categories',
+                linkEdit:'#categories/edit/',
                 columns:[
                     {
                         title:'CategoryName',
