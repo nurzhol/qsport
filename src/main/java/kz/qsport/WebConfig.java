@@ -55,8 +55,5 @@ public class WebConfig implements WebApplicationInitializer {
         ServletRegistration.Dynamic exporter = container.addServlet("exporter", servletExporter);
         exporter.setLoadOnStartup(1);
         exporter.addMapping("/data-rest/*");
-
-
     }
-
 }
