@@ -47,12 +47,12 @@
 
 <div id="dialog-form" title="Report Bad Data" style="display: none">
 
-    <form action="/rest/email" method="POST">
+    <form action="/rest/email" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">>
 
         <label for="email">Email</label>
         <input type="text" name="email" id="email" class="text ui-widget-content ui-corner-all ">
         <label for="emailBody">Message</label>
-        <textarea rows="10" cols="50" name="emailBody" id="emailBody" class="text ui-widget-content ui-corner-all "></textarea>
+        <textarea rows="10" cols="50" name="emailBody" id="emailBody"></textarea>
         <button id='emailSender' type="submit" >Send</button>
     </form>
 

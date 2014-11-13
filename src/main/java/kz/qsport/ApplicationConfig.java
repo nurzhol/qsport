@@ -113,6 +113,7 @@ public class ApplicationConfig {
         mailProps.put("mail.smtp.starttls.enable", "false");
         mailProps.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         mailProps.put("mail.debug", "true");
+        mailProps.put("mail.mime.charset", "UTF-8,");
 
         javaMailSender.setJavaMailProperties(mailProps);
 
