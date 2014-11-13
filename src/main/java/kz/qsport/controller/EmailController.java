@@ -22,8 +22,8 @@ public class EmailController {
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
-        //message.setCc(email);
-        message.setFrom(email);
+        message.setCc("qsportkz@mail.ru");
+        message.setFrom("qsportkz@mail.ru");
         message.setSubject(new Date().toString());
         message.setText(emailBody);
         javaMailSender.send(message);

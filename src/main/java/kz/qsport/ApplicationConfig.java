@@ -103,16 +103,17 @@ public class ApplicationConfig {
     @Bean(name = "javaMailSender")
     public JavaMailSenderImpl javaMailSender(){
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-        javaMailSender.setHost("smtp.gmail.com");
-        javaMailSender.setPort(25);
-        javaMailSender.setUsername("qsportkz@gmail.com");
+        javaMailSender.setHost("smtp.mail.ru");
+        javaMailSender.setPort(465);
+        javaMailSender.setUsername("qsportkz@mail.ru");
         javaMailSender.setPassword("qsportkz123");
         Properties mailProps = new Properties();
         mailProps.put("mail.transport.protocol", "smtp");
         mailProps.put("mail.smtp.auth", "true");
-        mailProps.put("mail.smtp.starttls.enable", "true");
+        mailProps.put("mail.smtp.starttls.enable", "false");
+        mailProps.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         mailProps.put("mail.debug", "true");
-;
+
         javaMailSender.setJavaMailProperties(mailProps);
 
         return  javaMailSender;
