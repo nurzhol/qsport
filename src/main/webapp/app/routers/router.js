@@ -74,7 +74,8 @@ define([
             }
 
             this.usersFormView.editBtn = false;
-            UserModel.urlRoot = 'data-rest/user';
+            UserModel.url = 'data-rest/user';
+            UserModel.id = undefined;
             UserModel.clear().set(UserModel.defaults);
         },
 
@@ -112,8 +113,9 @@ define([
             }
 
             this.categoryFormView.editBtn = false;
-            CategoryModel.urlRoot = 'data-rest/category';
-            CategoryModel.clear().set(CategoryModel.defaults);
+            CategoryModel.url = 'data-rest/category';
+            CategoryModel.id = undefined;
+            CategoryModel.set(CategoryModel.defaults);
         },
 
         editCategory: function(id) {
@@ -149,7 +151,8 @@ define([
             }
 
             this.newsFormView.editForm = false;
-            NewsModel.urlRoot = 'data-rest/news';
+            NewsModel.url = 'data-rest/news';
+            NewsModel.id = undefined;
             NewsModel.clear().set(NewsModel.defaults);
         },
 

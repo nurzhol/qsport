@@ -73,6 +73,10 @@ define([
                 }
             });
 
+
+            if(this.model.id)
+                this.changeCategory("/data-rest/news/"+this.model.id+"/category", $("#NewsCategoryId").val());
+
             this.model.save(null, {
                 success: function (model) {
                     alert('Success!', 'Item saved successfully', 'alert-success');
@@ -86,6 +90,23 @@ define([
             });
 
         },
+
+        changeCategory: function (RelEntity, Entity){
+            $.ajax({
+                url: RelEntity,
+                data: Entity,
+                cache: false,
+                contentType: "text/uri-list",
+                type: 'PUT',
+                success: function (data) {
+                    console.log('Success!', 'The Entity changed', 'alert-success');
+                },
+                error: function (data) {
+                    console.log('Error', 'An error', 'alert-error');
+                }
+            });
+        },
+
         saveFile: function () {
             var picture = $('input[id="fileInput"]')[0].files[0];
             var pictureId = 'picture' + $.now() + '.' + this.getFileExt();
