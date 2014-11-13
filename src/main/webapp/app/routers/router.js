@@ -47,6 +47,9 @@ define([
             this.usersView = null;
             this.categoriesView = null;
             this.newsView = null;
+            this.usersFormView = null;
+            this.categoryFormView = null;
+            this.newsFormView = null;
         },
 
         users: function (page, sort, dir) {
@@ -65,17 +68,25 @@ define([
 
         addUser: function() {
             console.log("Adding user " );
+
+            if (!this.usersFormView) {
+                this.usersFormView = new UserFormView();
+            }
+
+            this.usersFormView.editBtn = false;
             UserModel.urlRoot = 'data-rest/user';
             UserModel.clear().set(UserModel.defaults);
-            new UserFormView({model: UserModel});
         },
 
         editUser: function(id) {
             console.log("Editing user " +id);
-            UserModel.urlRoot = 'data-rest/user/'+id;
-            UserModel.fetch().done(function () {
-                (new UserFormView({model: UserModel})).editForm = true;
-            });
+            if (!this.usersFormView) {
+                this.usersFormView = new UserFormView();
+            }
+
+            this.usersFormView.editBtn = true;
+            UserModel.url = 'data-rest/user/'+id;
+            UserModel.fetch();
         },
 
 
@@ -95,17 +106,25 @@ define([
 
         addCategory: function() {
             console.log("Adding category " );
+
+            if (!this.categoryFormView) {
+                this.categoryFormView = new CategoryFormView();
+            }
+
+            this.categoryFormView.editBtn = false;
             CategoryModel.urlRoot = 'data-rest/category';
             CategoryModel.clear().set(CategoryModel.defaults);
-            new CategoryFormView({model: CategoryModel});
         },
 
         editCategory: function(id) {
+            if (!this.categoryFormView) {
+                this.categoryFormView = new CategoryFormView();
+            }
+
+            this.categoryFormView.editForm = true;
             console.log("Editing category " +id);
-            CategoryModel.urlRoot = 'data-rest/category/'+id;
-            CategoryModel.fetch().done(function () {
-                (new CategoryFormView({model: CategoryModel})).editForm = true;
-            });
+            CategoryModel.url = 'data-rest/category/'+id;
+            CategoryModel.fetch();
         },
 
         news: function (page, sort, dir) {
@@ -124,17 +143,25 @@ define([
 
         addNews: function() {
             console.log("Adding news " );
+
+            if (!this.newsFormView) {
+                this.newsFormView = new NewsFormView();
+            }
+
+            this.newsFormView.editForm = false;
             NewsModel.urlRoot = 'data-rest/news';
             NewsModel.clear().set(NewsModel.defaults);
-            new NewsFormView({model:  NewsModel });
         },
 
         editNews: function(id) {
             console.log("Editing news " +id);
-            NewsModel.urlRoot = 'data-rest/news/'+id;
-            NewsModel.fetch().done(function () {
-                (new NewsFormView({model: NewsModel})).editForm = true;
-            });
+
+            if (!this.newsFormView) {
+                this.newsFormView = new NewsFormView();
+            }
+            this.newsFormView.editForm = true;
+            NewsModel.url = 'data-rest/news/'+id;
+            NewsModel.fetch();
         }
 
 

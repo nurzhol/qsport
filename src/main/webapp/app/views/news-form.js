@@ -7,8 +7,9 @@ define([
     'backbone',
     'models/news',
     'text!templates/news-form.html',
-    'collections/categories'
-], function ($, _, Backbone, NewsModel, NewsFormTemplate, CollectionCategories) {
+    'collections/categories',
+    'jtinymce'
+], function ($, _, Backbone, NewsModel, NewsFormTemplate, CollectionCategories, jtinymce) {
     /**
      * User view which represents the user data grid
      */
@@ -28,8 +29,8 @@ define([
         template: _.template(NewsFormTemplate),
 
         events: {
-            "click .form-actions .save": "saveItem",
-            "click .form-actions .delete": "deleteItem"
+            "click .form-actions-news .save": "saveItem",
+            "click .form-actions-news .delete": "deleteItem"
         },
 
 
@@ -40,22 +41,31 @@ define([
             console.log("NewsOneView.render", this.model);
 
             this.$el.html('Күтіңіз...');
+            this.model.on('change', this.render, this);
+        },
+
+        render : function(){
             var self = this;
             this.categories.fetch().done(function () {
-                $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm}))
+                $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm}));
+                /*$('#NewsDetail').tinymce({
+                    script_url : '../../libs/tinymce/tinymce.min.js'
+                });*/
             });
+            this.delegateEvents;
+
         },
 
         saveItem: function () {
             console.log("NewsOneView.save started", this.model);
 
-            console.log("The saved file is" + $("#NewsCategoryId").val());
+            console.log("The saved file is" + this.model.id);
 
             var imageName = this.saveFile();
 
             this.model.set({
                 NewsTitle: this.$("#NewsTitle").val(),
-                NewsDetail: this.$("#NewsDetail").val(),
+                NewsDetail: this.$("#NewsDetail").val(),//tinymce.get('NewsDetail').getContent(),
                 imgUrl: imageName,
                 category: {
                     "rel": "news.News.category",
@@ -74,9 +84,6 @@ define([
 
                 }
             });
-
-            this.undelegateEvents();
-
 
         },
         saveFile: function () {

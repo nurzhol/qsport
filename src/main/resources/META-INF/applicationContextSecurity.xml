@@ -13,6 +13,7 @@
   <http security="none" pattern="/rest/picture" />
   <http security="none" pattern="/images/*" />
   <http security="none" pattern="/news.html" />
+  <http security="none" pattern="/rest/email" />
 
   <!-- Spring Security entry point which only send an HTTP 403 Forbidden in case of bad authentication. This has to be explicitely defined because the 
     default handling is now to forward on an automatically generated login page which is not what we want for an Ajax login -->

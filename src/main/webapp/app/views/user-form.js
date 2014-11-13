@@ -28,8 +28,8 @@ define([
         template: _.template(UserFormTemplate),
 
         events: {
-            "click .form-actions .save": "saveItem",
-            "click .form-actions .delete": "deleteItem"
+            "click .form-actions-user .save": "saveItem",
+            "click .form-actions-user .delete": "deleteItem"
         },
 
 
@@ -37,21 +37,22 @@ define([
         initialize: function () {
             console.log('UserOneView.initialize');
             //this.model.on('reset', this.render, this);
-            console.log("UserOneView.render", this.model);
 
             this.$el.html('Күтіңіз...');
 
-            _.defer(_.bind(this.customRender, this));
+            this.model.on('change', this.render, this);
         },
 
-        customRender: function(){
+        render: function(){
+            console.log("UserOneView.render", this.model);
             $(this.el).html(this.template({ model: this.model, editBtn: this.editForm }));
+            this.delegateEvents;
         },
 
         saveItem: function () {
             console.log("UserOneView.save started", this.model);
 
-            console.log("The saved file is" + $("#NewsCategoryId").val());
+            console.log("The saved file is" + this.model.id);
 
             this.model.set({
                 login: this.$("#login").val(),
@@ -70,9 +71,6 @@ define([
 
                 }
             });
-
-            this.undelegateEvents();
-
 
         },
         deleteItem: function () {

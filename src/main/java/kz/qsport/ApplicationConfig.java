@@ -7,6 +7,7 @@ import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
@@ -97,5 +98,24 @@ public class ApplicationConfig {
     @Bean(name = "multipartResolver")
     public CommonsMultipartResolver multipartResolver(){
         return new CommonsMultipartResolver();
+    }
+
+    @Bean(name = "javaMailSender")
+    public JavaMailSenderImpl javaMailSender(){
+        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+        javaMailSender.setHost("smtp.gmail.com");
+        javaMailSender.setPort(25);
+        javaMailSender.setUsername("qsportkz@gmail.com");
+        javaMailSender.setPassword("qsportkz123");
+        Properties mailProps = new Properties();
+        mailProps.put("mail.transport.protocol", "smtp");
+        mailProps.put("mail.smtp.auth", "true");
+        mailProps.put("mail.smtp.starttls.enable", "true");
+        mailProps.put("mail.debug", "true");
+;
+        javaMailSender.setJavaMailProperties(mailProps);
+
+        return  javaMailSender;
+
     }
 }

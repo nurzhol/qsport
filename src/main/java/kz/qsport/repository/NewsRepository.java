@@ -19,5 +19,5 @@ import java.util.List;
 public interface NewsRepository extends JpaRepository<News, Integer> {
 
     @Query("select news from News news where news.category.id = :id order by news.createDate desc ")
-    List<News> findByCategoryName(@Param(value = "id") String id);
+    List<News> findByCategoryName(@Param(value = "id") Integer id);
 }

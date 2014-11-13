@@ -21,7 +21,7 @@ public class News {
     @Column(name = "news_title")
     private String NewsTitle;
 
-    @Column(name = "news_detail")
+    @Column(name = "news_detail", length = 1000)
     private String NewsDetail;
 
     @ManyToOne

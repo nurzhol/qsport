@@ -25,8 +25,8 @@ define([
         template: _.template(CategoryFormTemplate),
 
         events: {
-            "click .form-actions .save"   : "saveItem",
-            "click .form-actions .delete" : "deleteItem"
+            "click .form-actions-category .save"   : "saveItem",
+            "click .form-actions-category .delete" : "deleteItem"
         },
 
         // View initialization with listening of the collection
@@ -34,12 +34,12 @@ define([
             console.log('CategoryView.initialize');
             //this.model.on('reset', this.render, this);
             console.log("CategoryView.render", this.model);
-
-            _.defer(_.bind(this.customRender, this));
+            this.model.on('change', this.render, this);
         },
 
-        customRender: function(){
+        render: function(){
             $(this.el).html(this.template({ category: this.model, editBtn: this.editForm }));
+            this.delegateEvents;
         },
 
         saveItem: function () {
@@ -60,7 +60,6 @@ define([
                 }
             });
 
-            this.undelegateEvents();
         },
 
         deleteItem: function () {

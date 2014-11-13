@@ -12,31 +12,50 @@
 </head>
 <body ng-app>
 
+
 <div class="container">
-    <img class="youtube" id="youtubeLink"  style="cursor: pointer;" width="250" height="250" src="http://img.youtube.com/vi/Nd6C-3Zd0AE/0.jpg" title="Ұлытау" />
+    <img class="youtube" id="youtubeLink" style="cursor: pointer;" width="250" height="250"
+         src="http://img.youtube.com/vi/Nd6C-3Zd0AE/0.jpg" title="Ұлытау"/>
     <span>The duration is: <span id="youtubeTime"/></span>
 
+
 </div>
+
+<button id='feedBackBtn'>FeedBack</button>
 
 <div class="container">
 
-        <div class="cat0"/>
+    <div class="cat0"/>
 </div>
 <div class="container">
 
-        <div class="cat1"/>
+    <div class="cat1"/>
 </div>
 <div class="container">
 
-        <div class="cat2"/>
+    <div class="cat2"/>
 </div>
 <div class="container">
 
-        <div class="cat3"/>
+    <div class="cat3"/>
 </div>
 <div class="container">
 
-        <div class="cat4"/>
+    <div class="cat4"/>
+</div>
+
+
+<div id="dialog-form" title="Report Bad Data" style="display: none">
+
+    <form action="/rest/email" method="POST">
+
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" class="text ui-widget-content ui-corner-all ">
+        <label for="emailBody">Message</label>
+        <textarea rows="10" cols="50" name="emailBody" id="emailBody" class="text ui-widget-content ui-corner-all "></textarea>
+        <button id='emailSender' type="submit" >Send</button>
+    </form>
+
 </div>
 
 
