@@ -34,13 +34,13 @@ define([
                 linkEdit:'#categories/edit/',
                 columns:[
                     {
-                        title:'CategoryName',
-                        key:'CategoryName',
+                        title:'categoryName',
+                        key:'categoryName',
                         sort:true
                     },
                     {
-                        title:'CategoryLabel',
-                        key:'CategoryLabel',
+                        title:'categoryLabel',
+                        key:'categoryLabel',
                         sort:true
                     }
                 ],

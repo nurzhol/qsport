@@ -46,8 +46,8 @@ define([
             console.log("CategoryView.save started", this.model);
 
             this.model.set({
-                CategoryName:this.$("#CategoryName").val(),
-                CategoryLabel:this.$("#CategoryLabel").val()
+                categoryName:this.$("#categoryName").val(),
+                categoryLabel:this.$("#categoryLabel").val()
             });
 
             this.model.save(null, {

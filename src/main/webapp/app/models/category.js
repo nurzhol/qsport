@@ -13,8 +13,8 @@ define([
 
       urlRoot: 'data-rest/category',
       defaults:{
-          CategoryName:"",
-          CategoryLabel:""
+          categoryName:"",
+          categoryLabel:""
       }
 
 

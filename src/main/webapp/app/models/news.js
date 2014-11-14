@@ -14,8 +14,8 @@ define([
       urlRoot: 'data-rest/news',
 
       defaults:{
-          NewsTitle:"",
-          NewsDetail:"",
+          newsTitle:"",
+          newsDetail:"",
           imgUrl:""
       }
 

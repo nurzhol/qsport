@@ -52,7 +52,7 @@ define([
             collection0.url = "data-rest/news/search/findByCategoryName?id=0";
 
             collection0.fetch().done(function(){
-                $('.cat0').html(self.template({CategoryName:"cat0" ,
+                $('.cat0').html(self.template({categoryName:"cat0" ,
                 collection: collection0}));
             });
 
@@ -61,7 +61,7 @@ define([
             collection1.url = "data-rest/news/search/findByCategoryName?id=1";
 
             collection1.fetch().done(function(){
-                $('.cat1').html(self.template({CategoryName:"cat1" ,
+                $('.cat1').html(self.template({categoryName:"cat1" ,
                     collection: collection1}));
             });
 
@@ -70,7 +70,7 @@ define([
             collection2.url = "data-rest/news/search/findByCategoryName?id=2";
 
             collection2.fetch().done(function(){
-                $('.cat2').html(self.template({CategoryName:"cat2" ,
+                $('.cat2').html(self.template({categoryName:"cat2" ,
                     collection: collection2}));
             });
 
@@ -79,7 +79,7 @@ define([
             collection3.url = "data-rest/news/search/findByCategoryName?id=3";
 
             collection3.fetch().done(function(){
-                $('.cat3').html(self.template({CategoryName:"cat3" ,
+                $('.cat3').html(self.template({categoryName:"cat3" ,
                     collection: collection3}));
             });
 
@@ -88,7 +88,7 @@ define([
             collection1.url = "data-rest/news/search/findByCategoryName?id=4";
 
             collection4.fetch().done(function(){
-                $('.cat4').html(self.template({CategoryName:"cat4" ,
+                $('.cat4').html(self.template({categoryName:"cat4" ,
                     collection: collection4}));
             });
 

@@ -34,13 +34,13 @@ define([
                 linkEdit:'#news/edit/',
                 columns:[
                     {
-                        title:'NewsTitle',
-                        key:'NewsTitle',
+                        title:'newsTitle',
+                        key:'newsTitle',
                         sort:true
                     },
                     {
-                        title:'NewsDetail',
-                        key:'NewsDetail',
+                        title:'newsDetail',
+                        key:'newsDetail',
                         sort:true
                     },
                     {

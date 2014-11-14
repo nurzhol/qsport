@@ -48,7 +48,7 @@ define([
             var self = this;
             this.categories.fetch().done(function () {
                 $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm}));
-                /*$('#NewsDetail').tinymce({
+                /*$('#newsDetail').tinymce({
                     script_url : '../../libs/tinymce/tinymce.min.js'
                 });*/
             });
@@ -64,8 +64,8 @@ define([
             var imageName = this.saveFile();
 
             this.model.set({
-                NewsTitle: this.$("#NewsTitle").val(),
-                NewsDetail: this.$("#NewsDetail").val(),//tinymce.get('NewsDetail').getContent(),
+                newsTitle: this.$("#newsTitle").val(),
+                newsDetail: this.$("#newsDetail").val(),//tinymce.get('newsDetail').getContent(),
                 imgUrl: imageName,
                 category: {
                     "rel": "news.News.category",

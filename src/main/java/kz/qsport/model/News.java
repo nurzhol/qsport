@@ -19,10 +19,10 @@ public class News {
     private Integer id;
 
     @Column(name = "news_title")
-    private String NewsTitle;
+    private String newsTitle;
 
     @Column(name = "news_detail", length = 1000)
-    private String NewsDetail;
+    private String newsDetail;
 
     @ManyToOne
     @JoinColumn(name="category_id")
@@ -49,19 +49,19 @@ public class News {
     }
 
     public String getNewsTitle() {
-        return NewsTitle;
+        return newsTitle;
     }
 
     public void setNewsTitle(String newsTitle) {
-        NewsTitle = newsTitle;
+        this.newsTitle = newsTitle;
     }
 
     public String getNewsDetail() {
-        return NewsDetail;
+        return newsDetail;
     }
 
     public void setNewsDetail(String newsDetail) {
-        NewsDetail = newsDetail;
+        this.newsDetail = newsDetail;
     }
 
     public Category getCategory() {

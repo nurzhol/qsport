@@ -12,14 +12,14 @@
                 <div class="span9">
 
                     <div class="control-group">
-                        <label for="NewsDetail" class="control-label">Категриясы:</label>
+                        <label for="newsDetail" class="control-label">Категриясы:</label>
 
                         <div class="controls">
                             <select class="dropdown" id="NewsCategoryId">
                                 <% categories.each(function(model) { %>
                                 <option
                                 <%= 'value="' + model.url + '"' %> >
-                                <%= model.get( 'CategoryLabel' ) %>
+                                <%= model.get( 'categoryLabel' ) %>
                                 </option>
                                 <% }) %>
                             </select>
@@ -29,18 +29,18 @@
 
 
                     <div class="control-group">
-                        <label for="NewsTitle" class="control-label">Тақырыбы:</label>
+                        <label for="newsTitle" class="control-label">Тақырыбы:</label>
 
                         <div class="controls">
-                            <input type="text" id="NewsTitle" name="NewsTitle" value="<%= model.get('NewsTitle') %>"/>
+                            <input type="text" id="newsTitle" name="newsTitle" value="<%= model.get('newsTitle') %>"/>
                             <span class="help-inline"></span>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="NewsDetail" class="control-label">Мәтіні:</label>
+                        <label for="newsDetail" class="control-label">Мәтіні:</label>
 
                         <div class="controls">
-                            <textarea class="field span12" id="NewsDetail" name="NewsDetail" rows="6" cols="6"><%= model.get('NewsDetail') %></textarea>
+                            <textarea class="field span12" id="newsDetail" name="newsDetail" rows="6" cols="6"><%= model.get('newsDetail') %></textarea>
                             <span class="help-inline"></span>
                         </div>
                     </div>

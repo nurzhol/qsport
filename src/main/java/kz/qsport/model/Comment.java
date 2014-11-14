@@ -18,7 +18,7 @@ public class Comment {
     @Column(name = "auth_detail")
     private String AuthDetail;
 
-    private String Comment;
+    private String comment;
 
     @ManyToOne
     @JoinColumn(name="news_id")
@@ -41,11 +41,11 @@ public class Comment {
     }
 
     public String getComment() {
-        return Comment;
+        return comment;
     }
 
     public void setComment(String comment) {
-        Comment = comment;
+        this.comment = comment;
     }
 
     public News getNews() {

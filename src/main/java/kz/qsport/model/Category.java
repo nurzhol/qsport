@@ -18,10 +18,10 @@ public class Category {
     private Integer id;
 
     @Column(name = "category_name")
-    private String CategoryName;
+    private String categoryName;
 
     @Column(name = "category_label")
-    private String CategoryLabel;
+    private String categoryLabel;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
     private Set<News> news = new HashSet<>();
@@ -35,19 +35,19 @@ public class Category {
     }
 
     public String getCategoryName() {
-        return CategoryName;
+        return categoryName;
     }
 
     public void setCategoryName(String categoryName) {
-        CategoryName = categoryName;
+        this.categoryName = categoryName;
     }
 
     public String getCategoryLabel() {
-        return CategoryLabel;
+        return categoryLabel;
     }
 
     public void setCategoryLabel(String categoryLabel) {
-        CategoryLabel = categoryLabel;
+        this.categoryLabel = categoryLabel;
     }
 
     public Set<News> getNews() {
