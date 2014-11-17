@@ -15,7 +15,11 @@ define([
 
       defaults:{
           newsTitle:"",
+          newsTitleLt:"",
+          newsTitleAr:"",
           newsDetail:"",
+          newsDetailLt:"",
+          newsDetailAr:"",
           imgUrl:""
       }
 
