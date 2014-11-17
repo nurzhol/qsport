@@ -24,6 +24,21 @@ public class News {
     @Column(name = "news_detail", length = 1000)
     private String newsDetail;
 
+    @Column(name = "news_title_lt")
+    private String newsTitleLt;
+
+    @Column(name = "news_detail_lt", length = 1000)
+    private String newsDetailLt;
+
+    @Column(name = "news_title_ar")
+    private String newsTitleAr;
+
+    @Column(name = "news_detail_ar", length = 1000)
+    private String newsDetailAr;
+
+    @Column
+    private String lang;
+
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
@@ -48,6 +63,38 @@ public class News {
         this.id = id;
     }
 
+    public String getNewsTitleLt() {
+        return newsTitleLt;
+    }
+
+    public void setNewsTitleLt(String newsTitleLt) {
+        this.newsTitleLt = newsTitleLt;
+    }
+
+    public String getNewsDetailLt() {
+        return newsDetailLt;
+    }
+
+    public void setNewsDetailLt(String newsDetailLt) {
+        this.newsDetailLt = newsDetailLt;
+    }
+
+    public String getNewsTitleAr() {
+        return newsTitleAr;
+    }
+
+    public void setNewsTitleAr(String newsTitleAr) {
+        this.newsTitleAr = newsTitleAr;
+    }
+
+    public String getNewsDetailAr() {
+        return newsDetailAr;
+    }
+
+    public void setNewsDetailAr(String newsDetailAr) {
+        this.newsDetailAr = newsDetailAr;
+    }
+
     public String getNewsTitle() {
         return newsTitle;
     }
@@ -70,6 +117,14 @@ public class News {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
     }
 
     public Set<Comment> getComments() {

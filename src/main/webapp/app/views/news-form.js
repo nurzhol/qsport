@@ -44,13 +44,13 @@ define([
             this.model.on('change', this.render, this);
         },
 
-        render : function(){
+        render: function () {
             var self = this;
             this.categories.fetch().done(function () {
                 $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm}));
                 /*$('#newsDetail').tinymce({
-                    script_url : '../../libs/tinymce/tinymce.min.js'
-                });*/
+                 script_url : '../../libs/tinymce/tinymce.min.js'
+                 });*/
             });
             this.delegateEvents;
 
@@ -64,8 +64,11 @@ define([
             var imageName = this.saveFile();
 
             this.model.set({
+                lang: this.$("#lang").val(),
                 newsTitle: this.$("#newsTitle").val(),
+                newsTitleLt: this.transliterateLat(this.$("#newsTitle").val()),
                 newsDetail: this.$("#newsDetail").val(),//tinymce.get('newsDetail').getContent(),
+                newsDetailLt: this.transliterateLat(this.$("#newsDetail").val()),//tinymce.get('newsDetail').getContent(),
                 imgUrl: imageName,
                 category: {
                     "rel": "news.News.category",
@@ -74,8 +77,8 @@ define([
             });
 
 
-            if(this.model.id)
-                this.changeCategory("/data-rest/news/"+this.model.id+"/category", $("#NewsCategoryId").val());
+            if (this.model.id)
+                this.changeCategory("/data-rest/news/" + this.model.id + "/category", $("#NewsCategoryId").val());
 
             this.model.save(null, {
                 success: function (model) {
@@ -91,7 +94,7 @@ define([
 
         },
 
-        changeCategory: function (RelEntity, Entity){
+        changeCategory: function (RelEntity, Entity) {
             $.ajax({
                 url: RelEntity,
                 data: Entity,
@@ -148,6 +151,31 @@ define([
                 }
             });
             return false;
+        },
+
+        transliterateLat: function (word) {
+            var translitLat = ""
+                , a = {};
+
+            a["Ё"] = "YO", a["Й"] = "I", a["Ц"] = "TS", a["У"] = "U", a["К"] = "K", a["Е"] = "E", a["Н"] = "N", a["Г"] = "G", a["Ш"] = "SH", a["Щ"] = "SCH", a["З"] = "Z", a["Х"] = "H", a["Ъ"] = "'";
+            a["ё"] = "yo", a["й"] = "i", a["ц"] = "ts", a["у"] = "u", a["к"] = "k", a["е"] = "e", a["н"] = "n", a["г"] = "g", a["ш"] = "sh", a["щ"] = "sch", a["з"] = "z", a["х"] = "h", a["ъ"] = "'";
+            a["Ф"] = "F", a["Ы"] = "I", a["В"] = "V", a["А"] = "a", a["П"] = "P", a["Р"] = "R", a["О"] = "O", a["Л"] = "L", a["Д"] = "D", a["Ж"] = "ZH", a["Э"] = "E";
+            a["ф"] = "f", a["ы"] = "i", a["в"] = "v", a["а"] = "a", a["п"] = "p", a["р"] = "r", a["о"] = "o", a["л"] = "l", a["д"] = "d", a["ж"] = "zh", a["э"] = "e";
+            a["Я"] = "Ya", a["Ч"] = "CH", a["С"] = "S", a["М"] = "M", a["И"] = "I", a["Т"] = "T", a["Ь"] = "'", a["Б"] = "B", a["Ю"] = "YU";
+            a["я"] = "ya", a["ч"] = "ch", a["с"] = "s", a["м"] = "m", a["и"] = "i", a["т"] = "t", a["ь"] = "'", a["б"] = "b", a["ю"] = "yu";
+            a["ә"] = "a", a["і"] = "i", a["ө"] = "o", a["ү"] = "u", a["ұ"] = "u", a["қ"] = "q", a["ң"] = "n", a["ғ"] = "g", a["һ"] = "";
+            a["Ә"] = "A", a["І"] = "I", a["Ө"] = "O", a["Ү"] = "U", a["Ұ"] = "U", a["Қ"] = "Q", a["Ң"] = "N", a["Ғ"] = "G", a["Һ"] = "";
+
+            for (i in word) {
+                if (word.hasOwnProperty(i)) {
+                    if (a[word[i]] === undefined) {
+                        translitLat += word[i];
+                    } else {
+                        translitLat += a[word[i]];
+                    }
+                }
+            }
+            return translitLat;
         }
 
     });

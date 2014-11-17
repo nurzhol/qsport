@@ -18,6 +18,6 @@ import java.util.List;
 @RestResource(exported = true, path = "news")
 public interface NewsRepository extends JpaRepository<News, Integer> {
 
-    @Query("select news from News news where news.category.id = :id order by news.createDate desc ")
-    List<News> findByCategoryName(@Param(value = "id") Integer id);
+    @Query("select news from News news where news.category.id = :id  and news.lang=:lang order by news.createDate desc ")
+    List<News> findByCategoryName(@Param(value = "id") Integer id, @Param(value = "lang") String lang);
 }

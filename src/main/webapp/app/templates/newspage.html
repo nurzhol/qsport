@@ -17,8 +17,16 @@
             <div class="control-group">
                 <img style="float:left" src="images/<%= model.get( 'imgUrl' ) %>" width="200" height="200">
 
-                <p class="text-center"> <%= model.get( 'newsTitle' ) %> </p>
-                <p class="text-center"> <%= model.get( 'newsDetail' ) %> </p>
+                <p class="text-center">
+                    <%= translite=== 'cyrillic' ?  model.get( 'newsTitle' ) : '' %>
+                    <%= translite=== 'latin' ?  model.get( 'newsTitleLt' ) : '' %>
+                    <%= translite=== 'arab' ?  model.get( 'newsTitleAr' ) : '' %>
+                </p>
+                <p class="text-center">
+                    <%= translite=== 'cyrillic' ?  model.get( 'newsDetail' ) : '' %>
+                    <%= translite=== 'latin' ?  model.get( 'newsDetailLt' ) : '' %>
+                    <%= translite=== 'arab' ?  model.get( 'newsDetailAr' ) : '' %>
+                </p>
             </div>
 
 

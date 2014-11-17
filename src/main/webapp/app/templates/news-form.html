@@ -27,6 +27,18 @@
                         </div>
                     </div>
 
+                    <div class="control-group">
+                        <label for="lang" class="control-label">Жаңалық тілі:</label>
+
+                        <div class="controls">
+                            <select class="dropdown" id="lang">
+                                <option value="kz"  <%= model.get('lang')=== 'kz' ?  'selected' : '' %> >Қазақша</option>
+                                <option value="ru"  <%= model.get('lang')=== 'ru' ?  'selected' : '' %> >Орысша</option>
+                            </select>
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+
 
                     <div class="control-group">
                         <label for="newsTitle" class="control-label">Тақырыбы:</label>

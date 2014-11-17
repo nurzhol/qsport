@@ -9,9 +9,33 @@
     <script data-main="app/news" src="libs/require-2.0.6/require.js"></script>
 
 
+    <script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&appId=309862402534245&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 </head>
 <body ng-app>
 
+
+<button onclick=" window.localStorage.setItem('translite', 'cyrillic'); window.location.reload(); ">Кириллица</button>
+<button onclick=" window.localStorage.setItem('translite', 'latin'); window.location.reload(); ">Латынь</button>
+<button onclick=" window.localStorage.setItem('translite', 'arab'); window.location.reload(); ">Арабский</button>
+
+
+
+<br/>
+<button onclick=" window.localStorage.setItem('locale', 'kz'); window.location.reload(); ">kz</button>
+<button onclick=" window.localStorage.setItem('locale', 'ru'); window.location.reload(); ">ru</button>
+
+<div class="container">
+    <div id="fb-root"></div>
+    <div class="fb-like" data-href="https://www.facebook.com/profile.php?id=100005622584702" data-layout="button_count"
+         data-action="like" data-show-faces="true" data-share="false"></div>
+</div>
 
 <div class="container">
     <img class="youtube" id="youtubeLink" style="cursor: pointer;" width="250" height="250"
@@ -30,6 +54,7 @@
 <div class="container">
 
     <div class="cat1"/>
+    asfasdf
 </div>
 <div class="container">
 
@@ -53,7 +78,7 @@
         <input type="text" name="email" id="email" class="text ui-widget-content ui-corner-all ">
         <label for="emailBody">Message</label>
         <textarea rows="10" cols="50" name="emailBody" id="emailBody"></textarea>
-        <button id='emailSender' type="submit" >Send</button>
+        <button id='emailSender' type="submit">Send</button>
     </form>
 
 </div>
