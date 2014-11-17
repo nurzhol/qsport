@@ -18,7 +18,8 @@
                             <select class="dropdown" id="NewsCategoryId">
                                 <% categories.each(function(model) { %>
                                 <option
-                                <%= 'value="' + model.url + '"' %> >
+                                <%= 'value="' + model.url + '"' %>
+                                <%= model.url===catUrl ?  'selected' : '' %> >
                                 <%= model.get( 'categoryLabel' ) %>
                                 </option>
                                 <% }) %>

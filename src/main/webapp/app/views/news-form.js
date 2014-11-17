@@ -8,8 +8,9 @@ define([
     'models/news',
     'text!templates/news-form.html',
     'collections/categories',
-    'jtinymce'
-], function ($, _, Backbone, NewsModel, NewsFormTemplate, CollectionCategories, jtinymce) {
+    'jtinymce',
+    'models/category'
+], function ($, _, Backbone, NewsModel, NewsFormTemplate, CollectionCategories, jtinymce, CategoryModel) {
     /**
      * User view which represents the user data grid
      */
@@ -47,10 +48,20 @@ define([
         render: function () {
             var self = this;
             this.categories.fetch().done(function () {
-                $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm}));
-                /*$('#newsDetail').tinymce({
-                 script_url : '../../libs/tinymce/tinymce.min.js'
-                 });*/
+                var catIdStr = self.model.get('news.News.category');
+
+                CategoryModel.url = catIdStr;
+                CategoryModel.fetch().done(function(){
+                    console.log("Ok");
+                    var catUrl =  "http://"+ window.location.host + "/data-rest/category/"+CategoryModel.id;
+                    $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm, catUrl:catUrl}));
+
+
+                    /*$('#newsDetail').tinymce({
+                     script_url : '../../libs/tinymce/tinymce.min.js'
+                     });*/
+
+                });
             });
             this.delegateEvents;
 

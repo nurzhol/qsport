@@ -34,7 +34,8 @@ define([
                             collection.url = link.href;
                             Hateoas.reference[link.href] = collection;
                         }
-                        data[link.rel] = Hateoas.reference[link.href];
+                        //data[link.rel] = Hateoas.reference[link.href];
+                        data[link.rel] = link.href;
                     }
                 }, this);
                 delete data.links;
