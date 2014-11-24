@@ -21,17 +21,26 @@ public class News {
     @Column(name = "news_title")
     private String newsTitle;
 
+    @Column(name = "news_feature")
+    private String newsFeature;
+
     @Column(name = "news_detail", length = 1000)
     private String newsDetail;
 
     @Column(name = "news_title_lt")
     private String newsTitleLt;
 
+    @Column(name = "news_feature_lt")
+    private String newsFeatureLt;
+
     @Column(name = "news_detail_lt", length = 1000)
     private String newsDetailLt;
 
     @Column(name = "news_title_ar")
     private String newsTitleAr;
+
+    @Column(name = "news_feature_ar")
+    private String newsFeatureAr;
 
     @Column(name = "news_detail_ar", length = 1000)
     private String newsDetailAr;
@@ -93,6 +102,30 @@ public class News {
 
     public void setNewsDetailAr(String newsDetailAr) {
         this.newsDetailAr = newsDetailAr;
+    }
+
+    public String getNewsFeature() {
+        return newsFeature;
+    }
+
+    public void setNewsFeature(String newsFeature) {
+        this.newsFeature = newsFeature;
+    }
+
+    public String getNewsFeatureLt() {
+        return newsFeatureLt;
+    }
+
+    public void setNewsFeatureLt(String newsFeatureLt) {
+        this.newsFeatureLt = newsFeatureLt;
+    }
+
+    public String getNewsFeatureAr() {
+        return newsFeatureAr;
+    }
+
+    public void setNewsFeatureAr(String newsFeatureAr) {
+        this.newsFeatureAr = newsFeatureAr;
     }
 
     public String getNewsTitle() {

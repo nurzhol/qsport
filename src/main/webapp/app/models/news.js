@@ -20,6 +20,9 @@ define([
           newsDetail:"",
           newsDetailLt:"",
           newsDetailAr:"",
+          newsFeature:"",
+          newsFeatureLt:"",
+          newsFeatureAr:"",
           imgUrl:""
       }
 

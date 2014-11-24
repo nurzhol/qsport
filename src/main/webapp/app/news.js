@@ -62,11 +62,16 @@ require.config({
 
 require([
     'views/newspage',
-], function (NewsPageView) {
+    'routers/news/router'
+], function (NewsPageView, RouterA) {
+    router = new RouterA();
+
+    console.log('router is' + router)
 
     // Initialize the application view
     new NewsPageView(function () {
         console.log("NewsPageView callback");
+        Backbone.history.start();
     });
 });
 

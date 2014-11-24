@@ -25,8 +25,9 @@ define([
         template: _.template(CategoryFormTemplate),
 
         events: {
-            "click .form-actions-category .save"   : "saveItem",
-            "click .form-actions-category .delete" : "deleteItem"
+            "click .form-actions-category .save": "saveItem",
+            "click .form-actions-category .delete": "deleteItem",
+            "click .form-actions-category .cancel": "cancel"
         },
 
         // View initialization with listening of the collection
@@ -37,17 +38,21 @@ define([
             this.model.on('change', this.render, this);
         },
 
-        render: function(){
+        render: function () {
             $(this.el).html(this.template({ category: this.model, editBtn: this.editForm }));
             this.delegateEvents;
+        },
+
+        cancel: function () {
+            route.navigate('categories', {trigger: true});
         },
 
         saveItem: function () {
             console.log("CategoryView.save started", this.model);
 
             this.model.set({
-                categoryName:this.$("#categoryName").val(),
-                categoryLabel:this.$("#categoryLabel").val()
+                categoryName: this.$("#categoryName").val(),
+                categoryLabel: this.$("#categoryLabel").val()
             });
 
             this.model.save(null, {
@@ -63,6 +68,10 @@ define([
         },
 
         deleteItem: function () {
+            if (!confirm("Өшіргіңіз келе ма?")) {
+                return;
+            }
+
             this.model.destroy({
                 success: function () {
                     alert('Item deleted successfully');

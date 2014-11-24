@@ -31,7 +31,8 @@ define([
 
         events: {
             "click .form-actions-news .save": "saveItem",
-            "click .form-actions-news .delete": "deleteItem"
+            "click .form-actions-news .delete": "deleteItem",
+            "click .form-actions-news .cancel": "cancel"
         },
 
 
@@ -50,12 +51,15 @@ define([
             this.categories.fetch().done(function () {
                 var catIdStr = self.model.get('news.News.category');
 
+
+                if(catIdStr==undefined){
+                    $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm, catUrl:''}));
+                }
                 CategoryModel.url = catIdStr;
                 CategoryModel.fetch().done(function(){
                     console.log("Ok");
                     var catUrl =  "http://"+ window.location.host + "/data-rest/category/"+CategoryModel.id;
                     $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm, catUrl:catUrl}));
-
 
                     /*$('#newsDetail').tinymce({
                      script_url : '../../libs/tinymce/tinymce.min.js'
@@ -63,6 +67,7 @@ define([
 
                 });
             });
+
             this.delegateEvents;
 
         },
@@ -78,6 +83,8 @@ define([
                 lang: this.$("#lang").val(),
                 newsTitle: this.$("#newsTitle").val(),
                 newsTitleLt: this.transliterateLat(this.$("#newsTitle").val()),
+                newsFeature: this.$("#newsFeature").val(),
+                newsFeatureLt: this.transliterateLat(this.$("#newsFeature").val()),
                 newsDetail: this.$("#newsDetail").val(),//tinymce.get('newsDetail').getContent(),
                 newsDetailLt: this.transliterateLat(this.$("#newsDetail").val()),//tinymce.get('newsDetail').getContent(),
                 imgUrl: imageName,
@@ -103,6 +110,10 @@ define([
                 }
             });
 
+        },
+
+        cancel: function () {
+            route.navigate('news', {trigger: true});
         },
 
         changeCategory: function (RelEntity, Entity) {
@@ -155,6 +166,10 @@ define([
             return ext;
         },
         deleteItem: function () {
+            if (!confirm("Өшіргіңіз келе ма?")) {
+                return;
+            }
+
             this.model.destroy({
                 success: function () {
                     alert('Item deleted successfully');

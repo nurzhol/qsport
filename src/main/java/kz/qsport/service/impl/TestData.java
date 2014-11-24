@@ -16,13 +16,14 @@ import java.util.Set;
  * Created by yerganat on 11/1/14.
  */
 @Service
-public class TestData implements  InitializingBean {
+public class TestData implements InitializingBean {
     @Autowired
     private UserRepository userRepository;
 
 
     @Autowired
     private CategoryRepository categoryRepository;
+
     /**
      * By implementing InitializingBean in a Spring bean, this method will be launch after Spring wirings are finished.<br/>
      * It's used here to perform a check at the loading of the application on the content of the user table a adding the first user if it's empty. This
@@ -51,15 +52,131 @@ public class TestData implements  InitializingBean {
             News news = new News();
             news.set
         }*/
-        for (int i = 0; i < 5; i++) {
-            Category category = new Category();
-            category.setCategoryLabel("Категория "+i);
-            category.setCategoryName("cat"+i);
+
+        if(categoryRepository.count()!=0)
+            return;
+
+        //1
+        Category category = new Category();
+        category.setCategoryLabel("Қысқа жаңалықтар");
+        category.setCategoryName("Қысқа жаңалықтар");
+        categoryRepository.save(category);
+
+        //2
+        category = new Category();
+        category.setCategoryLabel("Таңдаулы тақырып");
+        category.setCategoryName("Таңдаулы тақырып");
+        categoryRepository.save(category);
+
+        //3
+        category = new Category();
+        category.setCategoryLabel("Жаңалықтар");
+        category.setCategoryName("Жаңалықтар");
+        categoryRepository.save(category);
 
 
-            categoryRepository.save(category);
-        }
+        //4
+        category = new Category();
+        category.setCategoryLabel("Біз жайлы білетідер");
+        category.setCategoryName("Біз жайлы білетіндер");
+        categoryRepository.save(category);
 
+        //5
+        category = new Category();
+        category.setCategoryLabel("Әлеуметтік жоба");
+        category.setCategoryName("Әлеуметтік жоба");
+        categoryRepository.save(category);
+
+
+        //6
+        category = new Category();
+        category.setCategoryLabel("Көкпар");
+        category.setCategoryName("Көкпар");
+        categoryRepository.save(category);
+
+        //7
+        category = new Category();
+        category.setCategoryLabel("Бәйге");
+        category.setCategoryName("Бәйге");
+        categoryRepository.save(category);
+
+        //8
+        category = new Category();
+        category.setCategoryLabel("MULTIMEDIA");
+        category.setCategoryName("MULTIMEDIA");
+        categoryRepository.save(category);
+
+
+        //9
+        category = new Category();
+        category.setCategoryLabel("NEWS");
+        category.setCategoryName("NEWS");
+        categoryRepository.save(category);
+
+        //10
+        category = new Category();
+        category.setCategoryLabel("Фотогалерея");
+        category.setCategoryName("Фотогалерея");
+        categoryRepository.save(category);
+
+
+        //11
+        category = new Category();
+        category.setCategoryLabel("Талқыланып жатқандар");
+        category.setCategoryName("Талқыланып жатқандар");
+        categoryRepository.save(category);
+
+
+        //12
+        category = new Category();
+        category.setCategoryLabel("Ай хой.kz");
+        category.setCategoryName("Ай хой.kz");
+        categoryRepository.save(category);
+
+
+        //13
+        category = new Category();
+        category.setCategoryLabel("PICTURE");
+        category.setCategoryName("PICTURE");
+        categoryRepository.save(category);
+
+        //14
+        category = new Category();
+        category.setCategoryLabel("Ұлттық тағамдар");
+        category.setCategoryName("Ұлттық тағамдар");
+        categoryRepository.save(category);
+
+
+        //15
+        category = new Category();
+        category.setCategoryLabel("--video");
+        category.setCategoryName("--video");
+        categoryRepository.save(category);
+
+        //16
+        category = new Category();
+        category.setCategoryLabel("Спорт сенің назарыңда");
+        category.setCategoryName("Спорт сенің назарыңда");
+        categoryRepository.save(category);
+
+        //17
+        category = new Category();
+        category.setCategoryLabel("Конкурс");
+        category.setCategoryName("Конкурс");
+        categoryRepository.save(category);
+
+        //18
+        category = new Category();
+        category.setCategoryLabel("Блог");
+        category.setCategoryName("Блог");
+        categoryRepository.save(category);
+
+
+        //19
+        category = new Category();
+        category.setCategoryLabel("Бәсіре");
+        category.setCategoryName("Бәсіре");
+        categoryRepository.save(category);
 
     }
 

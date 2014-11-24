@@ -29,7 +29,8 @@ define([
 
         events: {
             "click .form-actions-user .save": "saveItem",
-            "click .form-actions-user .delete": "deleteItem"
+            "click .form-actions-user .delete": "deleteItem",
+            "click .form-actions-user .cancel": "cancel"
         },
 
 
@@ -47,6 +48,10 @@ define([
             console.log("UserOneView.render", this.model);
             $(this.el).html(this.template({ model: this.model, editBtn: this.editForm }));
             this.delegateEvents;
+        },
+
+        cancel: function () {
+            route.navigate('users', {trigger: true});
         },
 
         saveItem: function () {
@@ -74,6 +79,10 @@ define([
 
         },
         deleteItem: function () {
+            if (!confirm("Өшіргіңіз келе ма?")) {
+                return;
+            }
+
             this.model.destroy({
                 success: function () {
                     alert('Item deleted successfully');

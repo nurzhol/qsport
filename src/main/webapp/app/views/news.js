@@ -29,10 +29,16 @@ define([
         // View rendering handler
         render:function () {
             console.log("NewsView.render", this.model);
+
             $('.content').html(this.template({
                 link:'#news',
                 linkEdit:'#news/edit/',
                 columns:[
+                    {
+                        title:'newsFeature',
+                        key:'newsFeature',
+                        sort:true
+                    },
                     {
                         title:'newsTitle',
                         key:'newsTitle',
@@ -46,6 +52,16 @@ define([
                     {
                         title:'imgUrl',
                         key:'imgUrl',
+                        sort:true
+                    },
+                    {
+                        title:'createDate',
+                        key:'createDate',
+                        sort:true
+                    },
+                    {
+                        title:'editedDate',
+                        key:'editedDate',
                         sort:true
                     }
                 ],

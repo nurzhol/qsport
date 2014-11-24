@@ -1,0 +1,42 @@
+<legend>
+    <%= translite=== 'cyrillic' ? categoryName : '' %>
+    <%= translite=== 'latin' ? categoryNameLt : '' %>
+</legend>
+<br/>
+
+
+<% collection.each(function(model) { %>
+
+
+<%
+var myId;
+var urlStr = model.get('links')[1].href;
+var idStr = urlStr.substring(urlStr.lastIndexOf('/')+1);
+if (parseInt(idStr, 10) != NaN)
+myId = idStr;
+
+%>
+
+<div>
+    <img style="float:left" src="images/<%= model.get( 'imgUrl' ) %>" width="200" height="200">
+
+    <p class="text-center">
+        <a href="<%='#readnews/'+myId%>">
+            <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
+            <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
+            <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>
+        </a>
+
+    </p>
+
+    <p class="text-center">
+        <%= translite=== 'cyrillic' ? model.get( 'newsFeature' ) : '' %>
+        <%= translite=== 'latin' ? model.get( 'newsFeatureLt' ) : '' %>
+        <%= translite=== 'arab' ? model.get( 'newsFeatureAr' ) : '' %>
+    </p>
+</div>
+
+
+<% }) %>
+
+
