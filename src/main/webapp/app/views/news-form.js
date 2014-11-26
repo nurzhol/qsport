@@ -58,6 +58,7 @@ define([
 
                 if (catIdStr == undefined) {
                     $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm, catUrl: ''}));
+                    tinyMCE.activeEditor.setContent('');
                 } else {
                     CategoryModel.url = catIdStr;
                     CategoryModel.fetch().done(function () {
