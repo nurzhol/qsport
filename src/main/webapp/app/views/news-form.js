@@ -47,30 +47,40 @@ define([
         },
 
         render: function () {
+
+            $(".newsDetailTMCCLS").show();
+            //$(".newsDetailTMC").css("display","block");
+            //tinyMCE.execCommand('mceToggleEditor', false, 'newsDetailTMC');
             var self = this;
             this.categories.fetch().done(function () {
                 var catIdStr = self.model.get('news.News.category');
 
 
-                if(catIdStr==undefined){
-                    $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm, catUrl:''}));
+                if (catIdStr == undefined) {
+                    $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm, catUrl: ''}));
+                } else {
+                    CategoryModel.url = catIdStr;
+                    CategoryModel.fetch().done(function () {
+                        console.log("Ok");
+                        var catUrl = "http://" + window.location.host + "/data-rest/category/" + CategoryModel.id;
+                        $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm, catUrl: catUrl}));
+
+
+                        tinyMCE.activeEditor.setContent(self.model.get('newsDetail'));
+                        //$('#newsDetailTMC').html();
+
+                        /*$('#newsDetail').tinymce({
+                         script_url : '../../libs/tinymce/tinymce.min.js'
+                         });*/
+
+                    });
                 }
-                CategoryModel.url = catIdStr;
-                CategoryModel.fetch().done(function(){
-                    console.log("Ok");
-                    var catUrl =  "http://"+ window.location.host + "/data-rest/category/"+CategoryModel.id;
-                    $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm, catUrl:catUrl}));
-
-                    /*$('#newsDetail').tinymce({
-                     script_url : '../../libs/tinymce/tinymce.min.js'
-                     });*/
-
-                });
             });
 
             this.delegateEvents;
 
         },
+
 
         saveItem: function () {
             console.log("NewsOneView.save started", this.model);
@@ -79,13 +89,14 @@ define([
 
             var imageName = this.saveFile();
 
+            var textContent = tinyMCE.get('newsDetailTMC').getContent();
             this.model.set({
                 lang: this.$("#lang").val(),
                 newsTitle: this.$("#newsTitle").val(),
                 newsTitleLt: this.transliterateLat(this.$("#newsTitle").val()),
                 newsFeature: this.$("#newsFeature").val(),
                 newsFeatureLt: this.transliterateLat(this.$("#newsFeature").val()),
-                newsDetail: this.$("#newsDetail").val(),//tinymce.get('newsDetail').getContent(),
+                newsDetail: textContent, //this.$("#newsDetail").val(),
                 newsDetailLt: this.transliterateLat(this.$("#newsDetail").val()),//tinymce.get('newsDetail').getContent(),
                 imgUrl: imageName,
                 category: {
@@ -98,8 +109,13 @@ define([
             if (this.model.id)
                 this.changeCategory("/data-rest/news/" + this.model.id + "/category", $("#NewsCategoryId").val());
 
+
+            //$(".newsDetailTMC").css("display","none");
+
+
             this.model.save(null, {
                 success: function (model) {
+                    $(".newsDetailTMCCLS").hide();
                     alert('Success!', 'Item saved successfully', 'alert-success');
                     route.navigate('news', {trigger: true});
 
@@ -110,9 +126,11 @@ define([
                 }
             });
 
+
         },
 
         cancel: function () {
+            $(".newsDetailTMCCLS").hide();
             route.navigate('news', {trigger: true});
         },
 

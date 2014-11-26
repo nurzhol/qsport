@@ -5,8 +5,9 @@ define([
   'bootstrap',
   'underscore',
   'backbone',
-  'models/login'
-], function ($, _, Backbone, LoginStatus) {
+  'models/login',
+   'jtinymce'
+], function ($, _, Backbone, LoginStatus, jtinymce) {
   /**
    * Login view which represents the login popup
    */
@@ -22,7 +23,16 @@ define([
     // View initialization with logout outside if the view and listening on model
     initialize:function (callback) {
       this.callback = callback;
-      $("a.logout").click(this.logout);
+
+        tinyMCE.init({
+            mode : "none",
+            theme : "modern",
+            selector: "#newsDetailTMC"
+        });
+
+        $(".newsDetailTMCCLS").hide();
+
+        $("a.logout").click(this.logout);
       LoginStatus.on('change:loggedIn', this.loggedInChange, this);
       LoginStatus.fetch();
     },
@@ -43,7 +53,7 @@ define([
       LoginStatus.set({
         username:this.$("#username").val(),
         password:this.$("#password").val(),
-        rememberMe:this.$("#rememberMe:checked").length > 0,
+        rememberMe:this.$("#rememberMe:checked").length > 0
       });
       LoginStatus.save();
     },
