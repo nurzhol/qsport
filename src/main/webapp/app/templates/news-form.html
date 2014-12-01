@@ -12,7 +12,20 @@
                 <div class="span9">
 
                     <div class="control-group">
-                        <label for="newsDetail" class="control-label">Категриясы:</label>
+                        <label for="lang" class="control-label">Жаңалық тілі:</label>
+
+                        <div class="controls">
+                            <select class="dropdown" id="lang">
+                                <option value="kz"  <%= model.get('lang')=== 'kz' ?  'selected' : '' %> >Қазақша</option>
+                                <option value="ru"  <%= model.get('lang')=== 'ru' ?  'selected' : '' %> >Орысша</option>
+                            </select>
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="control-group">
+                        <label for="NewsCategoryId" class="control-label">Категриясы:</label>
 
                         <div class="controls">
                             <select class="dropdown" id="NewsCategoryId">
@@ -27,19 +40,6 @@
                             <span class="help-inline"></span>
                         </div>
                     </div>
-
-                    <div class="control-group">
-                        <label for="lang" class="control-label">Жаңалық тілі:</label>
-
-                        <div class="controls">
-                            <select class="dropdown" id="lang">
-                                <option value="kz"  <%= model.get('lang')=== 'kz' ?  'selected' : '' %> >Қазақша</option>
-                                <option value="ru"  <%= model.get('lang')=== 'ru' ?  'selected' : '' %> >Орысша</option>
-                            </select>
-                            <span class="help-inline"></span>
-                        </div>
-                    </div>
-
 
                     <div class="control-group">
                         <label for="newsTitle" class="control-label">Тақырыбы:</label>
@@ -59,7 +59,6 @@
                         </div>
                     </div>
 
-                    <!--
                     <div class="control-group">
                         <label for="newsDetail" class="control-label">Мәтіні:</label>
 
@@ -67,10 +66,10 @@
                             <textarea class="field span12" id="newsDetail" name="newsDetail" rows="6" cols="6"><%= model.get('newsDetail') %></textarea>
                             <span class="help-inline"></span>
                         </div>
-                    </div>-->
+                    </div>
 
 
-
+<!--
                     <div class="control-group">
                         <label for="fileInput" class="control-label">Суреті:</label>
 
@@ -91,6 +90,7 @@
 
                 </div>
 
+-->
             </div>
 
         </fieldset>

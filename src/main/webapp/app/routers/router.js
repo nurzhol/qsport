@@ -15,14 +15,18 @@ define([
     "models/user",
     'collections/users',
     'views/users',
-    'views/user-form'
-], function ($, Backbone, CategoriesCollection, CategoriesView, CategoryFormView, CategoryModel, NewsCollection, NewsView, NewsFormView, NewsModel,UserModel, UsersCollection, UsersView, UserFormView) {
+    'views/user-form',
+    'views/image'
+], function ($, Backbone, CategoriesCollection, CategoriesView, CategoryFormView, CategoryModel, NewsCollection, NewsView, NewsFormView, NewsModel, UserModel, UsersCollection, UsersView, UserFormView, ImageView) {
     /**
      * Url router for the applications. Defines routes with url and handlers
      */
     var Router = Backbone.Router.extend({
         // List all the routes possibles and bind them to a handler
         routes: {
+            'news/addImage': 'addImage',
+
+
             'users/add': 'addUser',
             'users/edit/:id': 'editUser',
             'users': 'users',
@@ -66,8 +70,8 @@ define([
             UsersCollection.fetchPage();
         },
 
-        addUser: function() {
-            console.log("Adding user " );
+        addUser: function () {
+            console.log("Adding user ");
 
             if (!this.usersFormView) {
                 this.usersFormView = new UserFormView();
@@ -79,14 +83,14 @@ define([
             UserModel.clear().set(UserModel.defaults);
         },
 
-        editUser: function(id) {
-            console.log("Editing user " +id);
+        editUser: function (id) {
+            console.log("Editing user " + id);
             if (!this.usersFormView) {
                 this.usersFormView = new UserFormView();
             }
 
             this.usersFormView.editBtn = true;
-            UserModel.url = 'data-rest/user/'+id;
+            UserModel.url = 'data-rest/user/' + id;
             UserModel.fetch();
         },
 
@@ -105,8 +109,8 @@ define([
             CategoriesCollection.fetchPage();
         },
 
-        addCategory: function() {
-            console.log("Adding category " );
+        addCategory: function () {
+            console.log("Adding category ");
 
             if (!this.categoryFormView) {
                 this.categoryFormView = new CategoryFormView();
@@ -118,14 +122,14 @@ define([
             CategoryModel.set(CategoryModel.defaults);
         },
 
-        editCategory: function(id) {
+        editCategory: function (id) {
             if (!this.categoryFormView) {
                 this.categoryFormView = new CategoryFormView();
             }
 
             this.categoryFormView.editForm = true;
-            console.log("Editing category " +id);
-            CategoryModel.url = 'data-rest/category/'+id;
+            console.log("Editing category " + id);
+            CategoryModel.url = 'data-rest/category/' + id;
             CategoryModel.fetch();
         },
 
@@ -143,8 +147,8 @@ define([
             NewsCollection.fetchPage();
         },
 
-        addNews: function() {
-            console.log("Adding news " );
+        addNews: function () {
+            console.log("Adding news ");
 
             if (!this.newsFormView) {
                 this.newsFormView = new NewsFormView();
@@ -156,14 +160,21 @@ define([
             NewsModel.clear().set(NewsModel.defaults);
         },
 
-        editNews: function(id) {
-            console.log("Editing news " +id);
+        addImage: function () {
+            console.log("Adding images ");
+            new ImageView();
+
+
+        },
+
+        editNews: function (id) {
+            console.log("Editing news " + id);
 
             if (!this.newsFormView) {
                 this.newsFormView = new NewsFormView();
             }
             this.newsFormView.editForm = true;
-            NewsModel.url = 'data-rest/news/'+id;
+            NewsModel.url = 'data-rest/news/' + id;
             NewsModel.fetch();
         }
 

@@ -8,9 +8,9 @@ define([
     'models/news',
     'text!templates/news-form.html',
     'collections/categories',
-    'jtinymce',
+    'ckeditor',
     'models/category'
-], function ($, _, Backbone, NewsModel, NewsFormTemplate, CollectionCategories, jtinymce, CategoryModel) {
+], function ($, _, Backbone, NewsModel, NewsFormTemplate, CollectionCategories, ckeditor, CategoryModel) {
     /**
      * User view which represents the user data grid
      */
@@ -36,6 +36,12 @@ define([
         },
 
 
+        removeEditor: function(id){
+            var o = CKEDITOR.instances[id];
+            if(o)
+                CKEDITOR.remove(instance);
+        },
+
         // View initialization with listening of the collection
         initialize: function () {
             console.log('NewsOneView.initialize');
@@ -44,11 +50,43 @@ define([
 
             this.$el.html('Күтіңіз...');
             this.model.on('change', this.render, this);
+
+            this.removeEditor("newsDetail");
+        },
+
+        wait: function () {
+            var deferred = $.Deferred();
+
+            setTimeout(function () {
+                deferred.resolve();
+            }, 2000);
+
+            return deferred.promise();
+        },
+
+
+        loadEditor: function (id) {
+            CKEDITOR.replace(id, {
+                "extraPlugins" : 'imagebrowser',
+                "imageBrowser_listUrl" : "/rest/ckeditorimage/"
+            });
+        },
+
+        loadEditor2: function (id) {
+            /*if(CKEDITOR.instances[id])
+             delete CKEDITOR.instances[id];*/
+
+            var o = CKEDITOR.instances[id];
+            if (o) {
+                o.destroy()
+            } else {
+                CKEDITOR.replace(id);
+            }
+
         },
 
         render: function () {
-
-            $(".newsDetailTMCCLS").show();
+            //$(".newsDetailTMCCLS").show();
             //$(".newsDetailTMC").css("display","block");
             //tinyMCE.execCommand('mceToggleEditor', false, 'newsDetailTMC');
             var self = this;
@@ -58,7 +96,14 @@ define([
 
                 if (catIdStr == undefined) {
                     $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm, catUrl: ''}));
-                    tinyMCE.activeEditor.setContent('');
+
+                    var promise = self.wait();
+                    promise.done(function () {
+                        console.log("The start add of ckeditor")
+                        self.loadEditor('newsDetail');
+                    });
+
+                    //tinyMCE.activeEditor.setContent('');
                 } else {
                     CategoryModel.url = catIdStr;
                     CategoryModel.fetch().done(function () {
@@ -66,8 +111,15 @@ define([
                         var catUrl = "http://" + window.location.host + "/data-rest/category/" + CategoryModel.id;
                         $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm, catUrl: catUrl}));
 
+                        var promise = self.wait();
+                        promise.done(function () {
+                            console.log("The start edit of ckeditor")
+                            self.loadEditor('newsDetail');
+                        });
 
-                        tinyMCE.activeEditor.setContent(self.model.get('newsDetail'));
+
+
+                        //tinyMCE.activeEditor.setContent(self.model.get('newsDetail'));
                         //$('#newsDetailTMC').html();
 
                         /*$('#newsDetail').tinymce({
@@ -88,9 +140,10 @@ define([
 
             console.log("The saved file is" + this.model.id);
 
-            var imageName = this.saveFile();
+            //var imageName = this.saveFile();
 
-            var textContent = tinyMCE.get('newsDetailTMC').getContent();
+            //var textContent = tinyMCE.get('newsDetailTMC').getContent();
+            var textContent = CKEDITOR.instances.newsDetail.getData();
             this.model.set({
                 lang: this.$("#lang").val(),
                 newsTitle: this.$("#newsTitle").val(),
@@ -99,7 +152,7 @@ define([
                 newsFeatureLt: this.transliterateLat(this.$("#newsFeature").val()),
                 newsDetail: textContent, //this.$("#newsDetail").val(),
                 newsDetailLt: this.transliterateLat(this.$("#newsDetail").val()),//tinymce.get('newsDetail').getContent(),
-                imgUrl: imageName,
+                imgUrl: "empty",//imageName,
                 category: {
                     "rel": "news.News.category",
                     "href": $("#NewsCategoryId").val() //"http://"+ window.location.host + "/data-rest/category/3"
@@ -116,7 +169,7 @@ define([
 
             this.model.save(null, {
                 success: function (model) {
-                    $(".newsDetailTMCCLS").hide();
+                    //$(".newsDetailTMCCLS").hide();
                     alert('Success!', 'Item saved successfully', 'alert-success');
                     route.navigate('news', {trigger: true});
 
@@ -131,7 +184,7 @@ define([
         },
 
         cancel: function () {
-            $(".newsDetailTMCCLS").hide();
+            //$(".newsDetailTMCCLS").hide();
             route.navigate('news', {trigger: true});
         },
 

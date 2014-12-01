@@ -38,7 +38,8 @@ require.config({
     backbone:"../libs/backbone-0.9.2/backbone",
     text:"../libs/require-2.0.6/text",
     i18n:"../libs/require-2.0.6/i18n",
-    jtinymce:"../libs/tinymce/tinymce.min"
+    jtinymce:"../libs/tinymce/tinymce.min",
+    ckeditor:"../libs/ckeditor/ckeditor"
   }
 });
 
