@@ -23,11 +23,21 @@ define([
         },
         // View initialization with listening of the collection
         initialize:function () {
+            $.blockUI({ message: '<h1><img src="icons/loading.gif" /> Күте тұрыңыз...</h1>' });
             console.log('NewsView.initialize');
             this.model.on('reset', this.render, this);
         },
         // View rendering handler
         render:function () {
+
+            this.model.each(function(model) {
+                var d = new Date(model.get("createDate"));
+                model.set("createDate", d.toISOString());
+
+                var d2 = new Date(model.get("editedDate"));
+                model.set("editedDate", d2.toISOString());
+            });
+
             console.log("NewsView.render", this.model);
 
             $('.content').html(this.template({
@@ -55,11 +65,6 @@ define([
                         sort:true
                     },
                     {
-                        title:'createDate',
-                        key:'createDate',
-                        sort:true
-                    },
-                    {
                         title:'editedDate',
                         key:'editedDate',
                         sort:true
@@ -67,6 +72,8 @@ define([
                 ],
                 collection:this.model
             }));
+
+            $.unblockUI();
         }
     });
 

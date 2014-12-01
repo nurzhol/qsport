@@ -68,10 +68,10 @@
                                     <input type="file" id="fileInput"
                                            style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;'
                                            name="file_source" size="40"
-                                           onchange='$("#upload-file-info").html($(this).val());'>
+                                           onchange='$("#upload-file-info-news  ").html($(this).val());'>
                                 </a>
                                 &nbsp;
-                                <span class='label label-info' id="upload-file-info"><%= model.get('imgUrl') %></span>
+                                <span class='label label-info' id="upload-file-info-news"><%= model.get('imgUrl') %></span>
                             </div>
                         </div>
                     </div>

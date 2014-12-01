@@ -25,6 +25,9 @@ require.config({
     },
     "ckeditor":{
         exports:"ckeditor"
+    },
+    "blockUI":{
+        exports:"blockUI"
     }
   },
   /**
@@ -32,6 +35,7 @@ require.config({
    */
   paths:{
     jquery:"../libs/jquery-1.8.0/jquery.min",
+    blockUI:"../libs/jquery-1.8.0/jquery.blockUI",
     bootstrap:"../libs/bootstrap-2.1.0/js/bootstrap.min",
     underscore:"../libs/underscore-1.3.3/underscore",
     backbone:"../libs/backbone-0.9.2/backbone",

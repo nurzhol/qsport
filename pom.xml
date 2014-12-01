@@ -52,6 +52,11 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+
+        <repository>
+            <id>The Buzz Media Maven Repository</id>
+            <url>http://maven.thebuzzmedia.com</url>
+        </repository>
     </repositories>
 
     <!-- The main project dependency reference -->
@@ -187,6 +192,16 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
             <version>3.2.1.RELEASE</version>
+        </dependency>
+
+
+        <!--imgscalr – Java Image Scaling Library -->
+        <dependency>
+            <groupId>org.imgscalr</groupId>
+            <artifactId>imgscalr-lib</artifactId>
+            <version>4.2</version>
+            <type>jar</type>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>

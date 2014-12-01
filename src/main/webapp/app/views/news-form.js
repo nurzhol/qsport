@@ -9,8 +9,9 @@ define([
     'text!templates/news-form.html',
     'collections/categories',
     'ckeditor',
-    'models/category'
-], function ($, _, Backbone, NewsModel, NewsFormTemplate, CollectionCategories, ckeditor, CategoryModel) {
+    'models/category',
+    'blockUI'
+], function ($, _, Backbone, NewsModel, NewsFormTemplate, CollectionCategories, ckeditor, CategoryModel, blockUI) {
     /**
      * User view which represents the user data grid
      */
@@ -44,6 +45,10 @@ define([
 
         // View initialization with listening of the collection
         initialize: function () {
+
+            $.blockUI({ message: '<h1><img src="icons/loading.gif" /> Күте тұрыңыз...</h1>' });
+
+
             console.log('NewsOneView.initialize');
             //this.model.on('reset', this.render, this);
             console.log("NewsOneView.render", this.model);
@@ -101,6 +106,8 @@ define([
                     promise.done(function () {
                         console.log("The start add of ckeditor")
                         self.loadEditor('newsDetail');
+
+                        $.unblockUI();
                     });
 
                     //tinyMCE.activeEditor.setContent('');
@@ -136,6 +143,7 @@ define([
 
 
         saveItem: function () {
+            $.blockUI({ message: '<h1><img src="icons/loading.gif" /> Күте тұрыңыз...</h1>' });
             console.log("NewsOneView.save started", this.model);
 
             console.log("The saved file is" + this.model.id);
@@ -170,11 +178,13 @@ define([
                 success: function (model) {
                     //$(".newsDetailTMCCLS").hide();
                     alert('Success!', 'Item saved successfully', 'alert-success');
+                    $.unblockUI();
                     route.navigate('news', {trigger: true});
 
                 },
                 error: function () {
                     alert('Error', 'An error occurred while saving', 'alert-error');
+                    $.unblockUI();
 
                 }
             });

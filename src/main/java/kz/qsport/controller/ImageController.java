@@ -1,10 +1,13 @@
 package kz.qsport.controller;
 
+import org.imgscalr.Scalr;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 @Controller
@@ -15,8 +18,23 @@ public class ImageController {
 
         String contextPath = request.getServletContext().getRealPath(File.separator);
 
+
+
+
         try {
             writeFile(imageFile.getBytes(), contextPath  +  "images" + File.separator +imageFileName);
+
+            BufferedImage img = ImageIO.read(imageFile.getInputStream());
+            BufferedImage scaledImg = Scalr.resize(img, 150);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write( scaledImg, "jpg", baos );
+            baos.flush();
+            byte[] imageInByte = baos.toByteArray();
+            baos.close();
+
+            writeFile(imageInByte, contextPath  +  "images" + File.separator + "thumb" + File.separator  +imageFileName);
+            //ImageIO.write(scaledImg, "jpg", new File());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -28,11 +28,9 @@ public class CKEditorImageController {
         List<Image> images = new ArrayList<>();
 
         for(String path: paths){
-            path = "/images/" + path;
             Image image = new Image();
-            image.setImage(path);
-            image.setThumb(path);
-
+            image.setImage("/images/" + path);
+            image.setThumb("/images/thumb/"  +path);
             images.add(image);
         }
 
