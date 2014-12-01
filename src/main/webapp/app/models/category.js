@@ -14,7 +14,8 @@ define([
       urlRoot: 'data-rest/category',
       defaults:{
           categoryName:"",
-          categoryLabel:""
+          categoryLabel:"",
+          lang:"kz"
       }
 
 

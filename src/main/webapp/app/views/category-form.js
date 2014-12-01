@@ -51,6 +51,7 @@ define([
             console.log("CategoryView.save started", this.model);
 
             this.model.set({
+                lang: this.$("#lang").val(),
                 categoryName: this.$("#categoryName").val(),
                 categoryLabel: this.$("#categoryLabel").val()
             });

@@ -11,18 +11,6 @@
             <div class="row">
                 <div class="span9">
 
-                    <div class="control-group">
-                        <label for="lang" class="control-label">Жаңалық тілі:</label>
-
-                        <div class="controls">
-                            <select class="dropdown" id="lang">
-                                <option value="kz"  <%= model.get('lang')=== 'kz' ?  'selected' : '' %> >Қазақша</option>
-                                <option value="ru"  <%= model.get('lang')=== 'ru' ?  'selected' : '' %> >Орысша</option>
-                            </select>
-                            <span class="help-inline"></span>
-                        </div>
-                    </div>
-
 
                     <div class="control-group">
                         <label for="NewsCategoryId" class="control-label">Категриясы:</label>
@@ -54,7 +42,8 @@
                         <label for="newsFeature" class="control-label">Аңдатпа:</label>
 
                         <div class="controls">
-                            <input type="text" id="newsFeature" name="newsFeature" value="<%= model.get('newsFeature') %>"/>
+                            <textarea id="newsFeature" name="newsFeature" rows="3" cols="16"><%= model.get('newsFeature') %></textarea>
+                            <!--<input type="text" id="newsFeature" name="newsFeature" value="<%= model.get('newsFeature') %>"/>-->
                             <span class="help-inline"></span>
                         </div>
                     </div>
@@ -69,7 +58,6 @@
                     </div>
 
 
-<!--
                     <div class="control-group">
                         <label for="fileInput" class="control-label">Суреті:</label>
 
@@ -90,7 +78,6 @@
 
                 </div>
 
--->
             </div>
 
         </fieldset>

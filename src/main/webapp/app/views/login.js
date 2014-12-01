@@ -5,9 +5,8 @@ define([
     'bootstrap',
     'underscore',
     'backbone',
-    'models/login',
-    'jtinymce'
-], function ($, _, Backbone, LoginStatus, jtinymce) {
+    'models/login'
+], function ($, _, Backbone, LoginStatus) {
     /**
      * Login view which represents the login popup
      */
@@ -40,6 +39,8 @@ define([
         // Login state change handler
         loggedInChange: function () {
             if (LoginStatus.get('loggedIn')) {
+                $("#mainHeaderId").css("display", "block");
+                $("#mainHeaderBody").css("display", "block");
                 this.$el.modal('hide');
                 if (this.callback) {
                     this.callback();

@@ -140,19 +140,18 @@ define([
 
             console.log("The saved file is" + this.model.id);
 
-            //var imageName = this.saveFile();
+            var imageName = this.saveFile();
 
             //var textContent = tinyMCE.get('newsDetailTMC').getContent();
             var textContent = CKEDITOR.instances.newsDetail.getData();
             this.model.set({
-                lang: this.$("#lang").val(),
                 newsTitle: this.$("#newsTitle").val(),
                 newsTitleLt: this.transliterateLat(this.$("#newsTitle").val()),
                 newsFeature: this.$("#newsFeature").val(),
                 newsFeatureLt: this.transliterateLat(this.$("#newsFeature").val()),
                 newsDetail: textContent, //this.$("#newsDetail").val(),
                 newsDetailLt: this.transliterateLat(this.$("#newsDetail").val()),//tinymce.get('newsDetail').getContent(),
-                imgUrl: "empty",//imageName,
+                imgUrl: imageName,
                 category: {
                     "rel": "news.News.category",
                     "href": $("#NewsCategoryId").val() //"http://"+ window.location.host + "/data-rest/category/3"

@@ -32,7 +32,6 @@
     <tr>
         <% _.each(columns, function(column) { %>
         <td
-
         <%= column.anchor ? 'data-anchor="' + model.get( column.anchor ) + '"' : '' %>>
         <%= column.key ?  model.get( column.key )  : '' %>
 

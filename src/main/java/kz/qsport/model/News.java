@@ -45,9 +45,6 @@ public class News {
     @Column(name = "news_detail_ar", length = 1000)
     private String newsDetailAr;
 
-    @Column
-    private String lang;
-
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
@@ -152,13 +149,6 @@ public class News {
         this.category = category;
     }
 
-    public String getLang() {
-        return lang;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
 
     public Set<Comment> getComments() {
         return comments;

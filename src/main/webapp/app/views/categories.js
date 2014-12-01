@@ -28,6 +28,14 @@ define([
         },
         // View rendering handler
         render:function () {
+            this.model.each(function(model) {
+                if(model.get("lang")=="kz"){
+                    model.set("lang", "Қазақша");
+                }else{
+                    model.set("lang", "Орысша");
+                }
+            });
+
             console.log("CategoriesView.render", this.model);
             $('.content').html(this.template({
                 link:'#categories',
@@ -41,6 +49,11 @@ define([
                     {
                         title:'categoryLabel',
                         key:'categoryLabel',
+                        sort:true
+                    },
+                    {
+                        title:'Тілі',
+                        key:'lang',
                         sort:true
                     }
                 ],

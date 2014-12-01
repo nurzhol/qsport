@@ -23,6 +23,9 @@ public class Category {
     @Column(name = "category_label")
     private String categoryLabel;
 
+    @Column
+    private String lang;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
     private Set<News> news = new HashSet<>();
 
@@ -56,5 +59,13 @@ public class Category {
 
     public void setNews(Set<News> news) {
         this.news = news;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
     }
 }

@@ -7,7 +7,7 @@
     <script data-main="app/main" src="libs/require-2.0.6/require.js"></script>
 </head>
 <body ng-app>
-<div class="navbar navbar-inverse navbar-static-top">
+<div class="navbar navbar-inverse navbar-static-top" id="mainHeaderId" style="display: none">
     <div class="navbar-inner">
         <a class="brand" href="#">Qsport</a>
 
@@ -112,7 +112,7 @@
 </div>
 
 <!-- Main web site container positioned with 960 gs classes -->
-<div class="container">
+<div class="container" id="mainHeaderBody" style="display: none">
     <div class="row">
 
         <!-- Main title styled -->
