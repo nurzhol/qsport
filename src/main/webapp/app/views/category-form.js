@@ -32,6 +32,7 @@ define([
 
         // View initialization with listening of the collection
         initialize: function () {
+            $.blockUI({ message: '<h1><img src="icons/loading.gif" /> Күте тұрыңыз...</h1>' });
             console.log('CategoryView.initialize');
             //this.model.on('reset', this.render, this);
             console.log("CategoryView.render", this.model);
@@ -39,8 +40,10 @@ define([
         },
 
         render: function () {
+            console.log("CategoryView.render started", this.model);
             $(this.el).html(this.template({ category: this.model, editBtn: this.editForm }));
             this.delegateEvents;
+            $.unblockUI();
         },
 
         cancel: function () {
@@ -48,6 +51,7 @@ define([
         },
 
         saveItem: function () {
+            $.blockUI({ message: '<h1><img src="icons/loading.gif" /> Күте тұрыңыз...</h1>' });
             console.log("CategoryView.save started", this.model);
 
             this.model.set({
@@ -59,9 +63,11 @@ define([
             this.model.save(null, {
                 success: function (model) {
                     alert('Success!', 'Item saved successfully', 'alert-success');
+                    $.unblockUI();
                     route.navigate('categories', {trigger: true});
                 },
                 error: function () {
+                    $.unblockUI();
                     alert('Error', 'An error occurred while trying to delete this item', 'alert-error');
                 }
             });

@@ -119,7 +119,7 @@ define([
             this.categoryFormView.editBtn = false;
             CategoryModel.url = 'data-rest/category';
             CategoryModel.id = undefined;
-            CategoryModel.set(CategoryModel.defaults);
+            CategoryModel.clear().set(CategoryModel.defaults);
         },
 
         editCategory: function (id) {
@@ -130,7 +130,7 @@ define([
             this.categoryFormView.editForm = true;
             console.log("Editing category " + id);
             CategoryModel.url = 'data-rest/category/' + id;
-            CategoryModel.fetch();
+            CategoryModel.clear().fetch();
         },
 
         news: function (page, sort, dir) {
@@ -175,7 +175,7 @@ define([
             }
             this.newsFormView.editForm = true;
             NewsModel.url = 'data-rest/news/' + id;
-            NewsModel.fetch();
+            NewsModel.clear().fetch();
         }
 
 

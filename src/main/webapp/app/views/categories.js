@@ -23,6 +23,7 @@ define([
         },
         // View initialization with listening of the collection
         initialize:function () {
+            $.blockUI({ message: '<h1><img src="icons/loading.gif" /> Күте тұрыңыз...</h1>' });
             console.log('CategoriesView.initialize');
             this.model.on('reset', this.render, this);
         },
@@ -59,6 +60,8 @@ define([
                 ],
                 collection:this.model
             }));
+
+            $.unblockUI();
         }
     });
 
