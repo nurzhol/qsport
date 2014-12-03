@@ -30,15 +30,15 @@ define([
         },
         // View rendering handler
         render:function () {
-            moment.locale("ru");
-            moment().zone(6);
+
             this.model.each(function(model) {
+
                 //var d = new Date(model.get("createDate"));
-                var d = moment(model.get("createDate")).format('MMMM Do YYYY, hh:mm:ss');
+                var d = moment(model.get("createDate")).locale("ru").format('D MMMM  YYYY, H:mm:ss');
                 model.set("createDate", d);
 
-                var d2 = moment(model.get("editedDate")).format('D MMMM  YYYY, hh:mm:ss');
-                model.set("editedDate", d2);
+                /*var d2 = moment(model.get("editedDate")).format('D MMMM  YYYY, hh:mm:ss');
+                model.set("editedDate", d2);*/
             });
 
             console.log("NewsView.render", this.model);
@@ -48,18 +48,18 @@ define([
                 linkEdit:'#news/edit/',
                 columns:[
                     {
-                        title:'newsFeature',
-                        key:'newsFeature',
-                        sort:true
-                    },
-                    {
                         title:'newsTitle',
                         key:'newsTitle',
                         sort:true
                     },
                     {
-                        title:'editedDate',
-                        key:'editedDate',
+                        title:'newsFeature',
+                        key:'newsFeature',
+                        sort:true
+                    },
+                    {
+                        title:'createDate',
+                        key:'createDate',
                         sort:true
                     }
                 ],
