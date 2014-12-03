@@ -33,14 +33,15 @@ define([
         events: {
             "click .form-actions-news .save": "saveItem",
             "click .form-actions-news .delete": "deleteItem",
-            "click .form-actions-news .cancel": "cancel"
+            "click .form-actions-news .cancel": "cancel",
+            "change #lang": "reloadCategoryList"
         },
 
 
-        removeEditor: function(id){
+        removeEditor: function (id) {
             var o = CKEDITOR.instances[id];
-            if(o)
-                CKEDITOR.remove(instance);
+            if (o)
+                CKEDITOR.remove(o);
         },
 
         // View initialization with listening of the collection
@@ -54,9 +55,14 @@ define([
             console.log("NewsOneView.render", this.model);
 
             this.$el.html('Күтіңіз...');
-            this.model.on('change', this.render, this);
+            //this.model.on('change', this.render(""), this);
 
             this.removeEditor("newsDetail");
+        },
+
+        reloadCategoryList: function () {
+            catLang = $("#lang").val();
+            this.render(catLang);
         },
 
         wait: function () {
@@ -72,8 +78,8 @@ define([
 
         loadEditor: function (id) {
             CKEDITOR.replace(id, {
-                "extraPlugins" : 'imagebrowser',
-                "imageBrowser_listUrl" : "/rest/ckeditorimage/"
+                "extraPlugins": 'imagebrowser',
+                "imageBrowser_listUrl": "/rest/ckeditorimage/"
             });
         },
 
@@ -90,21 +96,25 @@ define([
 
         },
 
-        render: function () {
+        render: function (catLang) {
             //$(".newsDetailTMCCLS").show();
             //$(".newsDetailTMC").css("display","block");
             //tinyMCE.execCommand('mceToggleEditor', false, 'newsDetailTMC');
+
+
             var self = this;
             this.categories.fetch().done(function () {
                 var catIdStr = self.model.get('news.News.category');
 
-
                 if (catIdStr == undefined) {
-                    $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm, catUrl: ''}));
+                    if (catLang == "")
+                        catLang = "kz";
+
+                    $(self.el).html(self.template({newslang: catLang, model: self.model, categories: self.getCurrentCatList(self.categories, catLang), editBtn: self.editForm, catUrl: ''}));
 
                     var promise = self.wait();
                     promise.done(function () {
-                        console.log("The start add of ckeditor")
+                        console.log("The start add of ckeditor");
                         self.loadEditor('newsDetail');
 
                         $.unblockUI();
@@ -115,15 +125,17 @@ define([
                     CategoryModel.url = catIdStr;
                     CategoryModel.fetch().done(function () {
                         console.log("Ok");
+                        if (catLang == "")
+                            catLang = CategoryModel.get("lang");
                         var catUrl = "http://" + window.location.host + "/data-rest/category/" + CategoryModel.id;
-                        $(self.el).html(self.template({ model: self.model, categories: self.categories, editBtn: self.editForm, catUrl: catUrl}));
+                        $(self.el).html(self.template({newslang: catLang , model: self.model, categories: self.getCurrentCatList(self.categories, catLang), editBtn: self.editForm, catUrl: catUrl}));
 
                         var promise = self.wait();
                         promise.done(function () {
-                            console.log("The start edit of ckeditor")
+                            console.log("The start edit of ckeditor");
                             self.loadEditor('newsDetail');
+                            $.unblockUI();
                         });
-
 
 
                         //tinyMCE.activeEditor.setContent(self.model.get('newsDetail'));
@@ -139,6 +151,20 @@ define([
 
             this.delegateEvents;
 
+        },
+
+        getCurrentCatList : function(categories, catLang ){
+            var arrayElems = [];
+            categories.each(function (model) {
+                if (catLang == model.get("lang"))
+                    arrayElems.push(model);
+            });
+
+            var OwnCategoryes = Backbone.Collection.extend({
+
+            });
+
+            return new OwnCategoryes(arrayElems);
         },
 
 

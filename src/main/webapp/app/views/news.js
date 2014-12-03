@@ -6,8 +6,9 @@ define([
     'underscore',
     'backbone',
     'collections/news',
-    'text!templates/datagrid.html'
-], function ($, _, Backbone,  NewsCollection, NewsTemplate) {
+    'text!templates/datagrid.html',
+    'moment'
+], function ($, _, Backbone,  NewsCollection, NewsTemplate, moment) {
     /**
      * User view which represents the user data grid
      */
@@ -29,13 +30,15 @@ define([
         },
         // View rendering handler
         render:function () {
-
+            moment.locale("ru");
+            moment().zone(6);
             this.model.each(function(model) {
-                var d = new Date(model.get("createDate"));
-                model.set("createDate", d.toISOString());
+                //var d = new Date(model.get("createDate"));
+                var d = moment(model.get("createDate")).format('MMMM Do YYYY, hh:mm:ss');
+                model.set("createDate", d);
 
-                var d2 = new Date(model.get("editedDate"));
-                model.set("editedDate", d2.toISOString());
+                var d2 = moment(model.get("editedDate")).format('D MMMM  YYYY, hh:mm:ss');
+                model.set("editedDate", d2);
             });
 
             console.log("NewsView.render", this.model);

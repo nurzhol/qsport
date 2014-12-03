@@ -155,6 +155,9 @@ define([
             }
 
             this.newsFormView.editForm = false;
+            this.newsFormView.initialize();
+            this.newsFormView.render("");
+
             NewsModel.url = 'data-rest/news';
             NewsModel.id = undefined;
             NewsModel.clear().set(NewsModel.defaults);
@@ -174,6 +177,8 @@ define([
                 this.newsFormView = new NewsFormView();
             }
             this.newsFormView.editForm = true;
+            this.newsFormView.initialize();
+            this.newsFormView.render("");
             NewsModel.url = 'data-rest/news/' + id;
             NewsModel.clear().fetch();
         }
