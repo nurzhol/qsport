@@ -39,7 +39,7 @@ require.config({
   paths:{
     jquery:"../libs/jquery-1.8.0/jquery.min",
     moment:"../libs/jquery-1.8.0/moment",
-    moment:"../libs/jquery-1.8.0/moment-with-locales",
+    momentLocal:"../libs/jquery-1.8.0/moment-with-locales",
     blockUI:"../libs/jquery-1.8.0/jquery.blockUI",
     bootstrap:"../libs/bootstrap-2.1.0/js/bootstrap.min",
     underscore:"../libs/underscore-1.3.3/underscore",

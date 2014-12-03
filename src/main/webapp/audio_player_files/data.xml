@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  PROPERTY FORMAT LEGEND:  -->
+<!--Rectangle: topColor,bottomColor,fillAlpha,cornerRadius,strokeColor,strokeAlpha,strokeWidth-->
+<!--Text: font,color,alpha,size,bold-->
+<!--Simple Property: color,alpha-->
+<music
+        playerMode="1"
+        displayTimeInfo="true"
+        playerWidth="200"
+        playerHeight="20"
+        playerX="0"
+        playerY="0"
+        flyOut="bottom"
+        autoStart="false"
+        buttonSize="15"
+        buttonPadding="0"
+        buttonY="0"
+        playInSequence="true"
+        playerVolume="70"
+        embedFonts="false"
+        playerBg="282828,000000,100,5,171717,100,1"
+        playerBgShine="FFFFFF,FFFFFF,10,5,333333,0,1"
+        buttonBg="444444,000000,100,7,000000,100,1"
+        buttonInnerStroke="363636,000000,100,7,333333,100,1"
+        buttonBgHover="0D97F2,075d99,100,7,064B79,100,1"
+        buttonIcon="888888,100"
+        buttonIconHover="FFFFFF,100"
+
+        displaySongText="Verdana,A4A4A4,100,10,false"
+        displaySongTimeTotal="Arial,A4A4A4,100,10,false"
+        displaySongTimeElapsed="Arial,FFFFFF,100,10,true"
+        displaySongTextY="2"
+        displaySongTimeY="2"
+        pauseDisplayFor="2"
+        songTitleScrollTime="3"
+        sliderHeight="5"
+        sliderY="0"
+        sliderButtonWidth="0"
+        sliderButtonHeight="0"
+        sliderBg="000000,333333,100,3,0,0,0"
+        sliderFill="0D97F2,075d99,100,3,0,0,0"
+        sliderStramProgress="333333,444444,100,3,0,0,0"
+        sliderButton="FFFFFF,666666,100,10,333333,100,1"
+        volumeHeight="70"
+        volumeBg="222222,000000,100,9,333333,100,1"
+        volumeSliderBg="333333,444444,100,3,0,0,0"
+        volumeSliderFill="0D97F2,075d99,100,3,0,0,0"
+        volumeText="Arial,FFFFFF,100,10,false"
+        volumeSliderButton="FFFFFF,666666,100,9,333333,100,1"
+
+        listOpen="false"
+        listHeight="0"
+        listPadding="0"
+        listScrollbarWidth="0"
+        listBg="222222,000000,100,15,333333,100,1"
+        listScrollbar="666666,100"
+        listScrollbarBg="000000,100"
+        listItemHeight="0"
+        listItemBg="333333,100"
+        listItemBgActive="075d99,100"
+        listTitleText="Verdana,999999,100,10,false"
+        listTitleTextActive="Verdana,FFFFFF,100,10,false"
+        listTitleScrollTime="5"
+        >
+    <group>
+        <song file="music/kok_tu_ibragim.mp3" title="Kok tu"/>
+        <song file="music/alsh_urani.mp3" title="Alash"/>
+    </group>
+</music>

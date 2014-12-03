@@ -40,6 +40,9 @@ require.config({
                 "jqueryUI"
             ],
             exports: "jqueryYOUTUBE"
+        },
+        "audioplayer": {
+            exports: "audioplayer"
         }
     },
 
@@ -55,15 +58,19 @@ require.config({
         text: "../libs/require-2.0.6/text",
         i18n: "../libs/require-2.0.6/i18n",
         jqueryUI: "../libs/jquery-ui/jquery-ui",
-        jqueryYOUTUBE: "../libs/jquery-ui/jquery.youtubepopup"
+        jqueryYOUTUBE: "../libs/jquery-ui/jquery.youtubepopup",
+        audioplayer: "../audio_player_files/flashdetect"
+
+
     }
 })
 ;
 
 require([
     'views/newspage',
-    'routers/news/router'
-], function (NewsPageView, RouterA) {
+    'routers/news/router',
+    'audioplayer'
+], function (NewsPageView, RouterA, audioplayer) {
     router = new RouterA();
 
     console.log('router is' + router)

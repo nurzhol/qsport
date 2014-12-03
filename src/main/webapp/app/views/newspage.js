@@ -50,6 +50,7 @@ define([
         },
         // View initialization with listening of the collection
         initialize:function () {
+            this.insertAudioPlayer();
             console.log('NewsPageView.initialize');
             this.news1View = null;
             this.news2View = null;
@@ -170,59 +171,12 @@ define([
                 this.news19View = new News19View();
             }
 
+        },
 
-
-
-            /*var self =this;
-
-            var NewsCollection1 = Hateoas.Collection.extend({
-                url:''
-            });
-            var collection0 = new NewsCollection1;
-            collection0.url = "data-rest/news/search/findByCategoryName?id=0&lang="+language;
-
-            collection0.fetch().done(function(){
-                $('#cat0').html(self.template({translite: translite, categoryName:"cat0" ,
-                collection: collection0}));
-            });
-
-
-            var collection1 = new NewsCollection1;
-            collection1.url = "data-rest/news/search/findByCategoryName?id=1&lang="+language;
-
-            collection1.fetch().done(function(){
-                $('#cat1').html(self.template({translite: translite, categoryName:"cat1" ,
-                    collection: collection1}));
-            });
-
-
-            var collection2 = new NewsCollection1;
-            collection2.url = "data-rest/news/search/findByCategoryName?id=2&lang="+language;
-
-            collection2.fetch().done(function(){
-                $('#cat2').html(self.template({translite: translite, categoryName:"cat2" ,
-                    collection: collection2}));
-            });
-
-
-            var collection3 = new NewsCollection1;
-            collection3.url = "data-rest/news/search/findByCategoryName?id=3&lang="+language;
-
-            collection3.fetch().done(function(){
-                $('#cat3').html(self.template({translite: translite, categoryName:"cat3" ,
-                    collection: collection3}));
-            });
-
-
-            var collection4 = new NewsCollection1;
-            collection1.url = "data-rest/news/search/findByCategoryName?id=4&lang="+language;
-
-            collection4.fetch().done(function(){
-                $('#cat4').html(self.template({translite: translite, categoryName:"cat4" ,
-                    collection: collection4}));
-            });*/
-
-
+        insertAudioPlayer: function(){
+            var so = new SWFObject("audio_player_files/audioPlayer.swf", "player", "230", "20", "6", "#666666");
+            so.addVariable("xmlPath", "audio_player_files/data.xml");
+            so.write("audioplayer");
         }
     });
 
