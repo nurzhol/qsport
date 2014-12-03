@@ -1,8 +1,7 @@
-<legend>
+<div class="categoryName">
     <%= translite=== 'cyrillic' ? categoryName : '' %>
     <%= translite=== 'latin' ? categoryNameLt : '' %>
-</legend>
-<br/>
+</div>
 
 
 <% collection.each(function(model) { %>
@@ -16,26 +15,26 @@ if (parseInt(idStr, 10) != NaN)
 myId = idStr;
 
 %>
+<div class="news">
+    <div class="newsImage">
+        <img src="images/<%= model.get( 'imgUrl' ) %>" width="200" height="200"/>
+    </div>
 
-<div>
-    <img style="float:left" src="images/<%= model.get( 'imgUrl' ) %>" width="200" height="200">
-
-    <p class="text-center">
+    <div class="newsTitle">
         <a href="<%='#readnews/'+myId%>">
             <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
             <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
             <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>
         </a>
+    </div>
 
-    </p>
-
-    <p class="text-center">
+    <div class="newsFeature">
         <%= translite=== 'cyrillic' ? model.get( 'newsFeature' ) : '' %>
         <%= translite=== 'latin' ? model.get( 'newsFeatureLt' ) : '' %>
         <%= translite=== 'arab' ? model.get( 'newsFeatureAr' ) : '' %>
-    </p>
-</div>
+    </div>
 
+</div>
 
 <% }) %>
 
