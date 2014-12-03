@@ -58,16 +58,6 @@ define([
                         sort:true
                     },
                     {
-                        title:'newsDetail',
-                        key:'newsDetail',
-                        sort:true
-                    },
-                    {
-                        title:'imgUrl',
-                        key:'imgUrl',
-                        sort:true
-                    },
-                    {
                         title:'editedDate',
                         key:'editedDate',
                         sort:true
