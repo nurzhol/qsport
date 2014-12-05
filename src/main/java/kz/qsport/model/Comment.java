@@ -5,6 +5,7 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -20,9 +21,16 @@ public class Comment {
 
     private String comment;
 
+    private String commentLt;
+
+    private String commentAr;
+
     @ManyToOne
     @JoinColumn(name="news_id")
     private News news;
+
+    @Column(name = "comment_date")
+    private Date commentDate = new Date();
 
     public Integer getId() {
         return id;
@@ -48,11 +56,35 @@ public class Comment {
         this.comment = comment;
     }
 
+    public String getCommentLt() {
+        return commentLt;
+    }
+
+    public void setCommentLt(String commentLt) {
+        this.commentLt = commentLt;
+    }
+
+    public String getCommentAr() {
+        return commentAr;
+    }
+
+    public void setCommentAr(String commentAr) {
+        this.commentAr = commentAr;
+    }
+
     public News getNews() {
         return news;
     }
 
     public void setNews(News news) {
         this.news = news;
+    }
+
+    public Date getCommentDate() {
+        return commentDate;
+    }
+
+    public void setCommentDate(Date commentDate) {
+        this.commentDate = commentDate;
     }
 }

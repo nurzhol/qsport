@@ -197,6 +197,35 @@ public class TestData implements InitializingBean {
         category.setLang("kz");
         categoryRepository.save(category);
 
+        //20
+        category = new Category();
+        category.setCategoryLabel("Әлеуметтік желідеміз");
+        category.setCategoryName("Әлеуметтік желідеміз");
+        category.setLang("kz");
+        categoryRepository.save(category);
+
+
+        //21
+        category = new Category();
+        category.setCategoryLabel("Редакция алқасы");
+        category.setCategoryName("Редакция алқасы");
+        category.setLang("kz");
+        categoryRepository.save(category);
+
+        //22
+        category = new Category();
+        category.setCategoryLabel("Ұлттық құндылықтар");
+        category.setCategoryName("Ұлттық құндылықтар");
+        category.setLang("kz");
+        categoryRepository.save(category);
+
+        //23
+        category = new Category();
+        category.setCategoryLabel("Кітап сөресі");
+        category.setCategoryName("Кітап сөресі");
+        category.setLang("kz");
+        categoryRepository.save(category);
+
     }
 
 }

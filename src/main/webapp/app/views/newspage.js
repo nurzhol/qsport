@@ -49,7 +49,12 @@ define([
         events:{
         },
         // View initialization with listening of the collection
-        initialize:function () {
+        initialize:function (callback) {
+            this.callback = callback;
+            if (this.callback) {
+                this.callback();
+            }
+
             this.insertAudioPlayer();
             console.log('NewsPageView.initialize');
             this.news1View = null;

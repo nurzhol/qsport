@@ -1,38 +1,50 @@
-<div class="row">
+<div class="fullnews">
+    <div class="newsTitle">
+            <%= translite=== 'cyrillic' ? news.get( 'newsTitle' ) : '' %>
+            <%= translite=== 'latin' ? news.get( 'newsTitleLt' ) : '' %>
+            <%= translite=== 'arab' ? news.get( 'newsTitleAr' ) : '' %>
+    </div>
+    <div class="newsImage">
+        <img src="images/<%= news.get( 'imgUrl' ) %>" width="400" height="400"/>
+    </div>
+    <div class="newsDetail">
+        <%= translite=== 'cyrillic' ? news.get( 'newsDetail' ) : '' %>
+        <%= translite=== 'latin' ? news.get( 'newsDetailLt' ) : '' %>
+        <%= translite=== 'arab' ? news.get( 'newsDetailAr' ) : '' %>
+    </div>
 
-    <form class="form-horizontal span12">
+    <% comments.each(function(model) { %>
 
-
-        <fieldset>
-
-            <legend>Жаңалық</legend>
-            <br/>
-
-            <div class="row">
-                <div class="span9">
-
-
-
-                    <div class="control-group">
-                        <label class="control-label"><%= news.get('newsTitle') %></label>
-                        <img style="float:left" src="images/<%= news.get( 'imgUrl' ) %>" width="400" height="400">
-
-                        <label class="control-label"><%= news.get('newsFeature') %></label>
-
-                        <label  class="control-label"><%= news.get('newsDetail') %></label>
-
-                    </div>
-
-
-                </div>
-
+        <div class="comment">
+            <div class="author">
+                <%= model.get( 'AuthDetail') %>
             </div>
+            <div class="commentdate">
+                <%=  model.get( 'commentDate' )  %>
+            </div>
+            <div class="commentcontent">
+                <%= translite=== 'cyrillic' ? model.get( 'comment' ) : '' %>
+                <%= translite=== 'latin' ? model.get( 'commentLt' ) : '' %>
+                <%= translite=== 'arab' ? model.get( 'commentAr' ) : '' %>
+            </div>
+        </div>
 
-        </fieldset>
+    <%})%>
 
 
+    <div class="newCommentAuthor">
+        Аты:
+        <input type="text" id="newCommentAuthorId"/>
+    </div>
+
+    <div class="newCommentText">
+        Коммантария:
+        <textarea id="newCommentTextId"  rows="3" cols="5"/>
+    </div>
+
+    <div>
+        <a href="#" class="addComment btn">Жіберу</a>
+    </div>
 
 </div>
-
-
 

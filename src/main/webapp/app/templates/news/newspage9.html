@@ -1,6 +1,8 @@
 <div class="categoryName">
-    <%= translite=== 'cyrillic' ? categoryName : '' %>
-    <%= translite=== 'latin' ? categoryNameLt : '' %>
+    <a href="#readcat/9">
+        <%= translite=== 'cyrillic' ? categoryName : '' %>
+        <%= translite=== 'latin' ? categoryNameLt : '' %>
+    </a>
 </div>
 
 
@@ -9,7 +11,14 @@
 
 <%
 var myId;
-var urlStr = model.get('links')[1].href;
+var urlStr = "";
+var arr = model.get('links');
+
+for(i=0; i<arr.length; i++){
+if(arr[i].rel == 'self'){
+urlStr = arr[i].href;
+}
+}
 var idStr = urlStr.substring(urlStr.lastIndexOf('/')+1);
 if (parseInt(idStr, 10) != NaN)
 myId = idStr;
@@ -17,7 +26,7 @@ myId = idStr;
 %>
 <div class="news">
     <div class="newsImage">
-        <img src="images/<%= model.get( 'imgUrl' ) %>" width="200" height="200"/>
+        <img src="images/thumb/<%= model.get( 'imgUrl' ) %>" width="100" height="100"/>
     </div>
 
     <div class="newsTitle">
@@ -37,5 +46,4 @@ myId = idStr;
 </div>
 
 <% }) %>
-
 

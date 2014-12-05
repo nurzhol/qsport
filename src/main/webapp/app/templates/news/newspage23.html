@@ -1,10 +1,9 @@
 <div class="categoryName">
-    <a href="#readcat/16">
+    <a href="#readcat/23">
         <%= translite=== 'cyrillic' ? categoryName : '' %>
         <%= translite=== 'latin' ? categoryNameLt : '' %>
     </a>
 </div>
-
 
 
 <% collection.each(function(model) { %>
@@ -27,6 +26,7 @@ myId = idStr;
 %>
 <div class="news">
     <div class="newsImage">
+        <img src="images/thumb/<%= model.get( 'imgUrl' ) %>" width="100" height="100"/>
         <img src="images/thumb/<%= model.get( 'imgUrl' ) %>" width="100" height="100"/>
     </div>
 

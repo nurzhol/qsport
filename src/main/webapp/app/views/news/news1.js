@@ -39,12 +39,14 @@ define([
 
             collection0.fetch().done(function(){
 
-                collection0.each(function(model) {
+                /*collection0.each(function(model) {
                     console.log(model);
-                    });
+                    });*/
 
-                    $(self.el).html(self.template({translite: translite, categoryName:"Қысқа жаңалықтар" ,
+                $(self.el).html(self.template({translite: translite, categoryName:"Қысқа жаңалықтар" ,
                     collection: collection0}));
+
+
             });
         }
 

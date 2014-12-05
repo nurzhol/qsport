@@ -5,20 +5,24 @@ define([
     'jquery',
     'backbone',
     'views/news/one',
-    "models/news"
-], function ($, Backbone, OneView, NewsModel) {
+    'views/news/categoryNews',
+    "models/news",
+    "models/category"
+], function ($, Backbone, OneView, CategoryNewsView , NewsModel, CategoryModel ) {
     /**
      * Url router for the applications. Defines routes with url and handlers
      */
-    var RouterA = Backbone.Router.extend({
+    var Router = Backbone.Router.extend({
         // List all the routes possibles and bind them to a handler
         routes: {
-            'readnews/:id': 'showNews'
+            'readnews/:id': 'showNews',
+            'readcat/:id': 'showCategoryNews'
 
         },
         // Constructor
         initialize: function () {
             this.oneView = null;
+            this.categoryView = null;
         },
 
 
@@ -29,12 +33,22 @@ define([
             }
 
             NewsModel.url = 'data-rest/news/'+id;
-            NewsModel.fetch();
+            NewsModel.clear().fetch();
+        },
+
+        showCategoryNews: function(id) {
+            console.log("Show categoryView " +id);
+            if (!this.categoryView) {
+                this.categoryView = new CategoryNewsView();
+            }
+
+            CategoryModel.url = 'data-rest/category/'+id;
+            CategoryModel.fetch();
         }
 
     });
 
 
     // Return the view as the Require module
-    return RouterA;
+    return Router;
 });

@@ -1,10 +1,7 @@
 <div class="categoryName">
-    <a href="#readcat/16">
-        <%= translite=== 'cyrillic' ? categoryName : '' %>
-        <%= translite=== 'latin' ? categoryNameLt : '' %>
-    </a>
+    <%= translite=== 'cyrillic' ? categoryName : '' %>
+    <%= translite=== 'latin' ? categoryNameLt : '' %>
 </div>
-
 
 
 <% collection.each(function(model) { %>
@@ -16,9 +13,9 @@ var urlStr = "";
 var arr = model.get('links');
 
 for(i=0; i<arr.length; i++){
-if(arr[i].rel == 'self'){
-urlStr = arr[i].href;
-}
+     if(arr[i].rel == 'self'){
+        urlStr = arr[i].href;
+     }
 }
 var idStr = urlStr.substring(urlStr.lastIndexOf('/')+1);
 if (parseInt(idStr, 10) != NaN)

@@ -6,7 +6,7 @@ define([
     'underscore',
     'backbone',
     'collections/Hateoas',
-    'text!templates/news/newspage20.html'
+    'text!templates/news/newspage21.html'
 ], function ($, _, Backbone, Hateoas, NewsTemplate) {
     /**
      * User view which represents the user data grid
@@ -15,7 +15,7 @@ define([
         // The view generate a div tag
         tagName: 'div',
 
-        el: '.cat20',
+        el: '.cat21',
         // Binding the users collection
 
         // Binding the DataGridTemplate loaded by text plugin of Require
@@ -34,10 +34,10 @@ define([
                 url:''
             });
             var collection0 = new NewsCollection1;
-            collection0.url = "data-rest/news/search/findByCategoryName?id=20&lang="+language;
+            collection0.url = "data-rest/news/search/findByCategoryName?id=21&lang="+language;
 
             collection0.fetch().done(function(){
-                $(self.el).html(self.template({translite: translite, categoryName:"Әлеуметтік желідеміз" ,
+                $(self.el).html(self.template({translite: translite, categoryName:"Редакция алқасы" ,
                     collection: collection0}));
             });
 
