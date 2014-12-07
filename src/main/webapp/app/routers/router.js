@@ -16,8 +16,11 @@ define([
     'collections/users',
     'views/users',
     'views/user-form',
-    'views/image'
-], function ($, Backbone, CategoriesCollection, CategoriesView, CategoryFormView, CategoryModel, NewsCollection, NewsView, NewsFormView, NewsModel, UserModel, UsersCollection, UsersView, UserFormView, ImageView) {
+    'views/image',
+    'collections/comments',
+    'views/comments',
+    'models/comment'
+], function ($, Backbone, CategoriesCollection, CategoriesView, CategoryFormView, CategoryModel, NewsCollection, NewsView, NewsFormView, NewsModel, UserModel, UsersCollection, UsersView, UserFormView, ImageView, CommentsCollection, CommentsView, CommentModel) {
     /**
      * Url router for the applications. Defines routes with url and handlers
      */
@@ -43,7 +46,13 @@ define([
             'news/edit/:id': 'editNews',
             'news': 'news',
             'news/:page': 'news',
-            'news/:page/:sort/:dir': 'news'
+            'news/:page/:sort/:dir': 'news',
+
+
+            'comments' : 'commentsList',
+            'comments/apply/:id' : 'commentsApply',
+            'comments/reject/:id' : 'commentsReject'
+
 
         },
         // Constructor
@@ -54,6 +63,7 @@ define([
             this.usersFormView = null;
             this.categoryFormView = null;
             this.newsFormView = null;
+            this.commentsView = null;
         },
 
         users: function (page, sort, dir) {
@@ -181,6 +191,74 @@ define([
             this.newsFormView.render("");
             NewsModel.url = 'data-rest/news/' + id;
             NewsModel.clear().fetch();
+        },
+
+        commentsList: function (page, sort, dir) {
+            console.log("router comments ", page, sort, dir);
+            if (!this.commentsView) {
+                this.commentsView = new CommentsView();
+            }
+            if (!page) {
+                page = 1;
+            }
+            CommentsCollection.page = page;
+            CommentsCollection.sort = sort;
+            CommentsCollection.dir = dir;
+            CommentsCollection.fetchPage();
+        },
+
+
+        commentsApply: function (id) {
+            console.log("Apply comments " + id);
+
+
+            var data = new FormData();
+            data.append('commentId', id);
+
+            $.ajax({
+                url: '/rest/comment',
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'POST',
+                success: function (data) {
+                    console.log('Success!', 'CommentApplied', 'alert-success');
+                },
+                error: function (data) {
+                    console.log('Error', 'An error occurred while apply', 'alert-error');
+                    route.navigate('comments', {trigger: true});
+                }
+            });
+
+
+
+        },
+
+
+        commentsReject: function (id) {
+            console.log("Apply comments " + id);
+
+
+            var data = new FormData();
+            data.append('commentId', id);
+
+            $.ajax({
+                url: '/rest/comment/delete',
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'POST',
+                success: function (data) {
+                    console.log('Success!', 'Comment deleted', 'alert-success');
+                },
+                error: function (data) {
+                    console.log('Error', 'An error occurred while delete', 'alert-error');
+                    route.navigate('comments', {trigger: true});
+                }
+            });
+
         }
 
 

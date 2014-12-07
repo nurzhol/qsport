@@ -2,9 +2,11 @@ package kz.qsport.repository;
 
 import kz.qsport.model.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.repository.annotation.RestResource;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,6 +20,16 @@ import java.util.List;
 @RestResource(exported = true, path = "comment")
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
-    @Query("select c from Comment c where c.news.id = :news_id  order by c.commentDate desc ")
+    @Query("select c from Comment c where c.news.id = :news_id and c.active = 1 order by c.commentDate asc ")
     List<Comment> findByNews(@Param(value = "news_id") Integer id);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query("update Comment c set c.active = 1 where c.id =:commentId")
+    void activate(@Param("commentId") Integer commentId);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query("delete Comment c where c.id =:commentId")
+    void delete(@Param("commentId") Integer commentId);
 }

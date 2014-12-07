@@ -32,6 +32,9 @@ public class Comment {
     @Column(name = "comment_date")
     private Date commentDate = new Date();
 
+    @Column(nullable=false,columnDefinition="number(2) default 0")
+    private Integer active;
+
     public Integer getId() {
         return id;
     }
@@ -86,5 +89,14 @@ public class Comment {
 
     public void setCommentDate(Date commentDate) {
         this.commentDate = commentDate;
+    }
+
+
+    public Integer getActive() {
+        return active;
+    }
+
+    public void setActive(Integer active) {
+        this.active = active;
     }
 }
