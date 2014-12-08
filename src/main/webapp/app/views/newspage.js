@@ -179,7 +179,7 @@ define([
         },
 
         insertAudioPlayer: function(){
-            var so = new SWFObject("audio_player_files/audioPlayer.swf", "player", "230", "20", "6", "#666666");
+            var so = new SWFObject("audio_player_files/audioPlayer.swf", "player", "225", "110", "6", "#666666");
             so.addVariable("xmlPath", "audio_player_files/data.xml");
             so.write("audioplayer");
         }
