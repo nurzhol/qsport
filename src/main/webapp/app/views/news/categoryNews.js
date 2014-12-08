@@ -47,11 +47,8 @@ define([
             collection0.url = "data-rest/news/search/findByCategoryName?id="+ this.model.id +"&lang="+language;
 
             collection0.fetch().done(function(){
-
                 $(self.el).html(self.template({translite: translite, categoryName: self.model.get("categoryLabel"),
                     collection: collection0}));
-
-
             });
         }
 

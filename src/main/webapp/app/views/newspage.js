@@ -26,13 +26,9 @@ define([
     'views/news/news16',
     'views/news/news17',
     'views/news/news18',
-    'views/news/news19',
-    'views/news/news20'
-], function ($, _, Backbone,  NewsPageCollection, Hateoas, jqueryYOUTUBE, translit,
-             News1View, News2View , News3View, News4View ,News5View,
-             News6View, News7View , News8View, News9View ,News10View,
-             News11View, News12View , News13View, News14View ,News15View,
-             News16View, News17View , News18View, News19View, News20View ) {
+    'views/news/video',
+    'views/news/news19'
+], function ($, _, Backbone, NewsPageCollection, Hateoas, jqueryYOUTUBE, translit, News1View, News2View, News3View, News4View, News5View, News6View, News7View, News8View, News9View, News10View, News11View, News12View, News13View, News14View, News15View, News16View, News17View, News18View, VideoView, News19View) {
 
 
     /**
@@ -46,10 +42,10 @@ define([
         // Binding the DataGridTemplate loaded by text plugin of Require
         //template:_.template(NewsPageTemplate),
         // No events
-        events:{
+        events: {
         },
         // View initialization with listening of the collection
-        initialize:function (callback) {
+        initialize: function (callback) {
             this.callback = callback;
             if (this.callback) {
                 this.callback();
@@ -75,25 +71,22 @@ define([
             this.news16View = null;
             this.news17View = null;
             this.news18View = null;
+            this.videoView = null;
             this.news19View = null;
             this.render();
         },
         // View rendering handler
-        render:function () {
+        render: function () {
             console.log("NewsPageView.render", this.model);
             console.log("NewsPageView translit red", translit.red);
-            var language =  window.localStorage.getItem('locale')||'kz';
-            var translite =  window.localStorage.getItem('translite')||'cyrillic';
+            var language = window.localStorage.getItem('locale') || 'kz';
+            var translite = window.localStorage.getItem('translite') || 'cyrillic';
 
             console.log("NewsPageView default language is", language);
 
-            var youTubeId = 'Nd6C-3Zd0AE';
-            $("#youtubeLink").YouTubePopup({  autoplay: 1 , youtubeId: youTubeId, title: 'Ұлытау ұлттық тарихымыздың көне сыры',draggable: false,  modal: true, controls: 0, start:100});
-            //var timeInSeconds = $.fn.getYouTubeVideoDuration(youTubeId);
-            //$("#youtubeTime").html($.fn.toHHMMSS(timeInSeconds));
 
-            $("#feedBackBtn").click(function(event) {
-                $( "#dialog-form" ).dialog();
+            $("#feedBackBtn").click(function (event) {
+                $("#dialog-form").dialog();
             });
 
             if (!this.news1View) {
@@ -172,13 +165,49 @@ define([
                 this.news18View = new News18View();
             }
 
+            if (!this.videoView) {
+                this.videoView = new VideoView();
+            }
+
             if (!this.news19View) {
                 this.news19View = new News19View();
             }
 
+            $(".youtubeClass").click(this.playVideo());
+
         },
 
-        insertAudioPlayer: function(){
+        playVideo: function () {
+            $(".youtubeClass").empty();
+            $(".youtubeClass").html('    <img class="youtube" id="youtubeLink" style="cursor: pointer;" width="250" height="250"      src="http://img.youtube.com/vi/Nd6C-3Zd0AE/0.jpg" title="Ұлытау"/>');
+            var elem = this.videoToPlay();
+            var youTubeId = '-------';
+            var youTubeTitle = 'ОНЛАЙН ВИДЕО';
+            var seek = 0;
+            if(elem.length!=0){
+                var elems = elem.split(';');
+                youTubeId = elems[0];
+                seek =  elems[1];
+            }
+            $("#youtubeLink").YouTubePopup({  autoplay: 1, youtubeId: youTubeId, title: youTubeTitle, draggable: false, modal: true, controls: 0, start: seek});
+        },
+
+        videoToPlay: function () {
+            var start = 0;
+            $.ajax({
+                type: "POST",
+                url: "rest/video/elem",
+                async: false,
+                success: function (resp) {
+
+                    start = resp;
+                }
+            });
+            return start;
+        },
+
+
+        insertAudioPlayer: function () {
             var so = new SWFObject("audio_player_files/audioPlayer.swf", "player", "225", "110", "6", "#666666");
             so.addVariable("xmlPath", "audio_player_files/data.xml");
             so.write("audioplayer");

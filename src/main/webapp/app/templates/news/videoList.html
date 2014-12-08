@@ -1,0 +1,11 @@
+<% collection.each(function(model) { %>
+<div class="videoList">
+    <% _.each(columns, function(column) { %>
+    <div class="videoItem">
+    <%= column.anchor ? 'data-anchor="' + model.get( column.anchor ) + '"' : '' %>
+    <%= column.key ?  model.get( column.key )  : '' %>
+    </div>
+    <% } ) %>
+
+</div>
+<% }) %>

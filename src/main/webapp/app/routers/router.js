@@ -19,8 +19,12 @@ define([
     'views/image',
     'collections/comments',
     'views/comments',
-    'models/comment'
-], function ($, Backbone, CategoriesCollection, CategoriesView, CategoryFormView, CategoryModel, NewsCollection, NewsView, NewsFormView, NewsModel, UserModel, UsersCollection, UsersView, UserFormView, ImageView, CommentsCollection, CommentsView, CommentModel) {
+    'models/comment',
+    'collections/videos',
+    'views/video',
+    'views/video-form',
+    'models/video'
+], function ($, Backbone, CategoriesCollection, CategoriesView, CategoryFormView, CategoryModel, NewsCollection, NewsView, NewsFormView, NewsModel, UserModel, UsersCollection, UsersView, UserFormView, ImageView, CommentsCollection, CommentsView, CommentModel, VideosCollection, VideoView, VideoFormView, VideoModel) {
     /**
      * Url router for the applications. Defines routes with url and handlers
      */
@@ -51,7 +55,12 @@ define([
 
             'comments' : 'commentsList',
             'comments/apply/:id' : 'commentsApply',
-            'comments/reject/:id' : 'commentsReject'
+            'comments/reject/:id' : 'commentsReject',
+
+
+            'video/edit/:id': 'editVideo',
+            'video': 'video',
+            'video/add': 'addVideo'
 
 
         },
@@ -64,6 +73,9 @@ define([
             this.categoryFormView = null;
             this.newsFormView = null;
             this.commentsView = null;
+            this.videoView = null;
+            this.videoFormView = null;
+
         },
 
         users: function (page, sort, dir) {
@@ -259,7 +271,48 @@ define([
                 }
             });
 
+        },
+
+
+        video: function (page, sort, dir) {
+            console.log("router video ", page, sort, dir);
+            if (!this.videoView) {
+                this.videoView = new VideoView();
+            }
+            if (!page) {
+                page = 1;
+            }
+            VideosCollection.page = page;
+            VideosCollection.sort = sort;
+            VideosCollection.dir = dir;
+            VideosCollection.fetchPage();
+        },
+
+
+        editVideo: function (id) {
+            console.log("Editing video " + id);
+
+            if (!this.videoFormView) {
+                this.videoFormView = new VideoFormView();
+            }
+            this.videoFormView.editForm = true;
+            VideoModel.url = 'data-rest/video/' + id;
+            VideoModel.clear().fetch();
+        },
+
+        addVideo: function () {
+            console.log("Adding video ");
+
+            if (!this.videoFormView) {
+                this.videoFormView = new VideoFormView();
+            }
+
+            this.videoFormView.editBtn = false;
+            VideoModel.url = 'data-rest/video';
+            VideoModel.id = undefined;
+            VideoModel.clear().set(VideoModel.defaults);
         }
+
 
 
     });

@@ -9,12 +9,14 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
   <!-- Spring Security special HTTP filter authorization on the login command -->
+  <http security="none" pattern="/data-rest/video" />
   <http security="none" pattern="/rest/login" />
   <http security="none" pattern="/rest/picture" />
   <http security="none" pattern="/images/*" />
   <http security="none" pattern="/news.html" />
   <http security="none" pattern="/rest/email" />
   <http security="none" pattern="/rest/recaptcha" />
+  <http security="none" pattern="/rest/video/elem" />
   <http security="none" pattern="/music/*" />
   <http security="none" pattern="/audio_player_files/*" />
 

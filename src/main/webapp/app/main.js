@@ -37,6 +37,25 @@ require.config({
                 "momentLocal"
             ],
             exports: "moment"
+        },
+        "jqueryUI": {
+            deps: [
+                "jquery"
+            ],
+            exports: "jqueryUI"
+        },
+        "jqueryYOUTUBE": {
+            deps: [
+                "jquery",
+                "jqueryUI"
+            ],
+            exports: "jqueryYOUTUBE"
+        },
+        "timepicker": {
+            deps: [
+                "jquery"
+            ],
+            exports: "timepicker"
         }
     },
     /**
@@ -52,7 +71,10 @@ require.config({
         backbone: "../libs/backbone-0.9.2/backbone",
         text: "../libs/require-2.0.6/text",
         i18n: "../libs/require-2.0.6/i18n",
-        ckeditor: "../libs/ckeditor/ckeditor"
+        ckeditor: "../libs/ckeditor/ckeditor",
+        jqueryUI: "../libs/jquery-ui/jquery-ui",
+        jqueryYOUTUBE: "../libs/jquery-ui/jquery.youtubepopup",
+        timepicker: "../libs/jquery-1.8.0/jquery.timepicker"
     }
 });
 
