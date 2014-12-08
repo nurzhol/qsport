@@ -9,8 +9,9 @@ define([
     'collections/Hateoas',
     'models/news',
     'models/comment',
-    'moment'
-], function ($, _, Backbone, OneTemplate, Hateoas, OneModel, CommentModel, moment) {
+    'moment',
+    "recaptchaajax"
+], function ($, _, Backbone, OneTemplate, Hateoas, OneModel, CommentModel, moment, recaptchaajax) {
     /**
      * User view which represents the user data grid
      */
@@ -23,13 +24,13 @@ define([
 
         model: OneModel,
 
-        commentModel : CommentModel,
+        commentModel: CommentModel,
 
         // Binding the DataGridTemplate loaded by text plugin of Require
         template: _.template(OneTemplate),
 
         events: {
-            "click .fullnews .addComment": "addComment"
+            "click .fullnews .addComment": "validate"
         },
 
         // View initialization with listening of the collection
@@ -46,21 +47,21 @@ define([
         },
 
         render: function () {
-            var self =this;
+            var self = this;
 
-            var language =  window.localStorage.getItem('locale')||'kz';
-            var translite =  window.localStorage.getItem('translite')||'cyrillic';
+            var language = window.localStorage.getItem('locale') || 'kz';
+            var translite = window.localStorage.getItem('translite') || 'cyrillic';
 
             var CommentCollection1 = Hateoas.Collection.extend({
-                url:''
+                url: ''
             });
 
             var comments = new CommentCollection1;
-            comments.url = "data-rest/comment/search/findByNews?news_id=" + this.model.id +  "";
+            comments.url = "data-rest/comment/search/findByNews?news_id=" + this.model.id + "";
 
-            comments.fetch().done(function(){
+            comments.fetch().done(function () {
 
-                comments.each(function(model) {
+                comments.each(function (model) {
 
                     var d = moment(model.get("commentDate")).locale("ru").format('D MM YYYY, H:mm:ss');
                     model.set("commentDate", d);
@@ -69,10 +70,30 @@ define([
 
                 $(self.el).html(self.template({translite: translite, news: self.model, comments: comments}));
 
+
+                var promise = self.wait();
+                promise.done(function () {
+                    console.log("The start captcha add");
+                    self.reloadRecaptcha();
+                });
+
+
             });
         },
 
-        addComment: function(){
+        wait: function () {
+            var deferred = $.Deferred();
+
+            setTimeout(function () {
+                deferred.resolve();
+            }, 2000);
+
+            return deferred.promise();
+        },
+
+
+        addComment: function () {
+
             self = this;
             console.log("One.addComment started", this.model);
 
@@ -80,16 +101,17 @@ define([
                 AuthDetail: this.$("#newCommentAuthorId").val(),
                 comment: this.$("#newCommentTextId").val(),
                 commentLt: this.transliterateLat(this.$("#newCommentTextId").val()),
+                active: 0,
                 news: {
                     "rel": "comment.Comment.news",
-                    "href": "http://"+ window.location.host + "/data-rest/news/" + this.model.id
+                    "href": "http://" + window.location.host + "/data-rest/news/" + this.model.id
                 }
             });
 
             this.commentModel.save(null, {
                 success: function (model) {
                     alert('Success!', 'Item saved successfully', 'alert-success');
-                    route.navigate('readnews/' +self.model.id, {trigger: true});
+                    self.render();//route.navigate('readnews/' + self.model.id, {trigger: true});
                 },
                 error: function () {
                     alert('Error', 'An error occurred while saving', 'alert-error');
@@ -121,6 +143,37 @@ define([
                 }
             }
             return translitLat;
+        },
+
+        reloadRecaptcha: function () {
+            var publicKey = "6LcR7f4SAAAAAIXOQyqhNzrVJ9Ye-xX6ohoq69Xn";
+            var div = "recaptchaDivId";
+            Recaptcha.create(publicKey, div, {theme: "white"});
+            return false;
+        },
+
+        validate: function () {
+            self = this;
+            var challenge = Recaptcha.get_challenge();
+            var response = Recaptcha.get_response();
+            $.ajax({
+                type: "POST",
+                url: "rest/recaptcha",
+                async: false,
+                data: {
+                    challenge: challenge,
+                    response: response
+                },
+                success: function (resp) {
+                    if (resp) {
+                        self.addComment();
+                    }else{
+                        $("#recaptchaDivMessage").html('<span style= "color: red">Қате енгізілген сурет</span>');
+                        self.reloadRecaptcha();
+                    }
+                }
+            });
+            return false;
         }
 
 

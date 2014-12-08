@@ -53,6 +53,14 @@ require.config({
                 "momentLocal"
             ],
             exports: "moment"
+        },
+
+        "recaptchaajax" : {
+            deps: [
+                "jquery"
+            ],
+
+            exports: "recaptchaajax"
         }
     },
 
@@ -71,9 +79,8 @@ require.config({
         i18n: "../libs/require-2.0.6/i18n",
         jqueryUI: "../libs/jquery-ui/jquery-ui",
         jqueryYOUTUBE: "../libs/jquery-ui/jquery.youtubepopup",
-        audioplayer: "../audio_player_files/flashdetect"
-
-
+        audioplayer: "../audio_player_files/flashdetect",
+        recaptchaajax: "http://www.google.com/recaptcha/api/js/recaptcha_ajax"
     }
 })
 ;

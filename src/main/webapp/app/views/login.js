@@ -31,7 +31,7 @@ define([
 
              $(".newsDetailTMCCLS").hide();*/
 
-
+            this.confirmcount();
             $("a.logout").click(this.logout);
             LoginStatus.on('change:loggedIn', this.loggedInChange, this);
             LoginStatus.fetch();
@@ -79,6 +79,19 @@ define([
             });
 
             $('#loginError').css("display", "none");
+        },
+
+        confirmcount: function () {
+            self = this;
+            $.ajax({
+                type: "POST",
+                url: "rest/comment/count",
+                async: false,
+                success: function (resp) {
+                    $("#commentsForConfirmId").html(resp);
+                }
+            });
+            return false;
         }
     });
 
