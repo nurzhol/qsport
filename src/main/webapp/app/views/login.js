@@ -41,6 +41,12 @@ define([
             if (LoginStatus.get('loggedIn')) {
                 $("#mainHeaderId").css("display", "block");
                 $("#mainHeaderBody").css("display", "block");
+                if (LoginStatus.get('roles').indexOf("roleForUser") == -1)
+                    $(".roleForUser").css("display", "none");
+                if (LoginStatus.get('roles').indexOf("roleForCategory") == -1)
+                    $(".roleForCategory").css("display", "none");
+                if (LoginStatus.get('roles').indexOf("roleForNews") == -1)
+                    $(".roleForNews").css("display", "none");
                 this.$el.modal('hide');
                 if (this.callback) {
                     this.callback();

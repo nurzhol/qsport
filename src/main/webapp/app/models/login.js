@@ -14,6 +14,7 @@ define([
       loggedIn:null,
       username:'',
       password:'',
+      roles:'',
       rememberMe:false
     },
     // Shortcut method

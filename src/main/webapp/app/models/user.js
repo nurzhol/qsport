@@ -16,6 +16,7 @@ define([
       defaults:{
           login:"",
           password:"",
+          fullname:"",
           fullname:""
       }
 

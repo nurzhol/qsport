@@ -2,16 +2,12 @@
 
     <form class="form-horizontal span12">
 
-
         <fieldset>
 
             <legend>Item Details</legend>
             <br/>
-
             <div class="row">
                 <div class="span9">
-
-
 
                     <div class="control-group">
                         <label for="login" class="control-label">login:</label>
@@ -39,6 +35,36 @@
                             <span class="help-inline"></span>
                         </div>
                     </div>
+
+
+
+                    <div class="control-group">
+                        <label for="roleForUser" class="control-label">roleForUser:</label>
+
+                        <div class="controls">
+                            <input type="checkbox" id="roleForUser" class="checkbox" <%= model.get('roles').indexOf("roleForUser") > -1 ?  'checked=true' : '' %> >
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="roleForCategory" class="control-label">roleForCategory:</label>
+
+                        <div class="controls">
+                            <input type="checkbox" id="roleForCategory" class="checkbox" <%= model.get('roles').indexOf("roleForCategory") > -1 ?  'checked=true' : '' %> >
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="roleForNews" class="control-label">roleForNews:</label>
+
+                        <div class="controls">
+                            <input type="checkbox" id="roleForNews" class="checkbox" <%= model.get('roles').indexOf("roleForNews") > -1 ?  'checked=true' : '' %> >
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+
 
                 </div>
 

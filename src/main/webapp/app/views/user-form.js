@@ -59,10 +59,19 @@ define([
 
             console.log("The saved file is" + this.model.id);
 
+            var roles="";
+            if($('#roleForUser').prop('checked'))
+                roles=roles+';roleForUser';
+            if($('#roleForCategory').prop('checked'))
+                roles=roles+';roleForCategory';
+            if($('#roleForNews').prop('checked'))
+                roles=roles+';roleForNews';;
+
             this.model.set({
                 login: this.$("#login").val(),
                 password: this.$("#password").val(),
-                fullname:  this.$("#fullname").val()
+                fullname:  this.$("#fullname").val(),
+                roles: roles
             });
 
             this.model.save(null, {

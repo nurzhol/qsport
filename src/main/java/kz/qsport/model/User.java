@@ -24,168 +24,178 @@ import java.util.Set;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements UserDetails {
 
-  /**
-   * Generated serial version UID for serialization: Spring Security's UserDetails has to be serializable
-   */
-  private static final long serialVersionUID = 818129969599480161L;
+    /**
+     * Generated serial version UID for serialization: Spring Security's UserDetails has to be serializable
+     */
+    private static final long serialVersionUID = 818129969599480161L;
 
-  /**
-   * Unique id for the User. "@Id" declare the parameter as the primary key "@GeneratedValue" indicates JPA 2 (and behind Hibernate) which strategy
-   * to use for creating a new value. "GenerationType.AUTO" value allow JPA implementation to use the better way depending to the RDBMS used.
-   */
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer id;
+    /**
+     * Unique id for the User. "@Id" declare the parameter as the primary key "@GeneratedValue" indicates JPA 2 (and behind Hibernate) which strategy
+     * to use for creating a new value. "GenerationType.AUTO" value allow JPA implementation to use the better way depending to the RDBMS used.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
-  /**
-   * Login of the user. No annotation here, the parameter will be automatically mapped in the table.
-   */
-  private String login;
+    /**
+     * Login of the user. No annotation here, the parameter will be automatically mapped in the table.
+     */
+    private String login;
 
-  /**
-   * Password of the user. No annotation here, the parameter will be automatically mapped in the table.
-   */
-  //@RestResource(exported = false)
-  private String password;
+    /**
+     * Password of the user. No annotation here, the parameter will be automatically mapped in the table.
+     */
+    //@RestResource(exported = false)
+    private String password;
 
-  /**
-   * Fullname of the user. No annotation here, the parameter will be automatically mapped in the table.
-   */
-  private String fullname;
+    /**
+     * Fullname of the user. No annotation here, the parameter will be automatically mapped in the table.
+     */
+    private String fullname;
 
-  /**
-   * Get id
-   *
-   * @return id
-   */
-  public Integer getId() {
-    return id;
-  }
+    private String roles;
 
-  /**
-   * Set id
-   *
-   * @param id
-   */
-  public void setId(Integer id) {
-    this.id = id;
-  }
+    /**
+     * Get id
+     *
+     * @return id
+     */
+    public Integer getId() {
+        return id;
+    }
 
-  /**
-   * Get login
-   *
-   * @return login
-   */
-  public String getLogin() {
-    return login;
-  }
+    /**
+     * Set id
+     *
+     * @param id
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-  /**
-   * Set login
-   *
-   * @param login
-   */
-  public void setLogin(String login) {
-    this.login = login;
-  }
+    /**
+     * Get login
+     *
+     * @return login
+     */
+    public String getLogin() {
+        return login;
+    }
 
-  /**
-   * Get password. Implements UserDetails.getPassword(). <br/>
-   * "@JsonIgnore" will remove password value when performing the JSON serialization in order to not sending all passwords to everyone!
-   */
-  public String getPassword() {
-    return password;
-  }
+    /**
+     * Set login
+     *
+     * @param login
+     */
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
-  /**
-   * Set password
-   *
-   * @param password
-   */
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    /**
+     * Get password. Implements UserDetails.getPassword(). <br/>
+     * "@JsonIgnore" will remove password value when performing the JSON serialization in order to not sending all passwords to everyone!
+     */
+    public String getPassword() {
+        return password;
+    }
 
-  /**
-   * Get fullname
-   *
-   * @return fullname
-   */
-  public String getFullname() {
-    return fullname;
-  }
+    /**
+     * Set password
+     *
+     * @param password
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-  /**
-   * Set fullname
-   *
-   * @param fullname
-   */
-  public void setFullname(String fullname) {
-    this.fullname = fullname;
-  }
+    /**
+     * Get fullname
+     *
+     * @return fullname
+     */
+    public String getFullname() {
+        return fullname;
+    }
 
-  /**
-   * Get username which here is the login. Implements UserDetails.getUsername
-   *
-   * @return login
-   */
-  public String getUsername() {
-    return login;
-  }
+    /**
+     * Set fullname
+     *
+     * @param fullname
+     */
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
 
-  /**
-   * Get authorities which in this simple application is always ROLE_USER if the user is defined. Implements UserDetails.getAuthorities
-   *
-   * @return authorities
-   */
-  public Collection<GrantedAuthority> getAuthorities() {
-    Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+    /**
+     * Get username which here is the login. Implements UserDetails.getUsername
+     *
+     * @return login
+     */
+    public String getUsername() {
+        return login;
+    }
 
-    authorities.add(new GrantedAuthority() {
-      private static final long serialVersionUID = 323393444706865772L;
+    public String getRoles() {
+        return roles;
+    }
 
-      public String getAuthority() {
-        return "ROLE_USER";
-      }
-    });
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
 
-    return authorities;
-  }
+    /**
+     * Get authorities which in this simple application is always ROLE_USER if the user is defined. Implements UserDetails.getAuthorities
+     *
+     * @return authorities
+     */
+    public Collection<GrantedAuthority> getAuthorities() {
+        Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
-  /**
-   * Not implemented. Implements UserDetails.isAccountNonExpired
-   *
-   * @return true
-   */
-  public boolean isAccountNonExpired() {
-    return true;
-  }
+        authorities.add(new GrantedAuthority() {
+            private static final long serialVersionUID = 323393444706865772L;
 
-  /**
-   * Not implemented. Implements UserDetails.isAccountNonLocked
-   *
-   * @return true
-   */
-  public boolean isAccountNonLocked() {
-    return true;
-  }
+            public String getAuthority() {
+                return "ROLE_USER";
+            }
+        });
 
-  /**
-   * Not implemented. Implements UserDetails.isCredentialsNonExpired
-   *
-   * @return true
-   */
-  public boolean isCredentialsNonExpired() {
-    return true;
-  }
+        return authorities;
+    }
 
-  /**
-   * Not implemented. Implements UserDetails.isEnabled
-   *
-   * @return true
-   */
-  public boolean isEnabled() {
-    return true;
-  }
+    /**
+     * Not implemented. Implements UserDetails.isAccountNonExpired
+     *
+     * @return true
+     */
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    /**
+     * Not implemented. Implements UserDetails.isAccountNonLocked
+     *
+     * @return true
+     */
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    /**
+     * Not implemented. Implements UserDetails.isCredentialsNonExpired
+     *
+     * @return true
+     */
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    /**
+     * Not implemented. Implements UserDetails.isEnabled
+     *
+     * @return true
+     */
+    public boolean isEnabled() {
+        return true;
+    }
 
 }

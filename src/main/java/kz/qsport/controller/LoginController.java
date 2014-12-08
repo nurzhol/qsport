@@ -1,6 +1,8 @@
 package kz.qsport.controller;
 
+import kz.qsport.model.User;
 import kz.qsport.model.dto.LoginStatus;
+import kz.qsport.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -47,6 +49,10 @@ public class    LoginController {
    */
   @Autowired
   private RememberMeServices rememberMeServices;
+
+
+  @Autowired
+  private UserRepository userRepository;
 
   /**
    * Get login status request. RequestMapping is done on the HTTP method GET. Check authentication on session and if not found, from remember me
@@ -164,8 +170,10 @@ public class    LoginController {
   private LoginStatus authenticationToLoginStatus(Authentication authentication) {
     LoginStatus loginStatus = new LoginStatus();
     if (isAuthenticated(authentication)) {
+        User user = userRepository.findByLogin(authentication.getName());
       loginStatus.setLoggedIn(true);
       loginStatus.setUsername(authentication.getName());
+      loginStatus.setRoles(user.getRoles());
     } else {
       loginStatus.setLoggedIn(false);
       loginStatus.setUsername(null);
