@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 
 @Controller
@@ -55,7 +56,8 @@ public class VideoController {
 
         List<Video>  videoList =  videoRepository.findAll();
 
-        Calendar now = Calendar.getInstance();
+        Calendar now = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+        now.setTimeZone(TimeZone.getTimeZone("Asia/Almaty"));
         int hour = now.get(Calendar.HOUR_OF_DAY);
         int minute = now.get(Calendar.MINUTE);
         int second = now.get(Calendar.SECOND);
