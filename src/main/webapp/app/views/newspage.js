@@ -52,6 +52,7 @@ define([
             }
 
             this.insertAudioPlayer();
+            $(".youtubeClass").click(this.playVideo());
             console.log('NewsPageView.initialize');
             this.news1View = null;
             this.news2View = null;
@@ -172,8 +173,6 @@ define([
             if (!this.news19View) {
                 this.news19View = new News19View();
             }
-
-            $(".youtubeClass").click(this.playVideo());
 
         },
 

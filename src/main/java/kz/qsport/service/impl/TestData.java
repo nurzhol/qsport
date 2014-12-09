@@ -37,6 +37,7 @@ public class TestData implements InitializingBean {
             user.setFullname("admin");
             user.setLogin("admin");
             user.setPassword("admin");
+            user.setRoles(";roleForUser;roleForCategory");
             userRepository.save(user);
             for (int i = 0; i < 5; i++) {
                 user = new User();
