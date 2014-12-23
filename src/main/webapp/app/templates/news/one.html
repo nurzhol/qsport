@@ -1,8 +1,8 @@
 <div class="fullnews">
     <div class="newsTitle">
-            <%= translite=== 'cyrillic' ? news.get( 'newsTitle' ) : '' %>
-            <%= translite=== 'latin' ? news.get( 'newsTitleLt' ) : '' %>
-            <%= translite=== 'arab' ? news.get( 'newsTitleAr' ) : '' %>
+        <%= translite=== 'cyrillic' ? news.get( 'newsTitle' ) : '' %>
+        <%= translite=== 'latin' ? news.get( 'newsTitleLt' ) : '' %>
+        <%= translite=== 'arab' ? news.get( 'newsTitleAr' ) : '' %>
     </div>
     <div class="newsImage">
         <img src="images/<%= news.get( 'imgUrl' ) %>" width="400" height="400"/>
@@ -15,39 +15,56 @@
 
     <% comments.each(function(model) { %>
 
-        <div class="comment">
-            <div class="author">
-                <%= model.get( 'AuthDetail') %>
-            </div>
-            <div class="commentdate">
-                <%=  model.get( 'commentDate' )  %>
-            </div>
-            <div class="commentcontent">
-                <%= translite=== 'cyrillic' ? model.get( 'comment' ) : '' %>
-                <%= translite=== 'latin' ? model.get( 'commentLt' ) : '' %>
-                <%= translite=== 'arab' ? model.get( 'commentAr' ) : '' %>
-            </div>
+    <div class="comment comm_body ">
+        <div class="author">
+            <%= model.get( 'AuthDetail') %>
         </div>
+        <div class="commentdate">
+            <%= model.get( 'commentDate' ) %>
+        </div>
+        <div class="commentcontent">
+            <%= translite=== 'cyrillic' ? model.get( 'comment' ) : '' %>
+            <%= translite=== 'latin' ? model.get( 'commentLt' ) : '' %>
+            <%= translite=== 'arab' ? model.get( 'commentAr' ) : '' %>
+        </div>
+        <button class="addCommentForNewsReply btn"> Жауап беру</button>
+    </div>
 
     <%})%>
 
 
-    <div id = "recaptchaDivId"></div>
-    <div id = "recaptchaDivMessage"></div>
-
-    <div class="newCommentAuthor">
-        Аты:
-        <input type="text" id="newCommentAuthorId"/>
-    </div>
-
-    <div class="newCommentText">
-        Коммантария:
-        <textarea id="newCommentTextId"  rows="3" cols="5"/>
-    </div>
-
-    <div>
-        <a href="#" class="addComment btn">Жіберу</a>
-    </div>
+    <button class="addCommentForNews btn">Комментария қосу</button>
 
 </div>
+
+<div class="modal hide fade comment" style="display: none;">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Comment</h3>
+    </div>
+    <div class="modal-body">
+        <div id="recaptchaDivId"></div>
+        <div id="recaptchaDivMessage"></div>
+
+
+        <div class="newComment">
+            <div class="newCommentAuthor">
+                Аты:
+                <input type="text" id="newCommentAuthorId"/>
+            </div>
+
+            <div class="newCommentText">
+                Коммантария:
+                <textarea id="newCommentTextId" rows="3" cols="5"/>
+            </div>
+
+            <div>
+                <button class="addComment btn">Жіберу</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 

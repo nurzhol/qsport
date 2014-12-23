@@ -15,6 +15,7 @@ define([
     /**
      * User view which represents the user data grid
      */
+
     var OneView = Backbone.View.extend({
         // The view generate a div tag
         tagName: 'div',
@@ -24,13 +25,17 @@ define([
 
         model: OneModel,
 
+        text: '',
+
         commentModel: CommentModel,
 
         // Binding the DataGridTemplate loaded by text plugin of Require
         template: _.template(OneTemplate),
 
         events: {
-            "click .fullnews .addComment": "validate"
+            "click .comment .addComment": "validate",
+            "click .fullnews .addCommentForNews": "showComment",
+            "click .fullnews .addCommentForNewsReply": "replyComment"
         },
 
         // View initialization with listening of the collection
@@ -52,21 +57,31 @@ define([
             var language = window.localStorage.getItem('locale') || 'kz';
             var translite = window.localStorage.getItem('translite') || 'cyrillic';
 
+
             var CommentCollection1 = Hateoas.Collection.extend({
                 url: ''
             });
 
             var comments = new CommentCollection1;
-            comments.url = "data-rest/comment/search/findByNews?news_id=" + this.model.id + "";
+
+            var newsId = this.model.id;
+            comments.url = "data-rest/comment/search/findByNews?news_id=" + newsId + "&parent_id=0";
+
+            var newOrderedCollection = new CommentCollection1();
 
             comments.fetch().done(function () {
-
                 comments.each(function (model) {
-
                     var d = moment(model.get("commentDate")).locale("ru").format('D MM YYYY, H:mm:ss');
                     model.set("commentDate", d);
 
+                    newOrderedCollection
+
                 });
+
+                //func1(newOrderedCollectionArr, commentsArr, null, 0);
+
+
+
 
                 $(self.el).html(self.template({translite: translite, news: self.model, comments: comments}));
 
@@ -80,6 +95,8 @@ define([
 
             });
         },
+
+
 
         wait: function () {
             var deferred = $.Deferred();
@@ -97,10 +114,11 @@ define([
             self = this;
             console.log("One.addComment started", this.model);
 
+            var commentContent = this.text + this.$("#newCommentTextId").val();
             this.commentModel.set({
                 AuthDetail: this.$("#newCommentAuthorId").val(),
-                comment: this.$("#newCommentTextId").val(),
-                commentLt: this.transliterateLat(this.$("#newCommentTextId").val()),
+                comment: commentContent,
+                commentLt: this.transliterateLat(commentContent),
                 active: 0,
                 news: {
                     "rel": "comment.Comment.news",
@@ -117,6 +135,22 @@ define([
                     alert('Error', 'An error occurred while saving', 'alert-error');
                 }
             });
+
+
+            $("div.modal.comment").modal('hide');
+        },
+
+        replyComment: function(ev){
+            this.text ='';
+            var auth = $(ev.target).siblings('.author').html();
+            var content = $(ev.target).siblings('.commentcontent').html();
+            this.text = "<div><b>"+auth+",</b><div class='quote'>"+content+"</div></div>"
+            $("div.modal.comment").modal('show');
+        },
+
+        showComment: function() {
+            this.text = '';
+            $("div.modal.comment").modal('show');
         },
 
 
@@ -167,7 +201,7 @@ define([
                 success: function (resp) {
                     if (resp) {
                         self.addComment();
-                    }else{
+                    } else {
                         $("#recaptchaDivMessage").html('<span style= "color: red">Қате енгізілген сурет</span>');
                         self.reloadRecaptcha();
                     }

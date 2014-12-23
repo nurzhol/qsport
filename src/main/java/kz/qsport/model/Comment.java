@@ -19,10 +19,13 @@ public class Comment {
     @Column(name = "auth_detail")
     private String AuthDetail;
 
+    @Column(length = 1000)
     private String comment;
 
+    @Column(length = 1000)
     private String commentLt;
 
+    @Column(length = 1000)
     private String commentAr;
 
     @ManyToOne

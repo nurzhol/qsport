@@ -1,0 +1,13 @@
+.comm_body {
+    padding-bottom: 5px;
+    font-family: tahoma,arial;
+    font-size: 12px;
+    margin-top: 5px;
+    line-height: 15px;
+}
+
+.quote {
+    background-color: #EFF2F5;
+    padding: 5px;
+    margin: 5px;
+}

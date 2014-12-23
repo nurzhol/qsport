@@ -21,7 +21,7 @@ import java.util.List;
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
     @Query("select c from Comment c where c.news.id = :news_id and c.active = 1 order by c.commentDate asc ")
-    List<Comment> findByNews(@Param(value = "news_id") Integer id);
+    List<Comment> findByNews(@Param(value = "news_id") Integer newsId);
 
     @Transactional
     @Modifying(clearAutomatically = true)
