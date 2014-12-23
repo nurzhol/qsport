@@ -54,6 +54,8 @@ define([
 
 
             'comments' : 'commentsList',
+            'comments/:page' : 'commentsList',
+            'comments/:page/:sort/:dir' : 'commentsList',
             'comments/apply/:id' : 'commentsApply',
             'comments/reject/:id' : 'commentsReject',
 
