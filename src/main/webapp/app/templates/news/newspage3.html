@@ -1,49 +1,52 @@
-<div class="categoryName">
-    <a href="#readcat/3">
-        <%= translite=== 'cyrillic' ? categoryName : '' %>
-        <%= translite=== 'latin' ? categoryNameLt : '' %>
-    </a>
+<div class="col-lg-3 col-md-3 block-3-wrapper ">
+    <div class="row block-3-header">
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+            <i class="glyphicon glyphicon-file"></i>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <div class="categoryName">
+                <a href="#readcat/3">
+                    <%= translite=== 'cyrillic' ? categoryName : '' %>
+                    <%= translite=== 'latin' ? categoryNameLt : '' %>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row block-3-news-items scrollbar-style">
+
+
+        <% collection.each(function(model) { %>
+
+
+        <%
+        var myId;
+        var urlStr = "";
+        var arr = model.get('links');
+
+        for(i=0; i<arr.length; i++){
+        if(arr[i].rel == 'self'){
+        urlStr = arr[i].href;
+        }
+        }
+        var idStr = urlStr.substring(urlStr.lastIndexOf('/')+1);
+        if (parseInt(idStr, 10) != NaN)
+        myId = idStr;
+
+        %>
+        <div class="news-item">
+                    <span class="item-block">
+
+                            <div class="newsTitle">
+                                <a href="<%='#readnews/'+myId%>">
+                                    <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
+                                    <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
+                                    <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>
+                                </a>
+                            </div>
+                    </span>
+        </div>
+
+        <% }) %>
+
+    </div>
 </div>
-
-
-<% collection.each(function(model) { %>
-
-
-<%
-var myId;
-var urlStr = "";
-var arr = model.get('links');
-
-for(i=0; i<arr.length; i++){
-if(arr[i].rel == 'self'){
-urlStr = arr[i].href;
-}
-}
-var idStr = urlStr.substring(urlStr.lastIndexOf('/')+1);
-if (parseInt(idStr, 10) != NaN)
-myId = idStr;
-
-%>
-<div class="news">
-    <div class="newsImage">
-        <img src="images/thumb/<%= model.get( 'imgUrl' ) %>" width="100" height="100"/>
-    </div>
-
-    <div class="newsTitle">
-        <a href="<%='#readnews/'+myId%>">
-            <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
-            <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
-            <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>
-        </a>
-    </div>
-
-    <div class="newsFeature">
-        <%= translite=== 'cyrillic' ? model.get( 'newsFeature' ) : '' %>
-        <%= translite=== 'latin' ? model.get( 'newsFeatureLt' ) : '' %>
-        <%= translite=== 'arab' ? model.get( 'newsFeatureAr' ) : '' %>
-    </div>
-
-</div>
-
-<% }) %>
-

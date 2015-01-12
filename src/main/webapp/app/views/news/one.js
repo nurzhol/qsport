@@ -67,14 +67,10 @@ define([
             var newsId = this.model.id;
             comments.url = "data-rest/comment/search/findByNews?news_id=" + newsId + "&parent_id=0";
 
-            var newOrderedCollection = new CommentCollection1();
-
             comments.fetch().done(function () {
                 comments.each(function (model) {
                     var d = moment(model.get("commentDate")).locale("ru").format('D MM YYYY, H:mm:ss');
                     model.set("commentDate", d);
-
-                    newOrderedCollection
 
                 });
 
@@ -133,6 +129,7 @@ define([
                 },
                 error: function () {
                     alert('Error', 'An error occurred while saving', 'alert-error');
+                    self.render();
                 }
             });
 
@@ -182,7 +179,7 @@ define([
         reloadRecaptcha: function () {
             var publicKey = "6LcR7f4SAAAAAIXOQyqhNzrVJ9Ye-xX6ohoq69Xn";
             var div = "recaptchaDivId";
-            Recaptcha.create(publicKey, div, {theme: "white"});
+            Recaptcha.create(publicKey, div, {theme: "clean"});
             return false;
         },
 

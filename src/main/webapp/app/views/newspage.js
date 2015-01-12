@@ -7,7 +7,7 @@ define([
     'backbone',
     'collections/newspage',
     'collections/Hateoas',
-    'jqueryYOUTUBE',
+    //'jqueryYOUTUBE',
     'i18n!nls/translit',
     'views/news/news1',
     'views/news/news2',
@@ -28,7 +28,7 @@ define([
     'views/news/news18',
     'views/news/video',
     'views/news/news19'
-], function ($, _, Backbone, NewsPageCollection, Hateoas, jqueryYOUTUBE, translit, News1View, News2View, News3View, News4View, News5View, News6View, News7View, News8View, News9View, News10View, News11View, News12View, News13View, News14View, News15View, News16View, News17View, News18View, VideoView, News19View) {
+], function ($, _, Backbone, NewsPageCollection, Hateoas, /*jqueryYOUTUBE,*/ translit, News1View, News2View, News3View, News4View, News5View, News6View, News7View, News8View, News9View, News10View, News11View, News12View, News13View, News14View, News15View, News16View, News17View, News18View, VideoView, News19View) {
 
 
     /**
@@ -51,8 +51,8 @@ define([
                 this.callback();
             }
 
-            this.insertAudioPlayer();
-            $(".youtubeClass").click(this.playVideo());
+            //this.insertAudioPlayer();
+            //$(".youtubeClass").click(this.playVideo());
             console.log('NewsPageView.initialize');
             this.news1View = null;
             this.news2View = null;
