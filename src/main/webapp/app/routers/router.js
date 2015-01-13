@@ -126,6 +126,9 @@ define([
             }
             if (!page) {
                 page = 1;
+                sort = "categoryName";
+                dir = "asc";
+
             }
             CategoriesCollection.page = page;
             CategoriesCollection.sort = sort;
@@ -164,6 +167,8 @@ define([
             }
             if (!page) {
                 page = 1;
+                sort = "createDate";
+                dir = "desc";
             }
             NewsCollection.page = page;
             NewsCollection.sort = sort;
@@ -214,6 +219,8 @@ define([
             }
             if (!page) {
                 page = 1;
+                sort = "commentDate";
+                dir = "desc";
             }
             CommentsCollection.page = page;
             CommentsCollection.sort = sort;

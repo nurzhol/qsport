@@ -24,7 +24,8 @@ public class News {
     @Column(name = "news_feature")
     private String newsFeature;
 
-    @Column(name = "news_detail", length = 1000)
+    @Lob
+    @Column(name = "news_detail")
     private String newsDetail;
 
     @Column(name = "news_title_lt")
@@ -33,7 +34,8 @@ public class News {
     @Column(name = "news_feature_lt")
     private String newsFeatureLt;
 
-    @Column(name = "news_detail_lt", length = 1000)
+    @Lob
+    @Column(name = "news_detail_lt")
     private String newsDetailLt;
 
     @Column(name = "news_title_ar")
@@ -42,7 +44,8 @@ public class News {
     @Column(name = "news_feature_ar")
     private String newsFeatureAr;
 
-    @Column(name = "news_detail_ar", length = 1000)
+    @Lob
+    @Column(name = "news_detail_ar")
     private String newsDetailAr;
 
     @ManyToOne

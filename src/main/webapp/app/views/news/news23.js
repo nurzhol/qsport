@@ -34,7 +34,7 @@ define([
                 url:''
             });
             var collection0 = new NewsCollection1;
-            collection0.url = "data-rest/news/search/findByCategoryName?id=23&lang="+language;
+            collection0.url = "data-rest/news/search/findByCategoryName?categoryName=cat23&lang="+language;
 
             collection0.fetch().done(function(){
                 $(self.el).html(self.template({translite: translite, categoryName:"Кітап сөресі" ,

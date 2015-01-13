@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
   <!-- Spring Security special HTTP filter authorization on the login command -->
-  <http security="none" pattern="/data-rest/video" />
+  <http security="none" pattern="/data-rest/video"  />
   <http security="none" pattern="/rest/login" />
   <http security="none" pattern="/rest/picture" />
   <http security="none" pattern="/images/*" />
@@ -19,6 +19,7 @@
   <http security="none" pattern="/rest/video/elem" />
   <http security="none" pattern="/music/*" />
   <http security="none" pattern="/audio_player_files/*" />
+  <http security="none" pattern="/data-rest/**" />
 
   <!-- Spring Security entry point which only send an HTTP 403 Forbidden in case of bad authentication. This has to be explicitely defined because the 
     default handling is now to forward on an automatically generated login page which is not what we want for an Ajax login -->
@@ -29,8 +30,9 @@
     <!-- The filter is mapped on every request in /rest/** and require a "ROLE_USER" profile -->
     <intercept-url pattern="/rest/**" access="ROLE_USER" />
 	<!-- The filter is mapped on every request in /data-rest/** and require a "ROLE_USER" profile -->
-    <!--<intercept-url pattern="/data-rest/**" access="ROLE_USER" />
-       Remember me mechanism trigger -->
+    <intercept-url pattern="/data-rest/**" access="ROLE_USER"  method="POST"/>
+    <intercept-url pattern="/data-rest/**" access="ROLE_USER"  method="PUT"/>
+      <!--   Remember me mechanism trigger -->
     <remember-me />
   </http>
 

@@ -174,7 +174,15 @@ define([
 
             console.log("The saved file is" + this.model.id);
 
-            var imageName = this.saveFile();
+            var imageName = "";
+
+            var picture = $('input[id="fileInput"]')[0].files[0];
+
+            if(picture){
+                imageName = this.saveFile();
+            }else{
+                imageName = this.model.imgUrl;
+            }
 
             //var textContent = tinyMCE.get('newsDetailTMC').getContent();
             var textContent = CKEDITOR.instances.newsDetail.getData();

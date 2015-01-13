@@ -74,9 +74,9 @@ public class ApplicationConfig {
         factory.setPackagesToScan(getClass().getPackage().getName());
         factory.setDataSource(dataSource());
 
-
         Properties jpaProperties = new Properties();
         jpaProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+        jpaProperties.setProperty("hibernate.connection.SetBigStringTryClob", env.getProperty("hibernate.connection.SetBigStringTryClob"));
         factory.setJpaProperties(jpaProperties);
 
 

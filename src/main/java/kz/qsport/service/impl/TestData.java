@@ -60,21 +60,21 @@ public class TestData implements InitializingBean {
         //1
         Category category = new Category();
         category.setCategoryLabel("Қысқа жаңалықтар");
-        category.setCategoryName("Қысқа жаңалықтар");
+        category.setCategoryName("cat1");
         category.setLang("kz");
         categoryRepository.save(category);
 
         //2
         category = new Category();
         category.setCategoryLabel("Таңдаулы тақырып");
-        category.setCategoryName("Таңдаулы тақырып");
+        category.setCategoryName("cat2");
         category.setLang("kz");
         categoryRepository.save(category);
 
         //3
         category = new Category();
         category.setCategoryLabel("Жаңалықтар");
-        category.setCategoryName("Жаңалықтар");
+        category.setCategoryName("cat3");
         category.setLang("kz");
         categoryRepository.save(category);
 
@@ -82,14 +82,14 @@ public class TestData implements InitializingBean {
         //4
         category = new Category();
         category.setCategoryLabel("Біз жайлы білетідер");
-        category.setCategoryName("Біз жайлы білетіндер");
+        category.setCategoryName("cat4");
         category.setLang("kz");
         categoryRepository.save(category);
 
         //5
         category = new Category();
         category.setCategoryLabel("Әлеуметтік жоба");
-        category.setCategoryName("Әлеуметтік жоба");
+        category.setCategoryName("cat5");
         category.setLang("kz");
         categoryRepository.save(category);
 
@@ -97,21 +97,21 @@ public class TestData implements InitializingBean {
         //6
         category = new Category();
         category.setCategoryLabel("Көкпар");
-        category.setCategoryName("Көкпар");
+        category.setCategoryName("cat6");
         category.setLang("kz");
         categoryRepository.save(category);
 
         //7
         category = new Category();
         category.setCategoryLabel("Бәйге");
-        category.setCategoryName("Бәйге");
+        category.setCategoryName("cat7");
         category.setLang("kz");
         categoryRepository.save(category);
 
         //8
         category = new Category();
         category.setCategoryLabel("MULTIMEDIA");
-        category.setCategoryName("MULTIMEDIA");
+        category.setCategoryName("cat8");
         category.setLang("kz");
         categoryRepository.save(category);
 
@@ -121,12 +121,12 @@ public class TestData implements InitializingBean {
         category.setCategoryLabel("NEWS");
         category.setCategoryName("NEWS");
         category.setLang("kz");
-        categoryRepository.save(category);
+        category.setCategoryName("cat9");
 
         //10
         category = new Category();
         category.setCategoryLabel("Фотогалерея");
-        category.setCategoryName("Фотогалерея");
+        category.setCategoryName("cat10");
         category.setLang("kz");
         categoryRepository.save(category);
 
@@ -134,7 +134,7 @@ public class TestData implements InitializingBean {
         //11
         category = new Category();
         category.setCategoryLabel("Талқыланып жатқандар");
-        category.setCategoryName("Талқыланып жатқандар");
+        category.setCategoryName("cat11");
         category.setLang("kz");
         categoryRepository.save(category);
 
@@ -142,7 +142,7 @@ public class TestData implements InitializingBean {
         //12
         category = new Category();
         category.setCategoryLabel("Ай хой.kz");
-        category.setCategoryName("Ай хой.kz");
+        category.setCategoryName("cat12");
         category.setLang("kz");
         categoryRepository.save(category);
 
@@ -150,14 +150,14 @@ public class TestData implements InitializingBean {
         //13
         category = new Category();
         category.setCategoryLabel("PICTURE");
-        category.setCategoryName("PICTURE");
+        category.setCategoryName("cat13");
         category.setLang("kz");
         categoryRepository.save(category);
 
         //14
         category = new Category();
         category.setCategoryLabel("Ұлттық тағамдар");
-        category.setCategoryName("Ұлттық тағамдар");
+        category.setCategoryName("cat14");
         category.setLang("kz");
         categoryRepository.save(category);
 
@@ -165,28 +165,28 @@ public class TestData implements InitializingBean {
         //15
         category = new Category();
         category.setCategoryLabel("--video");
-        category.setCategoryName("--video");
+        category.setCategoryName("cat15");
         category.setLang("kz");
         categoryRepository.save(category);
 
         //16
         category = new Category();
         category.setCategoryLabel("Спорт сенің назарыңда");
-        category.setCategoryName("Спорт сенің назарыңда");
+        category.setCategoryName("cat16");
         category.setLang("kz");
         categoryRepository.save(category);
 
         //17
         category = new Category();
         category.setCategoryLabel("Конкурс");
-        category.setCategoryName("Конкурс");
+        category.setCategoryName("cat17");
         category.setLang("kz");
         categoryRepository.save(category);
 
         //18
         category = new Category();
         category.setCategoryLabel("Блог");
-        category.setCategoryName("Блог");
+        category.setCategoryName("cat18");
         category.setLang("kz");
         categoryRepository.save(category);
 
@@ -194,14 +194,14 @@ public class TestData implements InitializingBean {
         //19
         category = new Category();
         category.setCategoryLabel("Бәсіре");
-        category.setCategoryName("Бәсіре");
+        category.setCategoryName("cat19");
         category.setLang("kz");
         categoryRepository.save(category);
 
         //20
         category = new Category();
         category.setCategoryLabel("Әлеуметтік желідеміз");
-        category.setCategoryName("Әлеуметтік желідеміз");
+        category.setCategoryName("cat20");
         category.setLang("kz");
         categoryRepository.save(category);
 
@@ -209,21 +209,21 @@ public class TestData implements InitializingBean {
         //21
         category = new Category();
         category.setCategoryLabel("Редакция алқасы");
-        category.setCategoryName("Редакция алқасы");
+        category.setCategoryName("cat21");
         category.setLang("kz");
         categoryRepository.save(category);
 
         //22
         category = new Category();
         category.setCategoryLabel("Ұлттық құндылықтар");
-        category.setCategoryName("Ұлттық құндылықтар");
+        category.setCategoryName("cat22");
         category.setLang("kz");
         categoryRepository.save(category);
 
         //23
         category = new Category();
         category.setCategoryLabel("Кітап сөресі");
-        category.setCategoryName("Кітап сөресі");
+        category.setCategoryName("cat23");
         category.setLang("kz");
         categoryRepository.save(category);
 

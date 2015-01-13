@@ -1,13 +1,30 @@
-<div class="categoryName">
-    <a href="#readcat/2">
-        <%= translite=== 'cyrillic' ? categoryName : '' %>
-        <%= translite=== 'latin' ? categoryNameLt : '' %>
-    </a>
-</div>
+<div  class="col-lg-5 col-md-5 block-2-wrapper">
+    <div class="col-lg-12 col-md-12">
+        <div class="row block-2-header">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                <i class="glyphicon glyphicon-tags"></i>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <a href="#readcat/2">
+                    <%= translite=== 'cyrillic' ? categoryName : '' %>
+                    <%= translite=== 'latin' ? categoryNameLt : '' %>
+                </a>
+            </div>
+        </div>
 
-<% collection.each(function(model) { %>
+        <div id="block2Carousel" class="carousel slide" data-interval="3000" data-ride="carousel">
+            <!-- Carousel indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#block2Carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#block2Carousel" data-slide-to="1"></li>
+                <li data-target="#block2Carousel" data-slide-to="2"></li>
+            </ol>
+            <!-- Carousel items -->
+            <div class="carousel-inner">
 
-
+<%
+     var isActive = 0;
+     collection.each(function(model) { %>
 <%
 var myId;
 var urlStr = "";
@@ -23,26 +40,39 @@ if (parseInt(idStr, 10) != NaN)
 myId = idStr;
 
 %>
-<div class="news">
-    <div class="newsImage">
-        <img src="images/thumb/<%= model.get( 'imgUrl' ) %>" width="100" height="100"/>
-    </div>
 
-    <div class="newsTitle">
-        <a href="<%='#readnews/'+myId%>">
-            <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
-            <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
-            <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>
-        </a>
-    </div>
 
-    <div class="newsFeature">
-        <%= translite=== 'cyrillic' ? model.get( 'newsFeature' ) : '' %>
-        <%= translite=== 'latin' ? model.get( 'newsFeatureLt' ) : '' %>
-        <%= translite=== 'arab' ? model.get( 'newsFeatureAr' ) : '' %>
-    </div>
+                <div class="<%= isActive===0?'active':'' %> item">
+                    <img src="images/<%= model.get( 'imgUrl' ) %>" alt="" />
+                    <div class="carousel-caption">
+                        <h3>
+                            <a href="<%='#readnews/'+myId%>">
+                                <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
+                                <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
+                                <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>
+                            </a>
+                        </h3>
 
+                        <p>
+                            <%= translite=== 'cyrillic' ? model.get( 'newsFeature' ) : '' %>
+                            <%= translite=== 'latin' ? model.get( 'newsFeatureLt' ) : '' %>
+                            <%= translite=== 'arab' ? model.get( 'newsFeatureAr' ) : '' %>
+                        </p>
+                    </div>
+                </div>
+<%
+    isActive++;
+    })
+%>
+
+            </div>
+            <!-- Carousel nav -->
+            <a class="carousel-control left" href="#block2Carousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="carousel-control right" href="#block2Carousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+    </div>
 </div>
-
-<% }) %>
-
