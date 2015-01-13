@@ -11,7 +11,6 @@
   <!-- Spring Security special HTTP filter authorization on the login command -->
   <http security="none" pattern="/data-rest/video"  />
   <http security="none" pattern="/rest/login" />
-  <http security="none" pattern="/rest/picture" />
   <http security="none" pattern="/images/*" />
   <http security="none" pattern="/news.html" />
   <http security="none" pattern="/rest/email" />

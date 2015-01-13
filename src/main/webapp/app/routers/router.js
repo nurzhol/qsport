@@ -23,8 +23,9 @@ define([
     'collections/videos',
     'views/video',
     'views/video-form',
-    'models/video'
-], function ($, Backbone, CategoriesCollection, CategoriesView, CategoryFormView, CategoryModel, NewsCollection, NewsView, NewsFormView, NewsModel, UserModel, UsersCollection, UsersView, UserFormView, ImageView, CommentsCollection, CommentsView, CommentModel, VideosCollection, VideoView, VideoFormView, VideoModel) {
+    'models/video',
+    'views/music'
+], function ($, Backbone, CategoriesCollection, CategoriesView, CategoryFormView, CategoryModel, NewsCollection, NewsView, NewsFormView, NewsModel, UserModel, UsersCollection, UsersView, UserFormView, ImageView, CommentsCollection, CommentsView, CommentModel, VideosCollection, VideoView, VideoFormView, VideoModel, MusicView) {
     /**
      * Url router for the applications. Defines routes with url and handlers
      */
@@ -32,6 +33,8 @@ define([
         // List all the routes possibles and bind them to a handler
         routes: {
             'news/addImage': 'addImage',
+
+            'news/addMusic': 'addMusic',
 
 
             'users/add': 'addUser',
@@ -195,6 +198,13 @@ define([
         addImage: function () {
             console.log("Adding images ");
             new ImageView();
+
+
+        },
+
+        addMusic: function () {
+            console.log("Adding music ");
+            new MusicView();
 
 
         },
