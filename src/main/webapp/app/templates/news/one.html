@@ -5,7 +5,7 @@
         <%= translite=== 'arab' ? news.get( 'newsTitleAr' ) : '' %>
     </div>
     <div class="newsImage">
-        <img src="images/<%= news.get( 'imgUrl' ) %>" width="400" height="400"/>
+        <img src="images/<%= news.get( 'imgUrl' ) %>" />
     </div>
     <div class="newsDetail">
         <%= translite=== 'cyrillic' ? news.get( 'newsDetail' ) : '' %>

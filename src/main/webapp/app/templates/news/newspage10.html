@@ -1,10 +1,25 @@
-<div class="categoryName">
-    <a href="#readcat/10">
-        <%= translite=== 'cyrillic' ? categoryName : '' %>
-        <%= translite=== 'latin' ? categoryNameLt : '' %>
-    </a>
-</div>
+<div class="col-lg-12 col-md-12">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="col-lg-12 col-md-12 block-10-wrapper">
+                <div class="row block-10-header">
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                        <i class="glyphicon glyphicon-camera"></i>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 text-left">
+                        <a href="#readcat/10">
+                            <%= translite=== 'cyrillic' ? categoryName : '' %>
+                            <%= translite=== 'latin' ? categoryNameLt : '' %>
+                        </a>
 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="row block-10-photo-gallery-wrapper">
+                            <div class="block-10-content-arrow-left">
+                                <a><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            </div>
 
 
 <% collection.each(function(model) { %>
@@ -25,26 +40,32 @@ if (parseInt(idStr, 10) != NaN)
 myId = idStr;
 
 %>
-<div class="news">
-    <div class="newsImage">
-        <img src="images/thumb/<%= model.get( 'imgUrl' ) %>" width="100" height="100"/>
-    </div>
 
-    <div class="newsTitle">
-        <a href="<%='#readnews/'+myId%>">
-            <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
-            <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
-            <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>
-        </a>
-    </div>
-
-    <div class="newsFeature">
-        <%= translite=== 'cyrillic' ? model.get( 'newsFeature' ) : '' %>
-        <%= translite=== 'latin' ? model.get( 'newsFeatureLt' ) : '' %>
-        <%= translite=== 'arab' ? model.get( 'newsFeatureAr' ) : '' %>
-    </div>
-
-</div>
+                            <div class="photo-gallery-item">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <img src="images/<%= model.get( 'imgUrl' ) %>" />
+                                    </div>
+                                    <div class="panel-footer dotted-panel-footer">
+                                        <a href="<%='#readnews/'+myId%>">
+                                            <%= translite=== 'cyrillic' ? model.get( 'newsFeature' ) : '' %>
+                                            <%= translite=== 'latin' ? model.get( 'newsFeatureLt' ) : '' %>
+                                            <%= translite=== 'arab' ? model.get( 'newsFeatureAr' ) : '' %>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
 
 <% }) %>
 
+
+                            <div class="block-10-content-arrow-right">
+                                <a><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
