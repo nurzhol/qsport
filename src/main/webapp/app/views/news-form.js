@@ -189,10 +189,13 @@ define([
             this.model.set({
                 newsTitle: this.$("#newsTitle").val(),
                 newsTitleLt: this.transliterateLat(this.$("#newsTitle").val()),
+                newsTitleAr: this.transliterateArab(this.$("#newsTitle").val()),
                 newsFeature: this.$("#newsFeature").val(),
                 newsFeatureLt: this.transliterateLat(this.$("#newsFeature").val()),
+                newsFeatureAr: this.transliterateArab(this.$("#newsFeature").val()),
                 newsDetail: textContent, //this.$("#newsDetail").val(),
                 newsDetailLt: this.transliterateLat(this.$("#newsDetail").val()),//tinymce.get('newsDetail').getContent(),
+                newsDetailAr: this.transliterateArab(this.$("#newsDetail").val()),//tinymce.get('newsDetail').getContent(),
                 imgUrl: imageName,
                 category: {
                     "rel": "news.News.category",
@@ -306,6 +309,32 @@ define([
             a["я"] = "ya", a["ч"] = "ch", a["с"] = "s", a["м"] = "m", a["и"] = "i", a["т"] = "t", a["ь"] = "'", a["б"] = "b", a["ю"] = "yu";
             a["ә"] = "a", a["і"] = "i", a["ө"] = "o", a["ү"] = "u", a["ұ"] = "u", a["қ"] = "q", a["ң"] = "n", a["ғ"] = "g", a["һ"] = "";
             a["Ә"] = "A", a["І"] = "I", a["Ө"] = "O", a["Ү"] = "U", a["Ұ"] = "U", a["Қ"] = "Q", a["Ң"] = "N", a["Ғ"] = "G", a["Һ"] = "";
+
+            for (i in word) {
+                if (word.hasOwnProperty(i)) {
+                    if (a[word[i]] === undefined) {
+                        translitLat += word[i];
+                    } else {
+                        translitLat += a[word[i]];
+                    }
+                }
+            }
+            return translitLat;
+        },
+
+
+        transliterateArab: function (word) {
+            var translitLat = ""
+                , a = {};
+
+            a["Ё"] = "ە", a["Й"] = "ي", a["Ц"] = "س", a["У"] = "ۋ", a["К"] = "ك", a["Е"] = "ە", a["Н"] = "ن", a["Г"] = "گ", a["Ш"] = "ش", a["Щ"] = "ش", a["З"] = "ز", a["Х"] = "ح", a["Ъ"] = "";
+            a["ё"] = "ە", a["й"] = "ي", a["ц"] = "س", a["у"] = "ۋ", a["к"] = "ك", a["е"] = "ە", a["н"] = "ن", a["г"] = "گ", a["ш"] = "ش", a["щ"] = "ش", a["з"] = "ز", a["х"] = "ح", a["ъ"] = "";
+            a["Ф"] = "ف", a["Ы"] = "ﯼ", a["В"] = "ۆ", a["А"] = "ا", a["П"] = "پ", a["Р"] = "ر", a["О"] = "و", a["Л"] = "ل", a["Д"] = "د", a["Ж"] = "ج", a["Э"] = "ە";
+            a["ф"] = "ف", a["ы"] = "ﯼ", a["в"] = "ۆ", a["а"] = "ا", a["п"] = "پ", a["р"] = "ر", a["о"] = "و", a["л"] = "ل", a["д"] = "د", a["ж"] = "ج", a["э"] = "ە";
+            a["Я"] = "اي", a["Ч"] = "چ", a["С"] = "س", a["М"] = "م", a["И"] = "ي", a["Т"] = "ت", a["Ь"] = "", a["Б"] = "ب", a["Ю"] = "ۉ";
+            a["я"] = "اي", a["ч"] = "چ", a["с"] = "س", a["м"] = "م", a["и"] = "ي", a["т"] = "ت", a["ь"] = "", a["б"] = "ب", a["ю"] = "ۉ";
+            a["ә"] = "ٵ", a["і"] = "ٸ", a["ө"] = "ٶ", a["ү"] = "ٷ", a["ұ"] = "ۇ", a["қ"] = "ق", a["ң"] = "ڭ", a["ғ"] = "ع", a["һ"] = "ھ";
+            a["Ә"] = "ٵ", a["І"] = "ٸ", a["Ө"] = "ٶ", a["Ү"] = "ٷ", a["Ұ"] = "ۇ", a["Қ"] = "ق", a["Ң"] = "ڭ", a["Ғ"] = "ع", a["Һ"] = "ھ";
 
             for (i in word) {
                 if (word.hasOwnProperty(i)) {

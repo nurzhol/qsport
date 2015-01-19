@@ -9,7 +9,7 @@
 
     <script data-main="app/index" src="libs/require-2.0.6/require.js"></script>
 
-
+    <!-- recaptcha -->
     <script type="text/javascript">
         var onloadCallback = function () {
             grecaptcha.render('recaptchaDivId', {
@@ -18,10 +18,46 @@
         };
     </script>
 
+    <!-- favorate-->
+    <script type="text/javascript">
+
+        var addToBookmark = function () {
+            if (window.sidebar) { // Mozilla Firefox Bookmark
+                window.sidebar.addPanel(location.href, document.title, "");
+            } /*else if (window.external) { // IE Favorite
+             window.external.AddFavorite(location.href, document.title);
+             }*/
+            else if (window.opera && window.print) { // Opera Hotlist
+                this.title = document.title;
+                return true;
+            } else if (chrome.bookmarks) {
+                chrome.bookmarks.create({'parentId': extensionsFolderId,
+                    'title': 'Extensions doc',
+                    'url': 'http://code.google.com/chrome/extensions'});
+            }else if(window.chrome){
+                alert('Press ctrl+D to bookmark (Command+D for macs) after you click Ok');
+            }
+
+        };
+    </script>
+
+
+    <!--vk-- group-->
+    <script type="text/javascript" src="//vk.com/js/api/openapi.js?116"></script>
+
 </head>
 <body>
 
-
+<!--facebook-->
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/kk_KZ/sdk.js#xfbml=1&appId=388007784708208&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- container-fluid -->
 <div class="container-fluid">
@@ -38,18 +74,26 @@
             <div class="col-lg-5 col-md-12">
                 <table>
                     <tr class="translitClass">
-                        <td><label class="label label-primary" onclick=" window.localStorage.setItem('translite', 'cyrillic'); window.location.reload(); ">Кириллица</label></td>
-                        <td><label class="label label-primary" onclick=" window.localStorage.setItem('translite', 'latin'); window.location.reload(); ">Латынь</label></td>
-                        <td><label class="label label-primary" onclick=" window.localStorage.setItem('translite', 'arab'); window.location.reload(); ">Арабский</label></td>
-                        <td class="padding-5"><span class="header-lang feedbackClass" >КЕРІ БАЙЛАНЫС</span></td>
+                        <td><label class="label label-primary"
+                                   onclick=" window.localStorage.setItem('translite', 'cyrillic'); window.location.reload(); ">Кириллица</label>
+                        </td>
+                        <td><label class="label label-primary"
+                                   onclick=" window.localStorage.setItem('translite', 'latin'); window.location.reload(); ">Латынь</label>
+                        </td>
+                        <td><label class="label label-primary"
+                                   onclick=" window.localStorage.setItem('translite', 'arab'); window.location.reload(); ">Арабский</label>
+                        </td>
+                        <td class="padding-5"><span class="header-lang feedbackClass">КЕРІ БАЙЛАНЫС</span></td>
                         <td class="padding-5"><span class="header-lang">БАСПАСӨЗ ҚЫЗМЕТІ</span></td>
                     </tr>
                 </table>
                 <table>
                     <tr>
                         <td class="litClass">
-                            <a href="#" class="header-lang header-lang-active" onclick=" window.localStorage.setItem('locale', 'kz'); window.location.reload(); ">КАЗ</a>
-                            <a href="#" class="header-lang" onclick=" window.localStorage.setItem('locale', 'ru'); window.location.reload(); ">РУС</a>
+                            <a href="#" class="header-lang header-lang-active"
+                               onclick=" window.localStorage.setItem('locale', 'kz'); window.location.reload(); ">КАЗ</a>
+                            <a href="#" class="header-lang"
+                               onclick=" window.localStorage.setItem('locale', 'ru'); window.location.reload(); ">РУС</a>
                         </td>
                     </tr>
                 </table>
@@ -82,15 +126,32 @@
                 <div class="row">
                     <div class="header-share-buttons col-lg-5 col-md-5 col-sm-5 col-xs-12">
                         <span class="blog-button">БЛОГ</span>
-                        <button class="btn btn-xs btn-primary" value="like">like</button>
-                        <button class="btn btn-xs btn-success" value="follow">follow</button>
-                        <button class="btn btn-xs btn-danger" value="follow">another</button>
+                        <button class="btn btn-xs btn-primary" value="like">
+                            <div class="facebookClass">
+                                <div class="fb-like" data-href="http://ulttyqsport.kz" data-layout="button_count"
+                                     data-action="like" data-show-faces="true" data-share="false"></div>
+                            </div>
+                        </button>
+                        <button class="btn btn-xs " style="background-color: #fff" value="follow">
+                            <a href="https://twitter.com/qsportkz" class="twitter-follow-button" data-show-count="false"
+                               data-show-screen-name="false">Follow @qsportkz</a>
+                            <script>!function (d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                                if (!d.getElementById(id)) {
+                                    js = d.createElement(s);
+                                    js.id = id;
+                                    js.src = p + '://platform.twitter.com/widgets.js';
+                                    fjs.parentNode.insertBefore(js, fjs);
+                                }
+                            }(document, 'script', 'twitter-wjs');</script>
+                        </button>
                     </div>
                     <div class="header-search-block col-lg-7 col-md-7 col-sm-7 col-xs-12">
                         <div class="input-group input-group-sm has-feedback">
                             <span class="input-group-addon" id="sizing-addon3">
                                 <i class="glyphicon glyphicon-star-empty"></i>
-                                <a style="color: grey">Таңдаулыға қосу</a>
+                                <a id="bookmarkme" href="#" style="color: grey" onclick="addToBookmark()">Таңдаулыға
+                                    қосу</a>
                             </span>
                             <input type="text" class="form-control search-input-addon"
                                    aria-describedby="sizing-addon3">
@@ -166,7 +227,7 @@
 
 <div class="newscontent">
 <!-- Қысқа жаңалықтар -->
-<div class="cat1" >
+<div class="cat1">
 
 </div>
 
@@ -598,14 +659,30 @@
                     <p>ӘЛЕУМЕТТІК<br/> ЖЕЛІДЕМІЗ!</p>
                 </div>
                 <div class="block-20-item">
+                    <!--<a href="https://twitter.com/intent/user?screen_name=qsportkz">Follow Me</a>-->
+                    <!-- start TweetsWind code -->
+                    <iframe scrolling="no" frameborder="0" id="twitterWindIframe"
+                            style="width:260px;height:150px; border:none;"
+                            src="http://www.tweetswind.com/show?option=%7B%22isOnlyMe%22%3A%20%22false%22%2C%20%22twitterwind_frame_width%22%3A%20%22250%22%2C%20%22twitterwind_frame_height%22%3A%20%22400%22%2C%20%22twitterwind_frame_border%22%3A%20%22none%22%2C%20%22twitterwind_frame_border_color%22%3A%20%22C0DEED%22%2C%20%22twitterwind_base_font_size%22%3A%20%2212%22%2C%20%22twitterwind_logoimage%22%3A%20%22blueonwhite%22%2C%20%22twitterwind_username%22%3A%20%22on%22%2C%20%22twitterwind_username_bgcolor%22%3A%20%22FFFFFF%22%2C%20%22twitterwind_username_color%22%3A%20%22333333%22%2C%20%22twitterwind_username_follow%22%3A%20%22on%22%2C%20%22twitterwind_max_length%22%3A%20%2239%22%2C%20%22twitterwind_logo_bgcolor%22%3A%20%22FFFFFF%22%2C%20%22twitterwind_twit%22%3A%20%22off%22%2C%20%22twitterwind_twit_scroll_color%22%3A%20%22C0DEED%22%2C%20%22twitterwind_twit_scroll_bg_color%22%3A%20%22FFFFFF%22%2C%20%22twitterwind_twit_bgcolor%22%3A%20%22FFFFFF%22%2C%20%22twitterwind_twit_color%22%3A%20%22333333%22%2C%20%22twitterwind_twit_link_color%22%3A%20%220084B4%22%2C%20%22twitterwind_opacity%22%3A%20%22off%22%2C%20%22twitterwind_follower%22%3A%20%22inherit%22%2C%20%22twitterwind_follower_bgcolor%22%3A%20%22FFFFFF%22%2C%20%22usn%22%3A%20%22152851%22%7D"></iframe>
+                    <!--利用規約に従ってページ内に必ずリンクを表示してください-->
+                    <div style="font-size:12px; text-align:right; width:260px"><a target="_blank"
+                                                                                  href="http://www.tweetswind.com">TweetsWind</a>
+                    </div>
+                    <!-- end TweetsWind code -->
 
                 </div>
                 <div class="block-20-item">
-
+                    <!-- VK Widget -->
+                    <div id="vk_groups"></div>
+                    <script type="text/javascript">
+                        VK.Widgets.Group("vk_groups", {mode: 0, width: "260", height: "150", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 85300941);
+                    </script>
                 </div>
                 <div class="block-20-item">
-
+                    <div class="fb-facepile" data-app-id="388007784708208" data-href="http://qsportkz.mycloud.by/"
+                         data-max-rows="1" data-colorscheme="light" data-size="medium" data-show-count="true"></div>
                 </div>
+
             </div>
             <!-- /block-20 -->
 
