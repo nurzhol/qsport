@@ -324,6 +324,7 @@ define([
 
 
         transliterateArab: function (word) {
+            //http://ru.wikipedia.org/wiki/Казахская_письменность
             var translitLat = ""
                 , a = {};
 
