@@ -65,13 +65,13 @@ define([
 
             this.model.save(null, {
                 success: function (model) {
-                    alert('Success!', 'Item saved successfully', 'alert-success');
+                    console.log('Success!', 'Item saved successfully', 'alert-success');
                     $.unblockUI();
                     route.navigate('categories', {trigger: true});
                 },
                 error: function () {
                     $.unblockUI();
-                    alert('Error', 'An error occurred while trying to delete this item', 'alert-error');
+                    console.log('Error', 'An error occurred while trying to delete this item', 'alert-error');
                 }
             });
 

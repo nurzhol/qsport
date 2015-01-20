@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.repository.annotation.RestResource;
 
+import javax.smartcardio.CardTerminal;
 import java.util.List;
 
 /**
@@ -20,5 +21,8 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
     @Query("select category from Category category")
     List<Category> findAllWithoutPagination();
+
+    @Query("select category from Category category where category.categoryName=:categoryName")
+    Category findOneWithCatName(@Param(value = "categoryName") String categoryName);
 
 }

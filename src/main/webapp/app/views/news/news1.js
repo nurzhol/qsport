@@ -30,6 +30,20 @@ define([
 
             var self =this;
 
+            var model = Hateoas.Model.extend();
+            var CategotyCollection1 = Hateoas.Collection.extend({
+                url:''
+            });
+            var category1 = new CategotyCollection1;
+            category1.url = "data-rest/category/search/findOneWithCatName?categoryName=cat1";
+
+            category1.fetch({async: false}).done(function(){
+                category1.each(function(model0){
+                    model = model0;
+                })
+
+            });
+
             var NewsCollection1 = Hateoas.Collection.extend({
                 url:''
 
@@ -43,8 +57,10 @@ define([
                     console.log(model);
                     });*/
 
-                $(self.el).html(self.template({translite: translite, categoryName:"Қысқа жаңалықтар" ,
-                    collection: collection0}));
+                $(self.el).html(self.template({translite: translite,
+                    categoryLabel: model.get("categoryLabel"),
+                    categoryLabelLt: model.get("categoryLabelLt"),
+                    categoryLabelAr: model.get("categoryLabelAr"), collection: collection0}));
 
 
             });
