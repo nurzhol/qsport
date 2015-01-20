@@ -15,6 +15,8 @@ define([
       defaults:{
           categoryName:"",
           categoryLabel:"",
+          categoryLabelLt:"",
+          categoryLabelAr:"",
           lang:"kz"
       }
 

@@ -23,6 +23,12 @@ public class Category {
     @Column(name = "category_label")
     private String categoryLabel;
 
+    @Column(name = "category_label_lt")
+    private String categoryLabelLt;
+
+    @Column(name = "category_label_ar")
+    private String categoryLabelAr;
+
     @Column
     private String lang;
 
@@ -67,5 +73,21 @@ public class Category {
 
     public void setLang(String lang) {
         this.lang = lang;
+    }
+
+    public String getCategoryLabelLt() {
+        return categoryLabelLt;
+    }
+
+    public void setCategoryLabelLt(String categoryLabelLt) {
+        this.categoryLabelLt = categoryLabelLt;
+    }
+
+    public String getCategoryLabelAr() {
+        return categoryLabelAr;
+    }
+
+    public void setCategoryLabelAr(String categoryLabelAr) {
+        this.categoryLabelAr = categoryLabelAr;
     }
 }
