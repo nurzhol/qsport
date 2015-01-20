@@ -189,13 +189,13 @@ define([
             this.model.set({
                 newsTitle: this.$("#newsTitle").val(),
                 newsTitleLt: this.transliterateLat(this.$("#newsTitle").val()),
-                newsTitleAr: this.transliterateArab(this.$("#newsTitle").val()),
+                newsTitleAr: this.transliterateLat(this.$("#newsTitle").val()),
                 newsFeature: this.$("#newsFeature").val(),
                 newsFeatureLt: this.transliterateLat(this.$("#newsFeature").val()),
-                newsFeatureAr: this.transliterateArab(this.$("#newsFeature").val()),
+                newsFeatureAr: this.transliterateLat(this.$("#newsFeature").val()),
                 newsDetail: textContent, //this.$("#newsDetail").val(),
                 newsDetailLt: this.transliterateLat(this.$("#newsDetail").val()),//tinymce.get('newsDetail').getContent(),
-                newsDetailAr: this.transliterateArab(this.$("#newsDetail").val()),//tinymce.get('newsDetail').getContent(),
+                newsDetailAr: this.transliterateLat(this.$("#newsDetail").val()),//tinymce.get('newsDetail').getContent(),
                 imgUrl: imageName,
                 category: {
                     "rel": "news.News.category",

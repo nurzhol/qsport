@@ -6,8 +6,8 @@
 <music
         playerMode="1"
         displayTimeInfo="true"
-        playerWidth="200"
-        playerHeight="35"
+        playerWidth="180"
+        playerHeight="25"
         playerX="0"
         playerY="0"
         flyOut="bottom"
@@ -33,7 +33,7 @@
         displaySongTimeY="2"
         pauseDisplayFor="2"
         songTitleScrollTime="3"
-        sliderHeight="5"
+        sliderHeight="2"
         sliderY="21"
         sliderButtonWidth="10"
         sliderButtonHeight="10"
@@ -49,21 +49,28 @@
         volumeSliderButton="FFFFFF,666666,100,9,333333,100,1"
 
         listOpen="true"
-        listHeight="180"
-        listPadding="10"
+        listHeight="80"
+        listPadding="0"
         listScrollbarWidth="9"
         listBg="222222,000000,100,15,333333,100,1"
         listScrollbar="666666,100"
         listScrollbarBg="000000,100"
-        listItemHeight="20"
+        listItemHeight="15"
         listItemBg="333333,100"
         listItemBgActive="075d99,100"
         listTitleText="Verdana,999999,100,10,false"
         listTitleTextActive="Verdana,FFFFFF,100,10,false"
-        listTitleScrollTime="5"
+        listTitleScrollTime="2"
         >
     <group>
         <song file="music/kok_tu_ibragim.mp3" title="Kok tu"/>
         <song file="music/alsh_urani.mp3" title="Alash"/>
+        <song file="http://a1.mynur.kz/download/a/he/3q/9p/7c/he3q9p7c/name/Array+-+Bala+Armany+2014%28music.nur.kz%29.mp3" title="2222"/>
+        <song file="http://a1.mynur.kz/download/a/he/3q/9p/7c/he3q9p7c/name/Array+-+Bala+Armany+2014%28music.nur.kz%29.mp3" title="2222"/>
+        <song file="http://a1.mynur.kz/download/a/he/3q/9p/7c/he3q9p7c/name/Array+-+Bala+Armany+2014%28music.nur.kz%29.mp3" title="2222"/>
+        <song file="http://a1.mynur.kz/download/a/he/3q/9p/7c/he3q9p7c/name/Array+-+Bala+Armany+2014%28music.nur.kz%29.mp3" title="2222"/>
+        <song file="http://a1.mynur.kz/download/a/he/3q/9p/7c/he3q9p7c/name/Array+-+Bala+Armany+2014%28music.nur.kz%29.mp3" title="2222"/>
+        <song file="http://a1.mynur.kz/download/a/he/3q/9p/7c/he3q9p7c/name/Array+-+Bala+Armany+2014%28music.nur.kz%29.mp3" title="2222"/>
+        <song file="http://a1.mynur.kz/download/a/he/3q/9p/7c/he3q9p7c/name/Array+-+Bala+Armany+2014%28music.nur.kz%29.mp3" title="2222"/>
     </group>
 </music>
