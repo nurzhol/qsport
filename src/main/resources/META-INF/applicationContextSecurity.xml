@@ -17,6 +17,7 @@
   <http security="none" pattern="/rest/recaptcha" />
   <http security="none" pattern="/rest/video/elem" />
   <http security="none" pattern="/music/*" />
+  <http security="none" pattern="/pdf/*" />
   <http security="none" pattern="/audio_player_files/*" />
   <http security="none" pattern="/data-rest/**" />
 

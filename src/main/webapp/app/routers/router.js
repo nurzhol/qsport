@@ -27,8 +27,12 @@ define([
     'views/music',
     'views/musics',
     'models/music',
-    'collections/music'
-], function ($, Backbone, CategoriesCollection, CategoriesView, CategoryFormView, CategoryModel, NewsCollection, NewsView, NewsFormView, NewsModel, UserModel, UsersCollection, UsersView, UserFormView, ImageView, CommentsCollection, CommentsView, CommentModel, VideosCollection, VideoView, VideoFormView, VideoModel, MusicView, MusicsView, MusicModel, MusicCollection) {
+    'collections/music',
+    'collections/pdf',
+    'models/pdf',
+    'views/pdf',
+    'views/pdfs',
+], function ($, Backbone, CategoriesCollection, CategoriesView, CategoryFormView, CategoryModel, NewsCollection, NewsView, NewsFormView, NewsModel, UserModel, UsersCollection, UsersView, UserFormView, ImageView, CommentsCollection, CommentsView, CommentModel, VideosCollection, VideoView, VideoFormView, VideoModel, MusicView, MusicsView, MusicModel, MusicCollection, PdfCollection,PdfModel, PdfView, PdfsView) {
     /**
      * Url router for the applications. Defines routes with url and handlers
      */
@@ -39,10 +43,18 @@ define([
 
             'news/addMusic': 'addMusic',
 
+            'news/addPdf': 'addPdf',
+
             'music' : 'musicList',
             'music/:page': 'musicList',
             'music/:page/:sort/:dir': 'musicList',
             'music/reject/:id' : 'musicReject',
+
+
+            'pdf' : 'pdfList',
+            'pdf/:page': 'pdfList',
+            'pdf/:page/:sort/:dir': 'pdfList',
+            'pdf/reject/:id' : 'pdfReject',
 
 
             'users/add': 'addUser',
@@ -89,7 +101,9 @@ define([
             this.videoView = null;
             this.videoFormView = null;
             this.musicPopUp = null;
+            this.pdfPopUp = null;
             this.musicsView = null;
+            this.pdfsView = null;
 
         },
 
@@ -221,6 +235,16 @@ define([
             }
         },
 
+
+        addPdf: function () {
+            console.log("Adding pdf ");
+            if (!this.pdfPopUp) {
+                this.pdfPopUp = new PdfView();
+            }else{
+                this.pdfPopUp.initialize();
+            }
+        },
+
         editNews: function (id) {
             console.log("Editing news " + id);
 
@@ -316,6 +340,18 @@ define([
             });
         },
 
+        pdfReject: function(id){
+            PdfModel.url = 'data-rest/pdf/' + id;
+            PdfModel.clear().fetch();
+            PdfModel.destroy({
+                success: function () {
+                    alert('Item deleted successfully');
+                    PdfCollection.page = 1;
+                    PdfCollection.fetchPage();
+                }
+            });
+        },
+
         musicList: function (page, sort, dir) {
             console.log("router musics ", page, sort, dir);
             if (!this.musicsView) {
@@ -328,6 +364,20 @@ define([
             MusicCollection.sort = sort;
             MusicCollection.dir = dir;
             MusicCollection.fetchPage();
+        },
+
+        pdfList: function (page, sort, dir) {
+            console.log("router pdfs ", page, sort, dir);
+            if (!this.pdfsView) {
+                this.pdfsView = new PdfsView();
+            }
+            if (!page) {
+                page = 1;
+            }
+            PdfCollection.page = page;
+            PdfCollection.sort = sort;
+            PdfCollection.dir = dir;
+            PdfCollection.fetchPage();
         },
 
 
