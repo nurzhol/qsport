@@ -12,6 +12,9 @@ require.config({
      * scripts that do not call define() to register a module
      */
     shim: {
+        "wimpy": {
+            exports: "wimpy"
+        },
         "underscore": {
             exports: "_"
         },
@@ -79,7 +82,8 @@ require.config({
         jqueryUI: "../libs/jquery-ui/jquery-ui",
         audioplayer: "../audio_player_files/flashdetect",
         jqueryYOUTUBE: "../libs/jquery-ui/jquery.youtubepopup",
-        recaptchaajax: "http://www.google.com/recaptcha/api/js/recaptcha_ajax"
+        recaptchaajax: "http://www.google.com/recaptcha/api/js/recaptcha_ajax",
+        wimpy: "../libs/wimpy/wimpy"
     }
 })
 ;

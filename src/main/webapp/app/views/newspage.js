@@ -2,6 +2,7 @@
  * Define Require module with dependencies
  */
 define([
+    'wimpy',
     'bootstrap',
     'underscore',
     'backbone',
@@ -28,7 +29,7 @@ define([
     'views/news/news18',
     'views/news/video',
     'views/news/news19'
-], function ($, _, Backbone, NewsPageCollection, Hateoas, /*jqueryYOUTUBE,*/ translit, News1View, News2View, News3View, News4View, News5View, News6View, News7View, News8View, News9View, News10View, News11View, News12View, News13View, News14View, News15View, News16View, News17View, News18View, VideoView, News19View) {
+], function (wimpy, $, _, Backbone, NewsPageCollection, Hateoas, /*jqueryYOUTUBE,*/ translit, News1View, News2View, News3View, News4View, News5View, News6View, News7View, News8View, News9View, News10View, News11View, News12View, News13View, News14View, News15View, News16View, News17View, News18View, VideoView, News19View) {
 
 
     /**
@@ -52,6 +53,7 @@ define([
             }
 
             //this.insertAudioPlayer();
+            this.insertWepPyAudioPlayer();
             //$(".youtubeClass").click(this.playVideo());
             console.log('NewsPageView.initialize');
             this.news1View = null;
@@ -183,10 +185,10 @@ define([
             var youTubeId = '-------';
             var youTubeTitle = 'ОНЛАЙН ВИДЕО';
             var seek = 0;
-            if(elem.length!=0){
+            if (elem.length != 0) {
                 var elems = elem.split(';');
                 youTubeId = elems[0];
-                seek =  elems[1];
+                seek = elems[1];
             }
             $("#youtubeLink").YouTubePopup({  autoplay: 1, youtubeId: youTubeId, title: youTubeTitle, draggable: false, modal: true, controls: 0, start: seek});
         },
@@ -210,6 +212,46 @@ define([
             var so = new SWFObject("audio_player_files/audioPlayer.swf", "player", "225", "110", "6", "#666666");
             so.addVariable("xmlPath", "audio_player_files/data.xml");
             so.write("audioplayer");
+        },
+
+
+        insertWepPyAudioPlayer: function () {
+            var NewsCollection1 = Hateoas.Collection.extend({
+                url: ''
+
+            });
+            var collection0 = new NewsCollection1;
+            collection0.url = "data-rest/music/search/findAllWithoutPagination";
+            //var playList = "";
+            var playList = [];
+
+            collection0.fetch().done(function () {
+                collection0.each(function(model){
+                    console.log(model);
+                    playList.push({
+                        "title" : model.get('musicLabel'),
+                        "file"  : model.get('musicUrl')
+                    });
+                    //playList += '{ title:"'+model.get('musicLabel')+'", file:"'+model.get('musicUrl')+'" },';
+                });
+                //var elem = '<div class="wimpyAudioPlayer" data-wimpyplayer data-skin="libs/wimpy/301.tsv" data-width=150 data-height=50 data-autoAdvance=0 data-infoScroll=0 data-media="' +playList+ '"></div>';
+                //$('.audioClass').html(elem);
+
+                var myPlayer = new wimpyPlayer({
+                    target : "wimpyAudioPlayer",
+                    skin : "libs/wimpy/301.tsv",
+                    width : 150,
+                    height : 50,
+                    autoAdvance : 0,
+                    infoScroll : 0,
+                    media : playList
+                    });
+
+
+            });
+
+
+
         }
     });
 

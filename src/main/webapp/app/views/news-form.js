@@ -184,6 +184,15 @@ define([
                 imageName = this.model.imgUrl;
             }
 
+            var favorate = 0;
+            var shortNews = 0;
+
+            if($('#favorate').prop('checked'))
+                favorate = 1;
+
+            if($('#shortNews').prop('checked'))
+                shortNews = 1;
+
             //var textContent = tinyMCE.get('newsDetailTMC').getContent();
             var textContent = CKEDITOR.instances.newsDetail.getData();
             this.model.set({
@@ -196,6 +205,8 @@ define([
                 newsDetail: textContent, //this.$("#newsDetail").val(),
                 newsDetailLt: this.transliterateLat(this.$("#newsDetail").val()),//tinymce.get('newsDetail').getContent(),
                 newsDetailAr: this.transliterateLat(this.$("#newsDetail").val()),//tinymce.get('newsDetail').getContent(),
+                favorate: favorate,
+                shortNews: shortNews,
                 imgUrl: imageName,
                 category: {
                     "rel": "news.News.category",

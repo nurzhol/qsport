@@ -23,7 +23,9 @@ define([
           newsFeature:"",
           newsFeatureLt:"",
           newsFeatureAr:"",
-          imgUrl:""
+          imgUrl:"",
+          favorate:0,
+          shortNews:0
       }
 
   });

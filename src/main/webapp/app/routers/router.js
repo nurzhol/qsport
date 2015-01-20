@@ -24,8 +24,11 @@ define([
     'views/video',
     'views/video-form',
     'models/video',
-    'views/music'
-], function ($, Backbone, CategoriesCollection, CategoriesView, CategoryFormView, CategoryModel, NewsCollection, NewsView, NewsFormView, NewsModel, UserModel, UsersCollection, UsersView, UserFormView, ImageView, CommentsCollection, CommentsView, CommentModel, VideosCollection, VideoView, VideoFormView, VideoModel, MusicView) {
+    'views/music',
+    'views/musics',
+    'models/music',
+    'collections/music'
+], function ($, Backbone, CategoriesCollection, CategoriesView, CategoryFormView, CategoryModel, NewsCollection, NewsView, NewsFormView, NewsModel, UserModel, UsersCollection, UsersView, UserFormView, ImageView, CommentsCollection, CommentsView, CommentModel, VideosCollection, VideoView, VideoFormView, VideoModel, MusicView, MusicsView, MusicModel, MusicCollection) {
     /**
      * Url router for the applications. Defines routes with url and handlers
      */
@@ -35,6 +38,11 @@ define([
             'news/addImage': 'addImage',
 
             'news/addMusic': 'addMusic',
+
+            'music' : 'musicList',
+            'music/:page': 'musicList',
+            'music/:page/:sort/:dir': 'musicList',
+            'music/reject/:id' : 'musicReject',
 
 
             'users/add': 'addUser',
@@ -80,6 +88,8 @@ define([
             this.commentsView = null;
             this.videoView = null;
             this.videoFormView = null;
+            this.musicPopUp = null;
+            this.musicsView = null;
 
         },
 
@@ -204,9 +214,11 @@ define([
 
         addMusic: function () {
             console.log("Adding music ");
-            new MusicView();
-
-
+            if (!this.musicPopUp) {
+                this.musicPopUp = new MusicView();
+            }else{
+                this.musicPopUp.initialize();
+            }
         },
 
         editNews: function (id) {
@@ -290,6 +302,32 @@ define([
                 }
             });
 
+        },
+
+        musicReject: function(id){
+            MusicModel.url = 'data-rest/music/' + id;
+            MusicModel.clear().fetch();
+            MusicModel.destroy({
+                success: function () {
+                    alert('Item deleted successfully');
+                    MusicCollection.page = 1;
+                    MusicCollection.fetchPage();
+                }
+            });
+        },
+
+        musicList: function (page, sort, dir) {
+            console.log("router musics ", page, sort, dir);
+            if (!this.musicsView) {
+                this.musicsView = new MusicsView();
+            }
+            if (!page) {
+                page = 1;
+            }
+            MusicCollection.page = page;
+            MusicCollection.sort = sort;
+            MusicCollection.dir = dir;
+            MusicCollection.fetchPage();
         },
 
 

@@ -48,6 +48,11 @@ public class News {
     @Column(name = "news_detail_ar")
     private String newsDetailAr;
 
+    private Integer favorate;
+
+    @Column(name = "short_news")
+    private Integer shortNews;
+
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
@@ -142,6 +147,22 @@ public class News {
 
     public void setNewsDetail(String newsDetail) {
         this.newsDetail = newsDetail;
+    }
+
+    public Integer getFavorate() {
+        return favorate;
+    }
+
+    public void setFavorate(Integer favorate) {
+        this.favorate = favorate;
+    }
+
+    public Integer getShortNews() {
+        return shortNews;
+    }
+
+    public void setShortNews(Integer shortNews) {
+        this.shortNews = shortNews;
     }
 
     public Category getCategory() {
