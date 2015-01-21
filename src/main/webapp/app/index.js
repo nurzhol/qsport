@@ -89,11 +89,37 @@ require.config({
 ;
 
 require([
+    'bootstrap',
     'views/newspage',
     'routers/news/router',
     'audioplayer'
-], function (NewsPageView, Router, audioplayer) {
+], function ($, NewsPageView, Router, audioplayer) {
     route = new Router();
+
+    $("#headercat24").click(function(){
+        $("#headercat24").addClass("section-menu-active");
+        $("#headercat25").removeClass("section-menu-active");
+        $("#headercat26").removeClass("section-menu-active");
+        $("#headercat27").removeClass("section-menu-active");
+    });
+    $("#headercat25").click(function(){
+        $("#headercat25").addClass("section-menu-active");
+        $("#headercat24").removeClass("section-menu-active");
+        $("#headercat26").removeClass("section-menu-active");
+        $("#headercat27").removeClass("section-menu-active");
+    });
+    $("#headercat26").click(function(){
+        $("#headercat26").addClass("section-menu-active");
+        $("#headercat25").removeClass("section-menu-active");
+        $("#headercat24").removeClass("section-menu-active");
+        $("#headercat27").removeClass("section-menu-active");
+    });
+    $("#headercat27").click(function(){
+        $("#headercat27").addClass("section-menu-active");
+        $("#headercat25").removeClass("section-menu-active");
+        $("#headercat26").removeClass("section-menu-active");
+        $("#headercat24").removeClass("section-menu-active");
+    });
 
     console.log('router is' + route)
 

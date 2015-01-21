@@ -1,0 +1,33 @@
+<table class="inner-section-menu">
+    <tr>
+
+<% collection.each(function(model) { %>
+
+
+<%
+var myId;
+var urlStr = "";
+var arr = model.get('links');
+
+for(i=0; i<arr.length; i++){
+if(arr[i].rel == 'self'){
+urlStr = arr[i].href;
+}
+}
+var idStr = urlStr.substring(urlStr.lastIndexOf('/')+1);
+if (parseInt(idStr, 10) != NaN)
+myId = idStr;
+
+%>
+
+        <td><a href="<%='#readnews/'+myId%>">
+            <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
+            <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
+            <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>
+        </a></td>
+        <td><img src="index/images/icons/circle-8.png"/></td>
+
+<% }) %>
+
+    </tr>
+</table>

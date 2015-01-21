@@ -27,6 +27,7 @@ define([
 
         editForm: false,
 
+
         // Binding the DataGridTemplate loaded by text plugin of Require
         template: _.template(NewsFormTemplate),
 
@@ -103,7 +104,7 @@ define([
 
 
             var self = this;
-            this.categories.fetch().done(function () {
+            this.categories.fetch({data: {limit: 30}}).done(function () {
                 var catIdStr = self.model.get('news.News.category');
 
                 if (catIdStr == undefined) {

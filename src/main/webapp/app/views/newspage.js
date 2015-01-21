@@ -28,8 +28,10 @@ define([
     'views/news/news17',
     'views/news/news18',
     'views/news/video',
-    'views/news/news19'
-], function (wimpy, $, _, Backbone, NewsPageCollection, Hateoas, /*jqueryYOUTUBE,*/ translit, News1View, News2View, News3View, News4View, News5View, News6View, News7View, News8View, News9View, News10View, News11View, News12View, News13View, News14View, News15View, News16View, News17View, News18View, VideoView, News19View) {
+    'views/news/news19',
+    'views/news/news24_27',
+    'views/news/news00'
+], function (wimpy, $, _, Backbone, NewsPageCollection, Hateoas, /*jqueryYOUTUBE,*/ translit, News1View, News2View, News3View, News4View, News5View, News6View, News7View, News8View, News9View, News10View, News11View, News12View, News13View, News14View, News15View, News16View, News17View, News18View, VideoView, News19View, News24_27View, News00View) {
 
 
     /**
@@ -76,6 +78,8 @@ define([
             this.news18View = null;
             this.videoView = null;
             this.news19View = null;
+            this.news24_27View = null;
+            this.news00View = null;
             this.render();
         },
         // View rendering handler
@@ -174,6 +178,13 @@ define([
 
             if (!this.news19View) {
                 this.news19View = new News19View();
+            }
+            if (!this.news24_27View) {
+                this.news24_27View = new News24_27View();
+            }
+
+            if (!this.news00View) {
+                this.news00View = new News00View();
             }
 
         },

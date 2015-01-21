@@ -7,8 +7,9 @@ define([
     'views/news/one',
     'views/news/categoryNews',
     "models/news",
-    "models/category"
-], function ($, Backbone, OneView, CategoryNewsView , NewsModel, CategoryModel ) {
+    "models/category",
+    'views/news/news24_27'
+], function ($, Backbone, OneView, CategoryNewsView , NewsModel, CategoryModel, News24_27View ) {
     /**
      * Url router for the applications. Defines routes with url and handlers
      */
@@ -16,13 +17,15 @@ define([
         // List all the routes possibles and bind them to a handler
         routes: {
             'readnews/:id': 'showNews',
-            'readcat/:id': 'showCategoryNews'
+            'readcat/:id': 'showCategoryNews',
+            'header/:cat': 'showCategoryHeader'
 
         },
         // Constructor
         initialize: function () {
             this.oneView = null;
             this.categoryView = null;
+            this.headerView = null;
         },
 
 
@@ -44,6 +47,17 @@ define([
 
             CategoryModel.url = 'data-rest/category/'+id;
             CategoryModel.fetch();
+        },
+
+        showCategoryHeader: function(cat) {
+            console.log("Show headerView " +cat);
+            if (!this.headerView) {
+                this.headerView = new News24_27View();
+            }
+
+            this.headerView.catnum = cat
+            this.headerView.initialize();
+
         }
 
     });
