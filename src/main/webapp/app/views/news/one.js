@@ -139,9 +139,9 @@ define([
 
         replyComment: function(ev){
             this.text ='';
-            var auth = $(ev.target).siblings('.author').html();
-            var content = $(ev.target).siblings('.commentcontent').html();
-            this.text = "<div><b>"+auth+",</b><div class='quote'>"+content+"</div></div>"
+            var auth = $(ev.target).parent().siblings('.comm_header').children('.author').html();
+            var content = $(ev.target).parent().siblings('.commentcontent').html();
+            this.text = "<div class='quote'><b>"+auth+",</b>"+content+"</div>"
             $("div.modal.comment").modal('show');
         },
 

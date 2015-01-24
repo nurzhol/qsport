@@ -5,7 +5,7 @@
         <%= translite=== 'arab' ? news.get( 'newsTitleAr' ) : '' %>
     </div>
     <div class="newsImage">
-        <img src="images/<%= news.get( 'imgUrl' ) %>" />
+        <img src="images/<%= news.get( 'imgUrl' ) %>"/>
     </div>
     <div class="newsDetail">
         <%= translite=== 'cyrillic' ? news.get( 'newsDetail' ) : '' %>
@@ -15,29 +15,38 @@
 
     <% comments.each(function(model) { %>
 
-    <div class="comment comm_body ">
-        <div class="author">
-            <%= model.get( 'AuthDetail') %>
+
+    <div class="comment">
+        <div class="comm_left">
+            <img style='width:36px;padding:1px;border:1px solid #D9DADB' src="index/css/comm_avatar.png">
         </div>
-        <div class="commentdate">
-            <%= model.get( 'commentDate' ) %>
+        <div class="comm_right">
+            <div class="comm_header">
+                <span class="user_name tahoma font12 author"><%= model.get( 'AuthDetail') %></span>
+                <span class="comm_date tahoma commentdate"><%= model.get( 'commentDate' ) %></span>
+            </div>
+            <div class="comm_body commentcontent">
+                <%= translite=== 'cyrillic' ? model.get( 'comment' ) : '' %>
+                <%= translite=== 'latin' ? model.get( 'commentLt' ) : '' %>
+                <%= translite=== 'arab' ? model.get( 'commentAr' ) : '' %>
+            </div>
+            <div class="comm_reply">
+                <a class="tahoma font12 addCommentForNewsReply" title="Ответить">Ответить</a>
+            </div>
         </div>
-        <div class="commentcontent">
-            <%= translite=== 'cyrillic' ? model.get( 'comment' ) : '' %>
-            <%= translite=== 'latin' ? model.get( 'commentLt' ) : '' %>
-            <%= translite=== 'arab' ? model.get( 'commentAr' ) : '' %>
-        </div>
-        <button class="addCommentForNewsReply btn"> Жауап беру</button>
     </div>
 
     <%})%>
 
 
-    <button class="addCommentForNews btn">Комментария қосу</button>
+    <!--<button class="addCommentForNews btn">Комментария қосу</button>-->
+    <div class=comment>
+        <a class='tahoma font12 addCommentForNews' title="Комментария қосу">Комментария қосу</a>
+    </div>
 
 </div>
 
-<div class="modal fade comment"  aria-hidden="true">
+<div class="modal fade comment" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -45,26 +54,35 @@
                 <h3>Comment</h3>
             </div>
             <div class="modal-body">
-                <div id="recaptchaDivId"></div>
-                <div id="recaptchaDivMessage"></div>
+                <form class="newComment">
+                    <div class="control-group">
+                        <div class="controls">
+                            <div id="recaptchaDivId"></div>
+                        </div>
 
-
-                <div class="newComment">
-                    <div class="newCommentAuthor">
-                        Аты:
-                        <input type="text" id="newCommentAuthorId"/>
+                        <div class="controls">
+                            <div id="recaptchaDivMessage"></div>
+                        </div>
                     </div>
+                    <div class="control-group">
+                        <label class="control-label" for="newCommentAuthorId">Аты</label>
 
-                    <div class="newCommentText">
-                        Коммантария:
-                        <textarea id="newCommentTextId" rows="3" cols="15"></textarea>
+                        <div class="controls newCommentAuthor">
+                            <input type="text" id="newCommentAuthorId">
+                        </div>
                     </div>
+                    <div class="control-group">
+                        <label class="control-label" for="newCommentTextId">Коммантария</label>
 
-                    <div>
-                        <button class="addComment btn">Жіберу</button>
+                        <div class="controls newCommentText">
+                            <textarea class="form-control" rows="5" id="newCommentTextId"></textarea>
+                        </div>
                     </div>
+                </form>
 
-                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary addComment" title="Жіберу">Жіберу</a>
             </div>
         </div>
     </div>

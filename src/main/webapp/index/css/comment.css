@@ -1,0 +1,25 @@
+.comments_header {height:30px;background-color:#EFF2F5;margin:10px 15px;}
+.comments_header span {font-size:15px;font-weight:bold;text-transform:uppercase;display:block;padding-top:5px;}
+.comments_header i {display:block;width:11px;height:11px;float:left;margin-left:10px;margin-right:5px;margin-top:10px;background:url(../img/header_sprite.png) -176px -147px no-repeat;}
+
+.comment {margin-top:10px;margin-left:25px;padding-bottom:10px;border-bottom:1px solid #D9DADB;margin-right:25px;}
+.comm_left {padding-top:5px;width:38px;display:table-cell}
+.comm_right {padding-left:15px;vertical-align:top;width:100%;display:table-cell}
+.comm_header .user_name {font-weight:bold;color:#0D41A8;}
+.comm_header .user_rate {font-weight:bold;color:#0D41A8;text-decoration:underline;}
+.comm_header .comm_date {margin-left:5px;color:#898A8C;font-size:11px;}
+.comm_header .comm_vote {float:right;}
+.comm_vote .vote_up {cursor:pointer;margin-top:6px;float:left;display:block;width:14px;height:8px;background:url(../img/header_sprite.png) -56px -200px no-repeat;margin-right:5px;}
+.comm_vote .vote_up:hover {background-position: -56px -216px}
+.comm_vote .vote_value {cursor:pointer;margin-top:3px;font-size:12px;font-family:tahoma, arial;float:left;display:block;}
+.comm_vote .vote_down {cursor:pointer;margin-left:5px;margin-top:6px;float:left;display:block;width:14px;height:8px;background:url(../img/header_sprite.png) -72px -200px no-repeat;}
+.comm_vote .vote_down:hover {background-position: -72px -216px}
+.comm_body {padding-bottom:5px;font-family:tahoma, arial;font-size:12px;margin-top:5px;line-height:15px;}
+.comm_reply {float:left;}
+.comm_reply a.tahoma {color:#E21D2C;text-decoration:none;}
+.quote {background-color:#EFF2F5;padding:5px;margin:5px;}
+.quote .quote {background-color:white;}
+.quote .quote .quote {background-color:#EFF2F5;}
+.quote .quote .quote .quote {background-color:white;}
+.font12 {font-size:12px;}
+a:hover { cursor: pointer;}
