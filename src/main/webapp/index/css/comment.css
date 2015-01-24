@@ -8,12 +8,6 @@
 .comm_header .user_name {font-weight:bold;color:#0D41A8;}
 .comm_header .user_rate {font-weight:bold;color:#0D41A8;text-decoration:underline;}
 .comm_header .comm_date {margin-left:5px;color:#898A8C;font-size:11px;}
-.comm_header .comm_vote {float:right;}
-.comm_vote .vote_up {cursor:pointer;margin-top:6px;float:left;display:block;width:14px;height:8px;background:url(../img/header_sprite.png) -56px -200px no-repeat;margin-right:5px;}
-.comm_vote .vote_up:hover {background-position: -56px -216px}
-.comm_vote .vote_value {cursor:pointer;margin-top:3px;font-size:12px;font-family:tahoma, arial;float:left;display:block;}
-.comm_vote .vote_down {cursor:pointer;margin-left:5px;margin-top:6px;float:left;display:block;width:14px;height:8px;background:url(../img/header_sprite.png) -72px -200px no-repeat;}
-.comm_vote .vote_down:hover {background-position: -72px -216px}
 .comm_body {padding-bottom:5px;font-family:tahoma, arial;font-size:12px;margin-top:5px;line-height:15px;}
 .comm_reply {float:left;}
 .comm_reply a.tahoma {color:#E21D2C;text-decoration:none;}

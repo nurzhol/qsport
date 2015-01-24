@@ -49,13 +49,6 @@ require.config({
                 "momentLocal"
             ],
             exports: "moment"
-        },
-        "recaptchaajax" : {
-            deps: [
-                "jquery"
-            ],
-
-            exports: "recaptchaajax"
         }
     },
 
@@ -74,7 +67,6 @@ require.config({
         i18n: "../libs/require-2.0.6/i18n",
         audioplayer: "../audio_player_files/flashdetect",
         youtube: "../libs/youtube/bootstrap.youtubepopup",
-        recaptchaajax: "http://www.google.com/recaptcha/api/js/recaptcha_ajax",
         wimpy: "../libs/wimpy/wimpy"
     }
 })
@@ -111,6 +103,33 @@ require([
         $("#headercat25").removeClass("section-menu-active");
         $("#headercat26").removeClass("section-menu-active");
         $("#headercat24").removeClass("section-menu-active");
+    });
+
+    $("#emailSender").click(function(){
+        $("div.modal.email").modal('hide');
+        var data = new FormData();
+        data.append('email', $("#email").val());
+        data.append('emailBody', $("#emailBody").val());
+
+        $.ajax({
+            url: '/rest/email',
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            success: function (data) {
+                console.log('Success!', 'Email is Sended', 'alert-success');
+            },
+            error: function (data) {
+                console.log('Error', 'An error occurred while email send', 'alert-error');
+            }
+        });
+
+        $("#email").val("");
+        $("#emailBody").val("");
+
+
     });
 
     console.log('router is' + route)

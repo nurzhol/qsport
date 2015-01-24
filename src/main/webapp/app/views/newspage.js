@@ -93,7 +93,7 @@ define([
 
 
             $("#feedBackBtn").click(function (event) {
-                $("#dialog-form").dialog();
+                $("div.modal.email").modal('show');
             });
 
             if (!this.news1View) {

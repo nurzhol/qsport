@@ -21,7 +21,6 @@ define([
             'readcat/:id': 'showCategoryNews',
             'header/:cat': 'showCategoryHeader',
             'youtubevideo': 'showTV'
-
         },
         // Constructor
         initialize: function () {
@@ -86,7 +85,6 @@ define([
 
             $(".youtube").YouTubeModal({youtubeId:youTubeId, title:youTubeTitle, autoplay:1, width:640, height:480, start:seek});
        }
-
     });
 
 

@@ -9,9 +9,8 @@ define([
     'collections/Hateoas',
     'models/news',
     'models/comment',
-    'moment',
-    "recaptchaajax"
-], function ($, _, Backbone, OneTemplate, Hateoas, OneModel, CommentModel, moment, recaptchaajax) {
+    'moment'
+], function ($, _, Backbone, OneTemplate, Hateoas, OneModel, CommentModel, moment) {
     /**
      * User view which represents the user data grid
      */

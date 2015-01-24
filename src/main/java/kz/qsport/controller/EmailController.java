@@ -28,6 +28,6 @@ public class EmailController {
         message.setText(emailBody);
         javaMailSender.send(message);
 
-        return "../news.html";
+        return "../index.html";
     }
 }
