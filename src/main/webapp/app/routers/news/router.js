@@ -3,13 +3,14 @@
  */
 define([
     'jquery',
+    'youtube',
     'backbone',
     'views/news/one',
     'views/news/categoryNews',
     "models/news",
     "models/category",
     'views/news/news24_27'
-], function ($, Backbone, OneView, CategoryNewsView , NewsModel, CategoryModel, News24_27View ) {
+], function ($, youtube, Backbone, OneView, CategoryNewsView , NewsModel, CategoryModel, News24_27View ) {
     /**
      * Url router for the applications. Defines routes with url and handlers
      */
@@ -18,7 +19,8 @@ define([
         routes: {
             'readnews/:id': 'showNews',
             'readcat/:id': 'showCategoryNews',
-            'header/:cat': 'showCategoryHeader'
+            'header/:cat': 'showCategoryHeader',
+            'youtubevideo': 'showTV'
 
         },
         // Constructor
@@ -58,7 +60,32 @@ define([
             this.headerView.catnum = cat
             this.headerView.initialize();
 
-        }
+        },
+
+        showTV :function(){
+            var elem="";
+            $.ajax({
+                type: "POST",
+                url: "rest/video/elem",
+                async: false,
+                success: function (resp) {
+
+                    elem = resp;
+                }
+            });
+
+            $(".youtube").empty();
+            var youTubeId = '-------';
+            var youTubeTitle = 'ОНЛАЙН ВИДЕО';
+            var seek = 0;
+            if (elem.length != 0) {
+                var elems = elem.split(';');
+                youTubeId = elems[0];
+                seek = elems[1];
+            }
+
+            $(".youtube").YouTubeModal({youtubeId:youTubeId, title:youTubeTitle, autoplay:1, width:640, height:480, start:seek});
+       }
 
     });
 

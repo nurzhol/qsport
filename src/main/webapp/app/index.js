@@ -25,17 +25,17 @@ require.config({
             ],
             exports: "Backbone"
         },
+        "youtube": {
+            deps: [
+                "jquery"
+            ],
+            exports: "youtube"
+        },
         "bootstrap": {
             deps: [
                 "jquery"
             ],
             exports: "jQuery"
-        },
-        "jqueryUI": {
-            deps: [
-                "jquery"
-            ],
-            exports: "jqueryUI"
         },
         "audioplayer": {
             exports: "audioplayer"
@@ -49,13 +49,6 @@ require.config({
                 "momentLocal"
             ],
             exports: "moment"
-        },
-        "jqueryYOUTUBE": {
-            deps: [
-                "jquery",
-                "jqueryUI"
-            ],
-            exports: "jqueryYOUTUBE"
         },
         "recaptchaajax" : {
             deps: [
@@ -79,9 +72,8 @@ require.config({
         moment: "../libs/jquery-1.8.0/moment",
         text: "../libs/require-2.0.6/text",
         i18n: "../libs/require-2.0.6/i18n",
-        jqueryUI: "../libs/jquery-ui/jquery-ui",
         audioplayer: "../audio_player_files/flashdetect",
-        jqueryYOUTUBE: "../libs/jquery-ui/jquery.youtubepopup",
+        youtube: "../libs/youtube/bootstrap.youtubepopup",
         recaptchaajax: "http://www.google.com/recaptcha/api/js/recaptcha_ajax",
         wimpy: "../libs/wimpy/wimpy"
     }

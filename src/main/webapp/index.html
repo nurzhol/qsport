@@ -37,7 +37,7 @@
                 chrome.bookmarks.create({'parentId': extensionsFolderId,
                     'title': 'Extensions doc',
                     'url': 'http://code.google.com/chrome/extensions'});
-            }else if(window.chrome){
+            } else if (window.chrome) {
                 alert('Press ctrl+D to bookmark (Command+D for macs) after you click Ok');
             }
 
@@ -64,7 +64,8 @@
 <!-- container-fluid -->
 <div class="container-fluid">
 
-<a href="http://localhost:8888/libs/pdfjs/web/viewer.html?file=http://localhost:8888/pdf/pdf1421764521400.pdf" target="_blank">file1</a>
+<a href="http://localhost:8888/libs/pdfjs/web/viewer.html?file=http://localhost:8888/pdf/pdf1421764521400.pdf"
+   target="_blank">file1</a>
 
 <!-- header block -->
 <div class="row">
@@ -113,7 +114,8 @@
                             <td id="headercat24"><a href="#header/cat24">ҚАУЫМДАСТЫҚ</a></td>
                             <td id="headercat25"><a href="#header/cat25">ҰЛТТЫҚ СПОРТ ТҮРЛЕРІ</a></td>
                             <td class="section-menu-active" id="headercat26"><a href="#header/cat26">БАҺАДҮР</a></td>
-                            <td class="section-menu-item-last"id="headercat27"><a href="#header/cat27">БАСҚА ЖАҢАЛЫҚТАР</a></td>
+                            <td class="section-menu-item-last" id="headercat27"><a href="#header/cat27">БАСҚА
+                                ЖАҢАЛЫҚТАР</a></td>
                         </tr>
                         <tr class="section-menu-items-icon">
                             <td></td>
@@ -165,7 +167,10 @@
                 </div>
                 <div class="row" style="padding-top: 20px;">
                     <div class="col-lg-3  col-md-12 hidden-md hidden-sm hidden-xs">
-                        <img src="index/images/tv-online.png" class="tv-online-banner width-100"/>
+
+                        <a href="#youtubevideo">
+                            <img class="tv-online-banner width-100 youtube" src="index/images/tv-online.png"/>
+                        </a>
                     </div>
                     <div class="col-lg-6 col-md-12 tv-online-programs-wrapper youtubeClass">
                         <span>
@@ -177,6 +182,7 @@
                     <div class="col-lg-3  col-md-12 padding-5 music-player">
                         <div class="music-player-header">
                             <span>ӘН - КӨҢІЛДІҢ АЖАРЫ</span>
+
                             <div class="audioClass">
                                 <div id="wimpyAudioPlayer"></div>
                             </div>
