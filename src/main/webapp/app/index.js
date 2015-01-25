@@ -139,5 +139,7 @@ require([
         console.log("NewsPageView callback");
         Backbone.history.start();
     });
+
+
 });
 
