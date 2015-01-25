@@ -1,13 +1,6 @@
-<div class="categoryName">
-    <a href="#readcat/8">
-        <%= translite=== 'cyrillic' ? categoryLabel : '' %>
-        <%= translite=== 'latin' ? categoryLabelLt : '' %>
-        <%= translite=== 'arab' ? categoryLabelAr : '' %>
-    </a>
-</div>
-
-
-<% collection.each(function(model) { %>
+<%
+var isActive = 0;
+collection.each(function(model) { %>
 
 
 <%
@@ -25,26 +18,19 @@ if (parseInt(idStr, 10) != NaN)
 myId = idStr;
 
 %>
-<div class="news">
-    <div class="newsImage">
-        <img src="images/thumb/<%= model.get( 'imgUrl' ) %>" width="100" height="100"/>
-    </div>
 
-    <div class="newsTitle">
-        <a href="<%='#readnews/'+myId%>">
-            <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
-            <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
-            <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>
-        </a>
+<div class="<%= isActive===0?'active':'' %>  item item-multimedia">
+    <img src="images/<%= model.get( 'imgUrl' ) %>" alt=""  width="239" height="170"/>
+    <div class="carousel-caption carousel-caption-multimedia">
+        <span>
+                    <a href="<%='#readnews/'+myId%>">
+                        <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
+                        <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
+                        <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>
+                    </a>
+        </span>
     </div>
-
-    <div class="newsFeature">
-        <%= translite=== 'cyrillic' ? model.get( 'newsFeature' ) : '' %>
-        <%= translite=== 'latin' ? model.get( 'newsFeatureLt' ) : '' %>
-        <%= translite=== 'arab' ? model.get( 'newsFeatureAr' ) : '' %>
-    </div>
-
 </div>
 
-<% }) %>
+<% isActive++; }) %>
 

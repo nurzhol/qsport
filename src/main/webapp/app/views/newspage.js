@@ -29,9 +29,12 @@ define([
     'views/news/news18',
     'views/news/video',
     'views/news/news19',
+    'views/news/news22',
+    'views/news/news23',
     'views/news/news24_27',
+    'views/news/news28',
     'views/news/news00'
-], function (wimpy, $, _, Backbone, NewsPageCollection, Hateoas, /*jqueryYOUTUBE,*/ translit, News1View, News2View, News3View, News4View, News5View, News6View, News7View, News8View, News9View, News10View, News11View, News12View, News13View, News14View, News15View, News16View, News17View, News18View, VideoView, News19View, News24_27View, News00View) {
+], function (wimpy, $, _, Backbone, NewsPageCollection, Hateoas, /*jqueryYOUTUBE,*/ translit, News1View, News2View, News3View, News4View, News5View, News6View, News7View, News8View, News9View, News10View, News11View, News12View, News13View, News14View, News15View, News16View, News17View, News18View, VideoView, News19View, News22View,  News23View, News24_27View,  News28View, News00View) {
 
 
     /**
@@ -78,7 +81,10 @@ define([
             this.news18View = null;
             this.videoView = null;
             this.news19View = null;
+            this.news22View = null;
+            this.news23View = null;
             this.news24_27View = null;
+            this.news28View = null;
             this.news00View = null;
             this.render();
         },
@@ -186,8 +192,21 @@ define([
             if (!this.news19View) {
                 this.news19View = new News19View();
             }
+
+            if (!this.news22View) {
+                this.news22View = new News22View();
+            }
+
+            if (!this.news23View) {
+                this.news23View = new News23View();
+            }
+
             if (!this.news24_27View) {
                 this.news24_27View = new News24_27View();
+            }
+
+            if (!this.news28View) {
+                this.news28View = new News28View();
             }
 
             if (!this.news00View) {

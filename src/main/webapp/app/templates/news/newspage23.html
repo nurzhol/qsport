@@ -1,12 +1,3 @@
-<div class="categoryName">
-    <a href="#readcat/23">
-        <%= translite=== 'cyrillic' ? categoryLabel : '' %>
-        <%= translite=== 'latin' ? categoryLabelLt : '' %>
-        <%= translite=== 'arab' ? categoryLabelAr : '' %>
-    </a>
-</div>
-
-
 <% collection.each(function(model) { %>
 
 
@@ -25,27 +16,22 @@ if (parseInt(idStr, 10) != NaN)
 myId = idStr;
 
 %>
-<div class="news">
-    <div class="newsImage">
-        <img src="images/thumb/<%= model.get( 'imgUrl' ) %>" width="100" height="100"/>
-        <img src="images/thumb/<%= model.get( 'imgUrl' ) %>" width="100" height="100"/>
-    </div>
 
-    <div class="newsTitle">
-        <a href="<%='#readnews/'+myId%>">
-            <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
-            <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
-            <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>
-        </a>
-    </div>
+<td class="padding-5">
+    <table>
+        <tr>
+            <td><img src="images/thumb/<%=  model.get('pdfImageUrl') %>" class="block-23-book-img"/></td>
+        </tr>
+        <tr>
+            <td class="block-23-additional-link">
+                <a href="http://<%= window.location.host %>/libs/pdfjs/web/viewer.html?file=http://<%= window.location.host %>/pdf/<%=  model.get('pdfUrl') %>"
+                   target="_blank">Оқу</a>
+                немесе<br/> <a href="http://<%= window.location.host %>/pdf/<%=  model.get('pdfUrl') %>">Жүктеп алу</a>
+            </td>
+        </tr>
+    </table>
+</td>
 
-    <div class="newsFeature">
-        <%= translite=== 'cyrillic' ? model.get( 'newsFeature' ) : '' %>
-        <%= translite=== 'latin' ? model.get( 'newsFeatureLt' ) : '' %>
-        <%= translite=== 'arab' ? model.get( 'newsFeatureAr' ) : '' %>
-    </div>
-
-</div>
 
 <% }) %>
 

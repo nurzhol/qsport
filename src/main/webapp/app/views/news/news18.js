@@ -15,7 +15,7 @@ define([
         // The view generate a div tag
         tagName: 'div',
 
-        el: '.cat18',
+        el: '#cat18',
         // Binding the users collection
 
         // Binding the DataGridTemplate loaded by text plugin of Require

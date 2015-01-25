@@ -6,7 +6,7 @@ define([
     'underscore',
     'backbone',
     'collections/Hateoas',
-    'text!templates/news/newspage22.html'
+    'text!templates/news/newspage28.html'
 ], function ($, _, Backbone, Hateoas, NewsTemplate) {
     /**
      * User view which represents the user data grid
@@ -15,7 +15,7 @@ define([
         // The view generate a div tag
         tagName: 'div',
 
-        el: '#cat22',
+        el: '#cat28',
         // Binding the users collection
 
         // Binding the DataGridTemplate loaded by text plugin of Require
@@ -35,7 +35,7 @@ define([
                 url:''
             });
             var category1 = new CategotyCollection1;
-            category1.url = "data-rest/category/search/findOneWithCatName?categoryName=cat22";
+            category1.url = "data-rest/category/search/findOneWithCatName?categoryName=cat28";
 
             category1.fetch({async: false}).done(function(){
                 category1.each(function(model0){
@@ -48,7 +48,7 @@ define([
                 url:''
             });
             var collection0 = new NewsCollection1;
-            collection0.url = "data-rest/news/search/findByCategoryName?categoryName=cat22&lang="+language;
+            collection0.url = "data-rest/news/search/findByCategoryName?categoryName=cat28&lang=ru";
 
             collection0.fetch().done(function(){
                 $(self.el).html(self.template({translite: translite,
@@ -56,6 +56,7 @@ define([
                     categoryLabelLt: model.get("categoryLabelLt"),
                     categoryLabelAr: model.get("categoryLabelAr"), collection: collection0}));
             });
+
 
         }
 

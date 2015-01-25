@@ -170,6 +170,13 @@ define([
 
 
         saveItem: function () {
+            if(this.$("#newsFeature").val()){
+                if(this.$("#newsFeature").val().length>200){
+                    alert("Аңдатпа ұзындығы 200 символдан аспау керек!!")
+                    return;
+                }
+
+            }
             $.blockUI({ message: '<h1><img src="icons/loading.gif" /> Күте тұрыңыз...</h1>' });
             console.log("NewsOneView.save started", this.model);
 
