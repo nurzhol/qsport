@@ -1,34 +1,54 @@
-<% collection.each(function(model) { %>
+<div class="row block-12-header">
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <i class="glyphicon glyphicon-tags"></i>
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-9 text-left">
+        <a href="#readcat/12">
+            <%= translite=== 'cyrillic' ? categoryLabel : '' %>
+            <%= translite=== 'latin' ? categoryLabelLt : '' %>
+            <%= translite=== 'arab' ? categoryLabelAr : '' %>
+        </a>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">
+        <table>
+            <tr>
+                <td>
+                    <a href="<%= link %>/<%= collection.currentPage == 1 ? 1 : collection.currentPage - 1 %>">
+                        <i class="glyphicon glyphicon-chevron-left"></i></a>
+                </td>
+                <td>
+                    <a href="<%= link %>/<%= collection.currentPage == collection.totalPages ? collection.totalPages : collection.currentPage + 1 %>">
+                        <i class="glyphicon glyphicon-chevron-right"></i></a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="row block-12-news-wrapper">
 
 
-<%
-var myId;
-var urlStr = "";
-var arr = model.get('links');
+            <% collection.each(function(model) { %>
 
-for(i=0; i<arr.length; i++){
-if(arr[i].rel == 'self'){
-urlStr = arr[i].href;
-}
-}
-var idStr = urlStr.substring(urlStr.lastIndexOf('/')+1);
-if (parseInt(idStr, 10) != NaN)
-myId = idStr;
 
-%>
+            <div class="col-lg-4 col-md-4 col-sm-4 block-12-news-item">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img src="images/thumb/<%= model.get( 'imgUrl' ) %>" width="261" height="143"/>
+                    </div>
+                    <div class="panel-footer dotted-panel-footer">
+                        <a href="<%='#readnews/' + model.id %>">
+                            <%= translite=== 'cyrillic' ? model.get( 'newsFeature' ) : '' %>
+                            <%= translite=== 'latin' ? model.get( 'newsFeatureLt' ) : '' %>
+                            <%= translite=== 'arab' ? model.get( 'newsFeatureAr' ) : '' %>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-<div class="col-lg-4 col-md-4 col-sm-4 block-12-news-item">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <img src="images/thumb/<%= model.get( 'imgUrl' ) %>" width="261" height="143"/>
-        </div>
-        <div class="panel-footer dotted-panel-footer">
-            <%= translite=== 'cyrillic' ? model.get( 'newsFeature' ) : '' %>
-            <%= translite=== 'latin' ? model.get( 'newsFeatureLt' ) : '' %>
-            <%= translite=== 'arab' ? model.get( 'newsFeatureAr' ) : '' %>
+            <% }) %>
+
+
         </div>
     </div>
 </div>
-
-<% }) %>
-

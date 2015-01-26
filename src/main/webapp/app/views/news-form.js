@@ -104,7 +104,7 @@ define([
 
 
             var self = this;
-            this.categories.fetch({data: {limit: 30}}).done(function () {
+            this.categories.fetch({data: {limit: 100}}).done(function () {
                 var catIdStr = self.model.get('news.News.category');
 
                 if (catIdStr == undefined) {

@@ -20,4 +20,7 @@ public interface PdfRepository extends JpaRepository<Pdf, Integer> {
 
     @Query("select pdf from Pdf pdf")
     List<Pdf> findAllWithoutPagination();
+
+    @Query("select pdf from Pdf pdf")
+    List<Pdf> findTop3WithoutPagination();
 }

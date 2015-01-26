@@ -9,8 +9,14 @@ define([
     'views/news/categoryNews',
     "models/news",
     "models/category",
-    'views/news/news24_27'
-], function ($, youtube, Backbone, OneView, CategoryNewsView , NewsModel, CategoryModel, News24_27View ) {
+    'views/news/news24_27',
+    'collections/news/fotonews',
+    'views/news/news10',
+    'collections/news/aihoinews',
+    'views/news/news12',
+    'collections/news/cat17news',
+    'views/news/news17'
+], function ($, youtube, Backbone, OneView, CategoryNewsView , NewsModel, CategoryModel, News24_27View, FotoNewsCollection, FotoNewsView, AoHoiNewsCollection, AiHoiNewsView, Cat17NewsCollection, Cat17NewsView) {
     /**
      * Url router for the applications. Defines routes with url and handlers
      */
@@ -20,13 +26,22 @@ define([
             'readnews/:id': 'showNews',
             'readcat/:id': 'showCategoryNews',
             'header/:cat': 'showCategoryHeader',
-            'youtubevideo': 'showTV'
+            'youtubevideo': 'showTV',
+
+            'fotonews/:page': 'fotonews',
+            'aihoinews/:page': 'aihoinews',
+
+            'changecat17/:catName': 'changecat17',
+            'changecat17/:catName/:page': 'changecat17'
         },
         // Constructor
         initialize: function () {
             this.oneView = null;
             this.categoryView = null;
             this.headerView = null;
+            this.fotonewsView = null;
+            this.aihoinewsView = null;
+            this.changecat17View = null;
         },
 
 
@@ -84,7 +99,55 @@ define([
             }
 
             $(".youtube").YouTubeModal({youtubeId:youTubeId, title:youTubeTitle, autoplay:1, width:640, height:480, start:seek});
-       }
+       },
+
+
+        fotonews: function (page) {
+            console.log("router fotonews ", page);
+            if (!this.fotonewsView) {
+                this.fotonewsView = new FotoNewsView();
+            }
+            if (!page) {
+                page = 1;
+            }
+            FotoNewsCollection.page = page;
+            FotoNewsCollection.sort = "createDate";
+            FotoNewsCollection.dir = "desc";
+            FotoNewsCollection.limit = 3;
+            FotoNewsCollection.fetchPage();
+        },
+
+        aihoinews: function (page) {
+            console.log("router aihoinews ", page);
+            if (!this.aihoinewsView) {
+                this.aihoinewsView = new AiHoiNewsView();
+            }
+            if (!page) {
+                page = 1;
+            }
+            AoHoiNewsCollection.page = page;
+            AoHoiNewsCollection.sort = "createDate";
+            AoHoiNewsCollection.dir = "desc";
+            AoHoiNewsCollection.limit = 3;
+            AoHoiNewsCollection.fetchPage();
+        },
+
+        changecat17: function (catName, page) {
+            console.log("router changecat17 %s and %s",catName,  page);
+            if (!this.changecat17View) {
+                this.changecat17View = new Cat17NewsView();
+            }
+            if (!page) {
+                page = 1;
+            }
+            Cat17NewsCollection.cat17 = catName;
+            Cat17NewsCollection.page = page;
+            Cat17NewsCollection.url = 'data-rest/news/search/findByCategoryNameByPage?categoryName='+catName+'&lang=kz';
+            Cat17NewsCollection.sort = "createDate";
+            Cat17NewsCollection.dir = "desc";
+            Cat17NewsCollection.limit = 1;
+            Cat17NewsCollection.fetchPage();
+        }
     });
 
 

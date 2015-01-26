@@ -6,14 +6,17 @@ define([
     'underscore',
     'backbone',
     'collections/Hateoas',
-    'text!templates/news/newspage10.html'
-], function ($, _, Backbone, Hateoas, NewsTemplate) {
+    'text!templates/news/newspage10.html',
+    'collections/news/fotonews'
+], function ($, _, Backbone, Hateoas, NewsTemplate, FotoNewsCollection) {
     /**
      * User view which represents the user data grid
      */
     var NewsOneView = Backbone.View.extend({
         // The view generate a div tag
         tagName: 'div',
+
+        model:FotoNewsCollection,
 
         el: '#cat10',
         // Binding the users collection
@@ -24,11 +27,12 @@ define([
 
         // View initialization with listening of the collection
         initialize: function () {
+            console.log('NewsOneView cat10.initialize');
+            this.model.on('reset', this.render, this);
+        },
 
-            var language =  window.localStorage.getItem('locale')||'kz';
-            var translite =  window.localStorage.getItem('translite')||'cyrillic';
-
-            var self =this;
+        // View rendering handler
+        render:function () {
 
             var model = Hateoas.Model.extend();
             var CategotyCollection1 = Hateoas.Collection.extend({
@@ -44,19 +48,15 @@ define([
 
             });
 
-            var NewsCollection1 = Hateoas.Collection.extend({
-                url:''
-            });
-            var collection0 = new NewsCollection1;
-            collection0.url = "data-rest/news/search/findByCategoryName?categoryName=cat10&lang="+language;
+            var translite =  window.localStorage.getItem('translite')||'cyrillic';
+            console.log("NewsOneView cat10.render", this.model);
 
-            collection0.fetch().done(function(){
-                $(self.el).html(self.template({translite: translite,
-                    categoryLabel: model.get("categoryLabel"),
-                    categoryLabelLt: model.get("categoryLabelLt"),
-                    categoryLabelAr: model.get("categoryLabelAr"), collection: collection0}));
-            });
-
+            $(this.el).html(this.template({translite: translite,
+                link:'#fotonews',
+                collection: this.model,
+                categoryLabel: model.get("categoryLabel"),
+                categoryLabelLt: model.get("categoryLabelLt"),
+                categoryLabelAr: model.get("categoryLabelAr")}));
         }
 
        });

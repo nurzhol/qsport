@@ -49,7 +49,7 @@ define([
 
             });
             var collection0 = new NewsCollection1;
-            collection0.url = "data-rest/news/search/findByCategoryName?categoryName=cat1&lang="+language;
+            collection0.url = "data-rest/news/search/findTop3Liked?categoryName=cat1&lang="+language;
 
             collection0.fetch().done(function(){
 

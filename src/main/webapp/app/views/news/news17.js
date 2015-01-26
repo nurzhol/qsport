@@ -6,8 +6,9 @@ define([
     'underscore',
     'backbone',
     'collections/Hateoas',
-    'text!templates/news/newspage17.html'
-], function ($, _, Backbone, Hateoas, NewsTemplate) {
+    'text!templates/news/newspage17.html',
+    'collections/news/cat17news'
+], function ($, _, Backbone, Hateoas, NewsTemplate, Cat17NewsCollection) {
     /**
      * User view which represents the user data grid
      */
@@ -15,7 +16,9 @@ define([
         // The view generate a div tag
         tagName: 'div',
 
-        el: '.cat17',
+        model: Cat17NewsCollection,
+
+        el: '#cat17',
         // Binding the users collection
 
         // Binding the DataGridTemplate loaded by text plugin of Require
@@ -25,41 +28,22 @@ define([
         // View initialization with listening of the collection
         initialize: function () {
 
-            var language =  window.localStorage.getItem('locale')||'kz';
-            var translite =  window.localStorage.getItem('translite')||'cyrillic';
+            console.log('NewsOneView cat17.initialize');
+            this.model.on('reset', this.render, this);
+        },
 
-            var self =this;
+        // View rendering handler
+        render: function () {
+            var translite = window.localStorage.getItem('translite') || 'cyrillic';
+            console.log("NewsOneView cat17.render", this.model);
 
-            var model = Hateoas.Model.extend();
-            var CategotyCollection1 = Hateoas.Collection.extend({
-                url:''
-            });
-            var category1 = new CategotyCollection1;
-            category1.url = "data-rest/category/search/findOneWithCatName?categoryName=cat17";
-
-            category1.fetch({async: false}).done(function(){
-                category1.each(function(model0){
-                    model = model0;
-                })
-
-            });
-
-            var NewsCollection1 = Hateoas.Collection.extend({
-                url:''
-            });
-            var collection0 = new NewsCollection1;
-            collection0.url = "data-rest/news/search/findByCategoryName?categoryName=cat17&lang="+language;
-
-            collection0.fetch().done(function(){
-                $(self.el).html(self.template({translite: translite,
-                    categoryLabel: model.get("categoryLabel"),
-                    categoryLabelLt: model.get("categoryLabelLt"),
-                    categoryLabelAr: model.get("categoryLabelAr"), collection: collection0}));
-            });
-
+            $(this.el).html(this.template({translite:translite,
+                link: "#changecat17/" + this.model.cat17,
+                collection: this.model}));
         }
 
-       });
+
+    });
 
     // Return the view as the Require module
     return NewsOneView;

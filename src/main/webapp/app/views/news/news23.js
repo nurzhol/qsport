@@ -35,7 +35,7 @@ define([
                 url:''
             });
             var collection0 = new NewsCollection1;
-            collection0.url = "data-rest/pdf/search/findAllWithoutPagination";
+            collection0.url = "data-rest/pdf/search/findTop3WithoutPagination";
 
             collection0.fetch().done(function(){
                 $(self.el).html(self.template({translite: translite, collection: collection0}));

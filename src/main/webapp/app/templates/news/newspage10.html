@@ -10,6 +10,7 @@
                         <a href="#readcat/10">
                             <%= translite=== 'cyrillic' ? categoryLabel : '' %>
                             <%= translite=== 'latin' ? categoryLabelLt : '' %>
+                            <%= translite=== 'arab' ? categoryLabelAr : '' %>
                         </a>
 
                     </div>
@@ -18,36 +19,20 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="row block-10-photo-gallery-wrapper">
                             <div class="block-10-content-arrow-left">
-                                <a><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                <a href="<%= link %>/<%= collection.currentPage == 1 ? 1 : collection.currentPage - 1 %>">
+                                    <i class="glyphicon glyphicon-chevron-left"></i></a>
                             </div>
 
 
-<% collection.each(function(model) { %>
-
-
-<%
-var myId;
-var urlStr = "";
-var arr = model.get('links');
-
-for(i=0; i<arr.length; i++){
-if(arr[i].rel == 'self'){
-urlStr = arr[i].href;
-}
-}
-var idStr = urlStr.substring(urlStr.lastIndexOf('/')+1);
-if (parseInt(idStr, 10) != NaN)
-myId = idStr;
-
-%>
+                            <% collection.each(function(model) { %>
 
                             <div class="photo-gallery-item">
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <img src="images/<%= model.get( 'imgUrl' ) %>" />
+                                        <img src="images/<%= model.get( 'imgUrl' ) %>"/>
                                     </div>
                                     <div class="panel-footer dotted-panel-footer">
-                                        <a href="<%='#readnews/'+myId%>">
+                                        <a href="<%='#readnews/' + model.id %>">
                                             <%= translite=== 'cyrillic' ? model.get( 'newsFeature' ) : '' %>
                                             <%= translite=== 'latin' ? model.get( 'newsFeatureLt' ) : '' %>
                                             <%= translite=== 'arab' ? model.get( 'newsFeatureAr' ) : '' %>
@@ -56,11 +41,12 @@ myId = idStr;
                                 </div>
                             </div>
 
-<% }) %>
+                            <% }) %>
 
 
                             <div class="block-10-content-arrow-right">
-                                <a><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                <a href="<%= link %>/<%= collection.currentPage == collection.totalPages ? collection.totalPages : collection.currentPage + 1 %>">
+                                    <i class="glyphicon glyphicon-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>

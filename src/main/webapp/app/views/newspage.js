@@ -8,7 +8,6 @@ define([
     'backbone',
     'collections/newspage',
     'collections/Hateoas',
-    //'jqueryYOUTUBE',
     'i18n!nls/translit',
     'views/news/news1',
     'views/news/news2',
@@ -18,7 +17,6 @@ define([
     'views/news/news6',
     'views/news/news7',
     'views/news/news8',
-    'views/news/news10',
     'views/news/news11',
     'views/news/news12',
     'views/news/news13',
@@ -34,7 +32,7 @@ define([
     'views/news/news24_27',
     'views/news/news28',
     'views/news/news00'
-], function (wimpy, $, _, Backbone, NewsPageCollection, Hateoas, /*jqueryYOUTUBE,*/ translit, News1View, News2View, News3View, News4View, News5View, News6View, News7View, News8View, News9View, News10View, News11View, News12View, News13View, News14View, News15View, News16View, News17View, News18View, VideoView, News19View, News22View,  News23View, News24_27View,  News28View, News00View) {
+], function (wimpy, $, _, Backbone, NewsPageCollection, Hateoas,  translit, News1View, News2View, News3View, News4View, News5View, News6View, News7View, News8View, News9View,  News11View, News12View, News13View, News14View, News15View, News16View, News17View, News18View, VideoView, News19View, News22View,  News23View, News24_27View,  News28View, News00View) {
 
 
     /**
@@ -70,7 +68,6 @@ define([
             this.news7View = null;
             this.news8View = null;
             this.news9View = null;
-            this.news10View = null;
             this.news11View = null;
             this.news12View = null;
             this.news13View = null;
@@ -143,10 +140,6 @@ define([
 
             if (!this.news9View) {
                 this.news9View = new News9View();
-            }
-
-            if (!this.news10View) {
-                this.news10View = new News10View();
             }
 
             if (!this.news11View) {

@@ -80,6 +80,10 @@ require([
 ], function ($, NewsPageView, Router, audioplayer) {
     route = new Router();
 
+    route.fotonews(1);
+    route.aihoinews(1);
+    route.changecat17('cat17_9');
+
     $("#headercat24").click(function(){
         $("#headercat24").addClass("section-menu-active");
         $("#headercat25").removeClass("section-menu-active");
