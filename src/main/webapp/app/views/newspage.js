@@ -18,12 +18,10 @@ define([
     'views/news/news7',
     'views/news/news8',
     'views/news/news11',
-    'views/news/news12',
     'views/news/news13',
     'views/news/news14',
     'views/news/news15',
     'views/news/news16',
-    'views/news/news17',
     'views/news/news18',
     'views/news/video',
     'views/news/news19',
@@ -32,7 +30,7 @@ define([
     'views/news/news24_27',
     'views/news/news28',
     'views/news/news00'
-], function (wimpy, $, _, Backbone, NewsPageCollection, Hateoas,  translit, News1View, News2View, News3View, News4View, News5View, News6View, News7View, News8View, News9View,  News11View, News12View, News13View, News14View, News15View, News16View, News17View, News18View, VideoView, News19View, News22View,  News23View, News24_27View,  News28View, News00View) {
+], function (wimpy, $, _, Backbone, NewsPageCollection, Hateoas,  translit, News1View, News2View, News3View, News4View, News5View, News6View, News7View, News8View, News9View,  News11View, News13View, News14View, News15View, News16View, News18View, VideoView, News19View, News22View,  News23View, News24_27View,  News28View, News00View) {
 
 
     /**
@@ -69,12 +67,10 @@ define([
             this.news8View = null;
             this.news9View = null;
             this.news11View = null;
-            this.news12View = null;
             this.news13View = null;
             this.news14View = null;
             this.news15View = null;
             this.news16View = null;
-            this.news17View = null;
             this.news18View = null;
             this.videoView = null;
             this.news19View = null;
@@ -146,9 +142,6 @@ define([
                 this.news11View = new News11View();
             }
 
-            if (!this.news12View) {
-                this.news12View = new News12View();
-            }
 
             if (!this.news13View) {
                 this.news13View = new News13View();
@@ -170,9 +163,6 @@ define([
                 this.news16View = new News16View();
             }
 
-            if (!this.news17View) {
-                this.news17View = new News17View();
-            }
 
             if (!this.news18View) {
                 this.news18View = new News18View();
