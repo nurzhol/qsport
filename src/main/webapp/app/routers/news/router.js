@@ -28,6 +28,7 @@ define([
     var Router = Backbone.Router.extend({
         // List all the routes possibles and bind them to a handler
         routes: {
+            '': 'index',
             'readnews/:id': 'showNews',
             'readcat/:id': 'showCategoryNews',
 
@@ -60,6 +61,10 @@ define([
             this.cat28View = null;
         },
 
+        index: function(){
+            $(".newscontent").hide();
+            $(".maincontent").show();
+        },
 
         showNews: function (id) {
             console.log("Show news " + id);

@@ -54,9 +54,7 @@ define([
                 this.callback();
             }
 
-            //this.insertAudioPlayer();
             this.insertWepPyAudioPlayer();
-            //$(".youtubeClass").click(this.playVideo());
             console.log('NewsPageView.initialize');
             this.news1View = null;
             this.news2View = null;
@@ -236,7 +234,7 @@ define([
 
         },
 
-        playVideo: function () {
+        /*playVideo: function () {
             $(".youtubeClass").empty();
             $(".youtubeClass").html('    <img class="youtube" id="youtubeLink" style="cursor: pointer;" width="250" height="250"      src="http://img.youtube.com/vi/Nd6C-3Zd0AE/0.jpg" title="Ұлытау"/>');
             var elem = this.videoToPlay();
@@ -263,14 +261,14 @@ define([
                 }
             });
             return start;
-        },
+        },*/
 
 
-        insertAudioPlayer: function () {
+        /*insertAudioPlayer: function () {
             var so = new SWFObject("audio_player_files/audioPlayer.swf", "player", "225", "110", "6", "#666666");
             so.addVariable("xmlPath", "audio_player_files/data.xml");
             so.write("audioplayer");
-        },
+        },*/
 
 
         insertWepPyAudioPlayer: function () {
@@ -290,25 +288,38 @@ define([
                         "title" : model.get('musicLabel'),
                         "file"  : model.get('musicUrl')
                     });
-                    //playList += '{ title:"'+model.get('musicLabel')+'", file:"'+model.get('musicUrl')+'" },';
                 });
-                //var elem = '<div class="wimpyAudioPlayer" data-wimpyplayer data-skin="libs/wimpy/301.tsv" data-width=150 data-height=50 data-autoAdvance=0 data-infoScroll=0 data-media="' +playList+ '"></div>';
-                //$('.audioClass').html(elem);
+
+
+                function customizePlayer(){
+                    $("#Stage_JBEEB_15").css("height","62");
+                    $("#Container_JBEEB_21").hide();
+                    $("#List_JBEEB_22").hide();
+
+                    $("#Rube_JBEEB_38").click(function(){
+                        $("#Container_JBEEB_21").toggle();
+                        $("#List_JBEEB_22").toggle();
+                    });
+
+
+                }
 
                 var myPlayer = new wimpyPlayer({
                     target : "wimpyAudioPlayer",
-                    skin : "libs/wimpy/301.tsv",
+                    skin : "libs/wimpy/Slick.tsv",
+                    downloadEnable : 1,
                     width : 150,
-                    height : 50,
+                    height : 180,
                     autoAdvance : 0,
                     infoScroll : 0,
-                    media : playList
+                    media : playList,
+                    onReady : customizePlayer
                     });
+
 
 
             });
         },
-
 
         transliterateLat: function (word) {
             var translitLat = ""

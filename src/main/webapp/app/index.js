@@ -37,10 +37,6 @@ require.config({
             ],
             exports: "jQuery"
         },
-        "audioplayer": {
-            exports: "audioplayer"
-        }
-        ,
         "momentLocal": {
             exports: "momentLocal"
         },
@@ -65,7 +61,6 @@ require.config({
         moment: "../libs/jquery-1.8.0/moment",
         text: "../libs/require-2.0.6/text",
         i18n: "../libs/require-2.0.6/i18n",
-        audioplayer: "../audio_player_files/flashdetect",
         youtube: "../libs/youtube/bootstrap.youtubepopup",
         wimpy: "../libs/wimpy/wimpy"
     }
@@ -75,36 +70,28 @@ require.config({
 require([
     'bootstrap',
     'views/newspage',
-    'routers/news/router',
-    'audioplayer'
-], function ($, NewsPageView, Router, audioplayer) {
-    route = new Router();
+    'routers/news/router'
+], function ($, NewsPageView, Router) {
 
-    route.fotonews(1);
-    route.blognews(1);
-    route.aihoinews(1);
-    route.changecat17('cat17_9');
-    route.showRuEnShortNews();
-
-    $("#headercat24").click(function(){
+    $("#headercat24").click(function () {
         $("#headercat24").addClass("section-menu-active");
         $("#headercat25").removeClass("section-menu-active");
         $("#headercat26").removeClass("section-menu-active");
         $("#headercat27").removeClass("section-menu-active");
     });
-    $("#headercat25").click(function(){
+    $("#headercat25").click(function () {
         $("#headercat25").addClass("section-menu-active");
         $("#headercat24").removeClass("section-menu-active");
         $("#headercat26").removeClass("section-menu-active");
         $("#headercat27").removeClass("section-menu-active");
     });
-    $("#headercat26").click(function(){
+    $("#headercat26").click(function () {
         $("#headercat26").addClass("section-menu-active");
         $("#headercat25").removeClass("section-menu-active");
         $("#headercat24").removeClass("section-menu-active");
         $("#headercat27").removeClass("section-menu-active");
     });
-    $("#headercat27").click(function(){
+    $("#headercat27").click(function () {
         $("#headercat27").addClass("section-menu-active");
         $("#headercat25").removeClass("section-menu-active");
         $("#headercat26").removeClass("section-menu-active");
@@ -112,9 +99,9 @@ require([
     });
 
 
-    $("#cat17_ui").click(function(event){
-        $("#cat17_ui").children().each(function(i, e) {
-            $(e).children().each(function(i, e1) {
+    $("#cat17_ui").click(function (event) {
+        $("#cat17_ui").children().each(function (i, e) {
+            $(e).children().each(function (i, e1) {
                 $(e1).removeClass("custom-link-active");
             });
 
@@ -122,7 +109,7 @@ require([
         $(event.target).addClass("custom-link-active");
     });
 
-    $("#emailSender").click(function(){
+    $("#emailSender").click(function () {
         $("div.modal.email").modal('hide');
         var data = new FormData();
         data.append('email', $("#email").val());
@@ -149,14 +136,23 @@ require([
 
     });
 
+    route = new Router();
+    Backbone.history.start();
+
+
+    route.fotonews(1);
+    route.blognews(1);
+    route.aihoinews(1);
+    route.changecat17('cat17_9');
+    route.showRuEnShortNews();
+
     console.log('router is' + route)
+
 
     // Initialize the application view
     new NewsPageView(function () {
         console.log("NewsPageView callback");
-        Backbone.history.start();
     });
-
 
 });
 
