@@ -1,26 +1,24 @@
 /**
  * Define Require module with dependencies
- *//**
- * Define Require module with dependencies
  */
 define([
     'bootstrap',
     'underscore',
     'backbone',
     'collections/Hateoas',
-    'text!templates/news/newspage28.html',
-    'collections/news/ruennews'
-], function ($, _, Backbone, Hateoas, NewsTemplate, RuEnNewsCollection) {
+    'text!templates/news/newspage18_1.html',
+    'collections/news/blognews'
+], function ($, _, Backbone, Hateoas, NewsTemplate, BlogNewsCollection) {
     /**
      * User view which represents the user data grid
      */
-    var CategoryRuNewsView = Backbone.View.extend({
+    var NewsOneView = Backbone.View.extend({
         // The view generate a div tag
         tagName: 'div',
 
-        model: RuEnNewsCollection,
+        model: BlogNewsCollection,
 
-        el: '#cat28',
+        el: '#cat18_1',
         // Binding the users collection
 
         // Binding the DataGridTemplate loaded by text plugin of Require
@@ -30,17 +28,23 @@ define([
         // View initialization with listening of the collection
         initialize: function () {
 
-            console.log("Category ru-en news init");
+            console.log('NewsOneView cat17.initialize');
+            this.model.on('reset', this.render, this);
         },
 
-        render: function(){
-            console.log("Category ru-en news rendered");
+        // View rendering handler
+        render: function () {
             var translite = window.localStorage.getItem('translite') || 'cyrillic';
-            $(this.el).html(this.template({translite: translite, collection: this.model}));
+            console.log("NewsOneView cat18.render", this.model);
+
+            $(this.el).html(this.template({translite:translite,
+                link: "#blognews" ,
+                collection: this.model}));
         }
+
 
     });
 
     // Return the view as the Require module
-    return CategoryRuNewsView;
+    return NewsOneView;
 });

@@ -25,8 +25,20 @@ myId = idStr;
         <tr>
             <td class="block-23-additional-link">
                 <a href="http://<%= window.location.host %>/libs/pdfjs/web/viewer.html?file=http://<%= window.location.host %>/pdf/<%=  model.get('pdfUrl') %>"
-                   target="_blank">Оқу</a>
-                немесе<br/> <a href="http://<%= window.location.host %>/pdf/<%=  model.get('pdfUrl') %>">Жүктеп алу</a>
+                   target="_blank">
+                    <%= translite=== 'cyrillic' ? 'Оқу' : '' %>
+                    <%= translite=== 'latin' ? 'Oku' : '' %>
+                    <%= translite=== 'arab' ? 'Oku' : '' %></a>
+
+                <%= translite=== 'cyrillic' ? 'немесе' : '' %>
+                <%= translite=== 'latin' ? 'nemese' : '' %>
+                <%= translite=== 'arab' ? 'nemese' : '' %>
+
+                <br/> <a href="http://<%= window.location.host %>/pdf/<%=  model.get('pdfUrl') %>">
+                <%= translite=== 'cyrillic' ? 'Жүктеп алу' : '' %>
+                <%= translite=== 'latin' ? 'Zhuktep alu' : '' %>
+                <%= translite=== 'arab' ? 'Zhuktep alu' : '' %>
+                </a>
             </td>
         </tr>
     </table>

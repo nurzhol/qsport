@@ -1,14 +1,12 @@
 /**
  * Define Require module with dependencies
- *//**
- * Define Require module with dependencies
  */
 define([
     'bootstrap',
     'underscore',
     'backbone',
     'collections/Hateoas',
-    'text!templates/news/newspage28.html',
+    'text!templates/news/categoryruennews.html',
     'collections/news/ruennews'
 ], function ($, _, Backbone, Hateoas, NewsTemplate, RuEnNewsCollection) {
     /**
@@ -20,7 +18,7 @@ define([
 
         model: RuEnNewsCollection,
 
-        el: '#cat28',
+        el: '.newscontent',
         // Binding the users collection
 
         // Binding the DataGridTemplate loaded by text plugin of Require
@@ -39,7 +37,7 @@ define([
             $(this.el).html(this.template({translite: translite, collection: this.model}));
         }
 
-    });
+       });
 
     // Return the view as the Require module
     return CategoryRuNewsView;

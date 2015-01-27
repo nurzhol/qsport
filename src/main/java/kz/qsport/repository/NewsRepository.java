@@ -23,6 +23,15 @@ public interface NewsRepository extends JpaRepository<News, Integer> {
     @Query("select news from News news where news.category.categoryName = :categoryName  and news.category.lang=:lang order by news.createDate desc ")
     List<News> findByCategoryName(@Param(value = "categoryName") String categoryName, @Param(value = "lang") String lang);
 
+    @Query("select news from News news where (news.category.lang = :lang  and :lang <> 'zz') or (:lang = 'zz' and (news.category.lang = 'ru' or news.category.lang = 'en')) order by news.createDate desc ")
+    List<News> findByLang(@Param(value = "lang") String lang);
+
+
+    @Query("select news from News news where (news.category.lang = :lang  and :lang <> 'zz') or (:lang = 'zz' and (news.category.lang = 'ru' or news.category.lang = 'en')) order by news.createDate desc ")
+    List<News> findTop4ByLang(@Param(value = "lang") String lang);
+
+    @Query("select news from News news where news.category.id = :categoryId  and news.category.lang=:lang order by news.createDate desc ")
+    List<News> findByCategoryId(@Param(value = "categoryId") String categoryId, @Param(value = "lang") String lang);
 
     @Query(value = "from News news where news.category.categoryName = :categoryName  and news.category.lang=:lang order by news.createDate desc ", countQuery = "select count(news) from News news where news.category.categoryName = :categoryName  and news.category.lang=:lang ")
     Page<News> findByCategoryNameByPage(@Param(value = "categoryName") String categoryName, @Param(value = "lang") String lang, Pageable p);

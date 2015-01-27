@@ -81,8 +81,10 @@ require([
     route = new Router();
 
     route.fotonews(1);
+    route.blognews(1);
     route.aihoinews(1);
     route.changecat17('cat17_9');
+    route.showRuEnShortNews();
 
     $("#headercat24").click(function(){
         $("#headercat24").addClass("section-menu-active");
@@ -107,6 +109,17 @@ require([
         $("#headercat25").removeClass("section-menu-active");
         $("#headercat26").removeClass("section-menu-active");
         $("#headercat24").removeClass("section-menu-active");
+    });
+
+
+    $("#cat17_ui").click(function(event){
+        $("#cat17_ui").children().each(function(i, e) {
+            $(e).children().each(function(i, e1) {
+                $(e1).removeClass("custom-link-active");
+            });
+
+        });
+        $(event.target).addClass("custom-link-active");
     });
 
     $("#emailSender").click(function(){

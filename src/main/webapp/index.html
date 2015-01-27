@@ -51,7 +51,7 @@
 </head>
 <body>
 
-<!--facebook
+<!--facebook-->
 <div id="fb-root"></div>
 <script>(function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -61,7 +61,7 @@
     js.src = "//connect.facebook.net/kk_KZ/sdk.js#xfbml=1&appId=388007784708208&version=v2.0";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
--->
+
 
 <!-- container-fluid -->
 <div class="container-fluid">
@@ -89,7 +89,7 @@
                         </td>
                         <td class="padding-5"><span class="header-lang feedbackClass" style="cursor: pointer"
                                                     id="feedBackBtn">КЕРІ БАЙЛАНЫС</span></td>
-                        <td class="padding-5"><span class="header-lang">БАСПАСӨЗ ҚЫЗМЕТІ</span></td>
+                        <td class="padding-5"><span class="header-lang" id="pressBtn">БАСПАСӨЗ ҚЫЗМЕТІ</span></td>
                     </tr>
                 </table>
                 <table>
@@ -97,8 +97,7 @@
                         <td class="litClass">
                             <a href="#" class="header-lang header-lang-active"
                                onclick=" window.localStorage.setItem('locale', 'kz'); window.location.reload(); ">КАЗ</a>
-                            <a href="#" class="header-lang"
-                               onclick=" window.localStorage.setItem('locale', 'ru'); window.location.reload(); ">РУС</a>
+                            <a href="#readruencat" class="header-lang">РУС</a>
                         </td>
                     </tr>
                 </table>
@@ -173,14 +172,13 @@
                     </div>
                     <div class="col-lg-6 col-md-12 tv-online-programs-wrapper youtubeClass">
                         <span>
-                            Қазір эфирде:<br/>
-                            <span class="time">12:55</span> Қызылорда жастар арасында өтіп жатқан чемпионат Теңге ілу.<span
-                                class="time">14:30</span> Көкпар: Павлодар-Алматы (маусымдық ойын) <span class="time">16:40</span> Қызылордада жастар арасында өтіп жатқан чемпионат. Аударыспақ. Тікелей эфир
+                            <span id="tvprogrammBtn">Қазір эфирде:</span><br/>
+                            <div id="youtubeVideoList"></div>
                         </span>
                     </div>
                     <div class="col-lg-3  col-md-12 padding-5 music-player">
                         <div class="music-player-header">
-                            <span>ӘН - КӨҢІЛДІҢ АЖАРЫ</span>
+                            <span id="songBtn">ӘН - КӨҢІЛДІҢ АЖАРЫ</span>
 
                             <div class="audioClass">
                                 <div id="wimpyAudioPlayer"></div>
@@ -324,7 +322,7 @@
             <!-- Талқыланып жатқандар -->
             <div id="#0.1_readcat/11" class="block-11-wrapper">
                 <div class="row block-11-header">
-                    <div class="col-lg-12 col-md-12">
+                    <div class="col-lg-12 col-md-12" id="cat11Text">
                         ТАЛҚЫЛАНЫП ЖАТҚАНДАР
                     </div>
                 </div>
@@ -349,17 +347,17 @@
         <div class="col-lg-12 col-md-12 block-13-body">
             <div class="row block-13-header text-center">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-13-header-text">
-                    PICTURE <span>СУРЕТТЕР СӨЙЛЕГЕНДЕ ...</span>
+                    PICTURE <span id="pictureSay">СУРЕТТЕР СӨЙЛЕГЕНДЕ ...</span>
                 </div>
             </div>
             <div class="row block-13-content">
                 <table>
                     <tr>
                         <td class="section-1">
-                            <a>ДЕМОТИВАТОР</a>
+                            <a id="demotovatorsText">ДЕМОТИВАТОР</a>
                         </td>
                         <td class="section-2">
-                            <a class="picture-block-active">ИНФОГРАФИКА</a>
+                            <a class="picture-block-active" id="infographikText">ИНФОГРАФИКА</a>
                         </td>
                     </tr>
                 </table>
@@ -391,7 +389,7 @@
                     <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
                         <i class="glyphicon glyphicon-tags"></i>
                     </div>
-                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" id="sportText1">
                         СПОРТ СЕНІҢ НАЗАРЫҢДА
                     </div>
                 </div>
@@ -400,10 +398,10 @@
                         <a>shynportaly@gmail.com, shyn.portalu@mail.ru, тел: +7 747 711 27 00</a>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center block-15-body-text">
-                        <span class="block-15-body-text-large">
+                        <span class="block-15-body-text-large" id="sportText2">
                             Оқиға ортасында жүрсең
                         </span><br/>
-                        <span class="block-15-body-text-small">
+                        <span class="block-15-body-text-small"  id="sportText3">
                             суретке түсір бейнежазба жаса немесе мақала жазып бізге жолда
                         </span>
                     </div>
@@ -427,7 +425,7 @@
             <div id="#0.1_readcat/17" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="block-17-wrapper">
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                        <ul class="ul-custom-link-style" style="">
+                        <ul class="ul-custom-link-style" style="" id="cat17_ui">
                             <li><a class="custom-link-style" id="cat17_1" href="#changecat17/cat17_1">КЕҢЕСТЕР</a></li>
                             <li><a class="custom-link-style" id="cat17_2" href="#changecat17/cat17_2">СЕМИНАРЛАР</a></li>
                             <li><a class="custom-link-style" id="cat17_3" href="#changecat17/cat17_3">ТРЕНИНГТЕР</a></li>
@@ -452,21 +450,13 @@
             <!-- Блог -->
             <div id="#0.1_readcat/18" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 block-18-wrapper">
                 <div>
-                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="cat28lable">
                         БЛОГ
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 block-18-blog-header">
                         <table>
-                            <tr>
-                                <td class="blog-header-section-1">
-                                    <a><i class="glyphicon glyphicon-chevron-left"></i></a>
-                                </td>
-                                <td class="text-center text-primary blog-header-section-2">
-                                    Қазақстан Барысы - 2014 турниріне билет ұтып алыңыз
-                                </td>
-                                <td class="blog-header-section-3">
-                                    <a><i class="glyphicon glyphicon-chevron-right"></i></a>
-                                </td>
+                            <tr id="cat18_1">
+
                             </tr>
                         </table>
                     </div>
@@ -507,27 +497,27 @@
             <!-- block-20 -->
             <div class="col-lg-3 col-md-3 block-20-wrapper">
                 <div class="block-20-header text-center text-color-white">
-                    <p>ӘЛЕУМЕТТІК<br/> ЖЕЛІДЕМІЗ!</p>
+                    <p style="white-space: pre-line;" id="socialList">ӘЛЕУМЕТТІК  ЖЕЛІДЕМІЗ!</p>
                 </div>
                 <div class="block-20-item">
                     <!--<a href="https://twitter.com/intent/user?screen_name=qsportkz">Follow Me</a>-->
-                    <!-- start TweetsWind code
+                    <!-- start TweetsWind code -->
                     <iframe scrolling="no" frameborder="0" id="twitterWindIframe"
                             style="width:260px;height:150px; border:none;"
                             src="http://www.tweetswind.com/show?option=%7B%22isOnlyMe%22%3A%20%22false%22%2C%20%22twitterwind_frame_width%22%3A%20%22250%22%2C%20%22twitterwind_frame_height%22%3A%20%22400%22%2C%20%22twitterwind_frame_border%22%3A%20%22none%22%2C%20%22twitterwind_frame_border_color%22%3A%20%22C0DEED%22%2C%20%22twitterwind_base_font_size%22%3A%20%2212%22%2C%20%22twitterwind_logoimage%22%3A%20%22blueonwhite%22%2C%20%22twitterwind_username%22%3A%20%22on%22%2C%20%22twitterwind_username_bgcolor%22%3A%20%22FFFFFF%22%2C%20%22twitterwind_username_color%22%3A%20%22333333%22%2C%20%22twitterwind_username_follow%22%3A%20%22on%22%2C%20%22twitterwind_max_length%22%3A%20%2239%22%2C%20%22twitterwind_logo_bgcolor%22%3A%20%22FFFFFF%22%2C%20%22twitterwind_twit%22%3A%20%22off%22%2C%20%22twitterwind_twit_scroll_color%22%3A%20%22C0DEED%22%2C%20%22twitterwind_twit_scroll_bg_color%22%3A%20%22FFFFFF%22%2C%20%22twitterwind_twit_bgcolor%22%3A%20%22FFFFFF%22%2C%20%22twitterwind_twit_color%22%3A%20%22333333%22%2C%20%22twitterwind_twit_link_color%22%3A%20%220084B4%22%2C%20%22twitterwind_opacity%22%3A%20%22off%22%2C%20%22twitterwind_follower%22%3A%20%22inherit%22%2C%20%22twitterwind_follower_bgcolor%22%3A%20%22FFFFFF%22%2C%20%22usn%22%3A%20%22152851%22%7D"></iframe>
                     <div style="font-size:12px; text-align:right; width:260px"><a target="_blank"
                                                                                   href="http://www.tweetswind.com">TweetsWind</a>
                     </div>
-                     end TweetsWind code -->
+                    <!--  end TweetsWind code -->
 
                 </div>
                 <div class="block-20-item">
-                    <!-- VK Widget
+                    <!-- VK Widget-->
                     <div id="vk_groups"></div>
                     <script type="text/javascript">
                         VK.Widgets.Group("vk_groups", {mode: 0, width: "260", height: "150", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 85300941);
                     </script>
-                    -->
+
                 </div>
                 <div class="block-20-item">
                     <div class="fb-facepile" data-app-id="388007784708208" data-href="http://qsportkz.mycloud.by/"
@@ -540,7 +530,7 @@
             <!-- block-21 -->
             <div class="redactor col-lg-3 col-md-3 block-21-wrapper">
                 <div class="redactor-title text-color-white">
-                    <p>РЕДАКЦИЯ<br/><span>алқасы</span></p>
+                    <p id="redaksiaText1">РЕДАКЦИЯ<br/><span id="redaksiaText2">алқасы</span></p>
                 </div>
                 <div class="block-21-body scrollbar-style-white">
                     <div class="redactor-item-wrapper">
@@ -615,7 +605,7 @@
             <div class="col-lg-3 col-md-3 block-22-wrapper">
                 <div class="block-22-body">
                     <div class="kundylyktar-title text-color-white">
-                        <p>ҰЛТТЫҚ ҚҰНДЫЛЫҚТАР<br/>ЭНЦИКЛОПЕДИЯ</p>
+                        <p><span  id="nationalText1">ҰЛТТЫҚ ҚҰНДЫЛЫҚТАР</span><br/><span  id="nationalText2">ЭНЦИКЛОПЕДИЯ</span></p>
                     </div>
                     <div class="block-22-content scrollbar-style-white" id="cat22">
 
@@ -645,8 +635,8 @@
     <div class="block-5-header-info">
         <div class="col-lg-12 col-md-12">
             <div class="text-shadow-light text-right block-5-title">
-                ӘЛЕУМЕТТІК ЖОБА<br/>
-                ТЕГІН ХАБАРЛАНДЫРУ
+                <span id="addFirstBtn">ӘЛЕУМЕТТІК ЖОБА</span><br/>
+                <span id="addSecondBtn">ТЕГІН ХАБАРЛАНДЫРУ</span>
             </div>
             <div class="block-5-title-info text-left">
                 +7 747 123 45 67, +7 747 123 45 67<br/>
@@ -667,13 +657,13 @@
             <span class="block-9-title" style="">NEWS</span>
                 <span class="block-9-lang">
                     <label class="label label-primary">
-                        <a class="rus">
+                        <a class="rus" href="#readshort/ru">
                             РУС
                         </a>
-                        <a class="eng">
+                        <a class="eng" href="#readshort/en">
                             ENG
                         </a>
-                        <a class="more">
+                        <a class="more"  href="#readshort">
                             more <i class="glyphicon glyphicon-arrow-down"></i>
                         </a>
                     </label>
@@ -688,7 +678,7 @@
 
 <!-- ҰЛТТЫҚ ТАҒАМДАР -->
 <div id="#0.1_readcat/14" class="col-lg-12 col-md-12 block-16-wrapper">
-    <div class="block-16-header">
+    <div class="block-16-header" id="cat14lable">
         ҰЛТТЫҚ ТАҒАМДАР
     </div>
     <div class="block-16-body" id="cat14">
@@ -702,7 +692,7 @@
 
 <!-- БӘСІРЕ -->
 <div id="#0.1_readcat/19" class="col-lg-12 col-md-12 block-19-wrapper">
-    <div class="block-19-header">
+    <div class="block-19-header" id="cat19lable">
         БӘСІРЕ
     </div>
     <div class="block-19-body" id="cat19">
@@ -716,7 +706,7 @@
 
 <!-- КІТАП СӨРЕСІ -->
 <div class="col-lg-12 col-md-12 block-23-wrapper">
-    <div class="block-23-header">
+    <div class="block-23-header" id="cat23lable">
         КІТАП СӨРЕСІ
     </div>
     <div class="block-23-body">
@@ -726,7 +716,7 @@
             </tr>
             <tr class="block-23-all-books-divider">
                 <td colspan="3" class="padding-5">
-                    <a>БАРЛЫҚ КІТАПТАР</a>
+                    <a id="cat23_1lable">БАРЛЫҚ КІТАПТАР</a>
                 </td>
             </tr>
             <tr id="cat23_1">
@@ -734,7 +724,7 @@
             </tr>
             <tr>
                 <td colspan="3" class="padding-5">
-                    <input type="button" class="btn btn-sm btn-primary add-new-book" value="КІТАП ҚОСУ ҮШІН БАСЫҢЫЗ"/>
+                    <input type="button" id="addBook" class="btn btn-sm btn-primary add-new-book" value="КІТАП ҚОСУ ҮШІН БАСЫҢЫЗ"/>
                 </td>
             </tr>
         </table>
