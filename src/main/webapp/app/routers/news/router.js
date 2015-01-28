@@ -77,16 +77,22 @@ define([
         },
 
         index: function(){
-            $(".newscontent").hide();
-            $(".maincontent").show();
+            this.index0();
             $('html,body').scrollTop(0);
         },
 
+        index0: function(){
+            $(".newscontent").hide();
+            $(".maincontent").show();
+        },
+
         infographica: function(){
+            this.index0();
             new InfographicatView();
         },
 
         demativator: function(){
+            this.index0();
             new DemativatorView();
         },
 
@@ -145,6 +151,7 @@ define([
         },
 
         showRuEnShortNews: function (lang) {
+            this.index0();
             console.log("Show News28View " + lang);
             if (!this.cat28View) {
                 this.cat28View = new News28View();
@@ -199,6 +206,7 @@ define([
 
 
         fotonews: function (page) {
+            this.index0();
             console.log("router fotonews ", page);
             if (!this.fotonewsView) {
                 this.fotonewsView = new FotoNewsView();
@@ -214,6 +222,7 @@ define([
         },
 
         aihoinews: function (page) {
+            this.index0();
             console.log("router aihoinews ", page);
             if (!this.aihoinewsView) {
                 this.aihoinewsView = new AiHoiNewsView();
@@ -229,6 +238,7 @@ define([
         },
 
         blognews: function (page) {
+            this.index0();
             console.log("router bloginews ", page);
             if (!this.bloginewsView) {
                 this.bloginewsView = new News18_1View();
@@ -244,6 +254,7 @@ define([
         },
 
         changecat17: function (catName, page) {
+            this.index0();
             console.log("router changecat17 %s and %s", catName, page);
             if (!this.changecat17View) {
                 this.changecat17View = new Cat17NewsView();
