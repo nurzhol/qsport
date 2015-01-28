@@ -26,24 +26,19 @@ public interface NewsRepository extends JpaRepository<News, Integer> {
     @Query("select news from News news where (news.category.lang = :lang  and :lang <> 'zz') or (:lang = 'zz' and (news.category.lang = 'ru' or news.category.lang = 'en')) order by news.createDate desc ")
     List<News> findByLang(@Param(value = "lang") String lang);
 
-
-    @Query("select news from News news where (news.category.lang = :lang  and :lang <> 'zz') or (:lang = 'zz' and (news.category.lang = 'ru' or news.category.lang = 'en')) order by news.createDate desc ")
-    List<News> findTop4ByLang(@Param(value = "lang") String lang);
+    @Query(value = "select news from News news where (news.category.lang = :lang  and :lang <> 'zz') or (:lang = 'zz' and (news.category.lang = 'ru' or news.category.lang = 'en')) order by news.createDate desc ", countQuery = "select count(news) from News news where (news.category.lang = :lang  and :lang <> 'zz') or (:lang = 'zz' and (news.category.lang = 'ru' or news.category.lang = 'en')) ")
+    Page<News> findByLangByPage(@Param(value = "lang") String lang, Pageable p);
 
     @Query("select news from News news where news.category.id = :categoryId  and news.category.lang=:lang order by news.createDate desc ")
-    List<News> findByCategoryId(@Param(value = "categoryId") String categoryId, @Param(value = "lang") String lang);
+    List<News> findByCategoryId(@Param(value = "categoryId") Integer categoryId, @Param(value = "lang") String lang);
 
-    @Query(value = "from News news where news.category.categoryName = :categoryName  and news.category.lang=:lang order by news.createDate desc ", countQuery = "select count(news) from News news where news.category.categoryName = :categoryName  and news.category.lang=:lang ")
+    @Query(value = "select news from News news where news.category.categoryName = :categoryName  and news.category.lang=:lang order by news.createDate desc ", countQuery = "select count(news) from News news where news.category.categoryName = :categoryName  and news.category.lang=:lang ")
     Page<News> findByCategoryNameByPage(@Param(value = "categoryName") String categoryName, @Param(value = "lang") String lang, Pageable p);
 
-    @Query("select news from News news where news.category.categoryName = :categoryName  and news.category.lang=:lang order by news.createDate desc ")
-    List<News> findTop3ByCategoryName(@Param(value = "categoryName") String categoryName, @Param(value = "lang") String lang);
+    @Query(value = "select news from News news where news.category.categoryName not in ('cat5', 'cat28' , 'cat22')  and news.category.lang=:lang order by news.createDate desc ", countQuery = "select count(news) from News news where  news.category.categoryName not in ('cat5', 'cat28' , 'cat22') and news.category.lang=:lang ")
+    Page<News> findByCategoryBatchByPage( @Param(value = "lang") String lang, Pageable p);
 
-    @Query("select news from News news where news.category.categoryName = :categoryName  and news.category.lang=:lang order by news.createDate desc ")
-    List<News> findTop4ByCategoryName(@Param(value = "categoryName") String categoryName, @Param(value = "lang") String lang);
-
-    @Query("select news from News news where news.category.categoryName in (:categoryName)  and news.category.lang=:lang and news.shortNews = 1  order by news.createDate desc ")
-    List<News> findTop3Liked(@Param(value = "categoryName") String categoryName, @Param(value = "lang") String lang);
-
+    @Query(value = "select news from News news where news.category.categoryName not in ('cat5', 'cat28' , 'cat22')  and news.category.lang=:lang order by news.createDate desc ", countQuery = "select count(news) from News news where  news.category.categoryName not in ('cat5', 'cat28' , 'cat22') and news.category.lang=:lang ")
+    List<News> findByCategoryBatch( @Param(value = "lang") String lang);
 
 }

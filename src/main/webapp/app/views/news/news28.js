@@ -9,8 +9,8 @@ define([
     'backbone',
     'collections/Hateoas',
     'text!templates/news/newspage28.html',
-    'collections/news/ruennews'
-], function ($, _, Backbone, Hateoas, NewsTemplate, RuEnNewsCollection) {
+    'collections/news/ruennewspage'
+], function ($, _, Backbone, Hateoas, NewsTemplate, RuEnNewsCollectionPagable) {
     /**
      * User view which represents the user data grid
      */
@@ -18,7 +18,7 @@ define([
         // The view generate a div tag
         tagName: 'div',
 
-        model: RuEnNewsCollection,
+        model: RuEnNewsCollectionPagable,
 
         el: '#cat28',
         // Binding the users collection
@@ -29,8 +29,8 @@ define([
 
         // View initialization with listening of the collection
         initialize: function () {
-
             console.log("Category ru-en news init");
+            this.model.on('reset', this.render, this);
         },
 
         render: function(){

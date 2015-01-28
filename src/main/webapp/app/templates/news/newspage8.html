@@ -3,27 +3,13 @@ var isActive = 0;
 collection.each(function(model) { %>
 
 
-<%
-var myId;
-var urlStr = "";
-var arr = model.get('links');
 
-for(i=0; i<arr.length; i++){
-if(arr[i].rel == 'self'){
-urlStr = arr[i].href;
-}
-}
-var idStr = urlStr.substring(urlStr.lastIndexOf('/')+1);
-if (parseInt(idStr, 10) != NaN)
-myId = idStr;
-
-%>
 
 <div class="<%= isActive===0?'active':'' %>  item item-multimedia">
     <img src="images/<%= model.get( 'imgUrl' ) %>" alt=""  width="239" height="170"/>
     <div class="carousel-caption carousel-caption-multimedia">
         <span>
-                    <a href="<%='#readnews/'+myId%>">
+                    <a href="<%='#readnews/'+model.id%>">
                         <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
                         <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
                         <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>

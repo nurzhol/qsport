@@ -1,28 +1,13 @@
 <% collection.each(function(model) { %>
 
 
-<%
-var myId;
-var urlStr = "";
-var arr = model.get('links');
-
-for(i=0; i<arr.length; i++){
-if(arr[i].rel == 'self'){
-urlStr = arr[i].href;
-}
-}
-var idStr = urlStr.substring(urlStr.lastIndexOf('/')+1);
-if (parseInt(idStr, 10) != NaN)
-myId = idStr;
-
-%>
 
 <td class="blog-item">
     <div>
         <img class="blog-img" src="images/thumb/<%= model.get( 'imgUrl' ) %>" width="229" height="200"/>
 
         <div class="blog-initials">
-            <a href="<%='#readnews/'+myId%>" style="white-space: pre-line;">
+            <a href="<%='#readnews/'+model.id%>" style="white-space: pre-line;">
                 <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
                 <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
                 <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>

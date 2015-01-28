@@ -50,9 +50,6 @@ public class News {
 
     private Integer favorate;
 
-    @Column(name = "short_news")
-    private Integer shortNews;
-
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
@@ -155,14 +152,6 @@ public class News {
 
     public void setFavorate(Integer favorate) {
         this.favorate = favorate;
-    }
-
-    public Integer getShortNews() {
-        return shortNews;
-    }
-
-    public void setShortNews(Integer shortNews) {
-        this.shortNews = shortNews;
     }
 
     public Category getCategory() {

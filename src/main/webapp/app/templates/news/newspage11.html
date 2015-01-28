@@ -1,25 +1,8 @@
 <% collection.each(function(model) { %>
 
 
-<%
-var myId;
-var urlStr = "";
-var arr = model.get('links');
-
-for(i=0; i
-<arr.length; i++){
-if(arr[i].rel == 'self'){
-urlStr = arr[i].href;
-}
-}
-var idStr = urlStr.substring(urlStr.lastIndexOf('/')+1);
-if (parseInt(idStr, 10) != NaN)
-myId = idStr;
-
-%>
-
 <div class="col-lg-4 col-md-4 block-11-item">
-    <a href="<%='#readnews/'+myId%>">
+    <a href="<%='#readnews/'+model.id%>">
         <img src="images/thumb/<%= model.get( 'imgUrl' ) %>" width="79" height="60"/>
     </a>
 </div>

@@ -24,8 +24,7 @@ define([
           newsFeatureLt:"",
           newsFeatureAr:"",
           imgUrl:"",
-          favorate:0,
-          shortNews:0
+          favorate:0
       }
 
   });

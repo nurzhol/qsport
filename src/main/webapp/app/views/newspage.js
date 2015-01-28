@@ -295,10 +295,12 @@ define([
                     $("#Stage_JBEEB_15").css("height","62");
                     $("#Container_JBEEB_21").hide();
                     $("#List_JBEEB_22").hide();
+                    $("#Slider_JBEEB_24").hide();
 
                     $("#Rube_JBEEB_38").click(function(){
                         $("#Container_JBEEB_21").toggle();
                         $("#List_JBEEB_22").toggle();
+                        $("#Slider_JBEEB_24").toggle();
                     });
 
 

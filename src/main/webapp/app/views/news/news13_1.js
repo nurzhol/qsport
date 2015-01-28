@@ -6,7 +6,7 @@ define([
     'underscore',
     'backbone',
     'collections/Hateoas',
-    'text!templates/news/newspage18.html'
+    'text!templates/news/newspage13.html'
 ], function ($, _, Backbone, Hateoas, NewsTemplate) {
     /**
      * User view which represents the user data grid
@@ -15,11 +15,12 @@ define([
         // The view generate a div tag
         tagName: 'div',
 
-        el: '#cat18',
+        el: '#cat13',
         // Binding the users collection
 
         // Binding the DataGridTemplate loaded by text plugin of Require
         template: _.template(NewsTemplate),
+
 
 
         // View initialization with listening of the collection
@@ -37,10 +38,10 @@ define([
             collection0.page = 1;
             collection0.sort = "createDate";
             collection0.dir = "desc";
-            collection0.limit = 4;
+            collection0.limit = 1;
             this.model = collection0;
 
-            collection0.url = "data-rest/news/search/findByCategoryNameByPage?categoryName=cat18&lang="+language;
+            collection0.url = "data-rest/news/search/findByCategoryNameByPage?categoryName=cat13_1&lang="+language;
 
             this.model.on('reset', this.render, this);
 
@@ -54,24 +55,26 @@ define([
 
             var translite =  window.localStorage.getItem('translite')||'cyrillic';
 
-            var model = Hateoas.Model.extend();
+            var mod = Hateoas.Model.extend();
             var CategotyCollection1 = Hateoas.Collection.extend({
                 url:''
             });
             var category1 = new CategotyCollection1;
-            category1.url = "data-rest/category/search/findOneWithCatName?categoryName=cat18";
+            category1.url = "data-rest/category/search/findOneWithCatName?categoryName=cat13_1";
 
             category1.fetch({async: false}).done(function(){
                 category1.each(function(model0){
-                    model = model0;
+                    mod = model0;
                 })
 
             });
 
             $(this.el).html(this.template({translite: translite,
-                categoryLabel: model.get("categoryLabel"),
-                categoryLabelLt: model.get("categoryLabelLt"),
-                categoryLabelAr: model.get("categoryLabelAr"), collection: this.model}));
+                categoryLabel: mod.get("categoryLabel"),
+                categoryLabelLt: mod.get("categoryLabelLt"),
+                categoryLabelAr: mod.get("categoryLabelAr"), collection: this.model}));
+
+            $("#pictureSayHref").attr("href", "#readcat/" + 40);
         }
 
        });

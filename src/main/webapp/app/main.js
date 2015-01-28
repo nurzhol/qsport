@@ -85,6 +85,10 @@ require([
     // Initialize routing and start Backbone.history()
     route = new Router();
 
+    $("#commentBtn").click(function(){
+        route.commentsList();
+    });
+
     // Initialize the application view
     new LoginView(function () {
         console.log("login callback");

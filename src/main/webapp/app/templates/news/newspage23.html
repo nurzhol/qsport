@@ -1,21 +1,6 @@
 <% collection.each(function(model) { %>
 
 
-<%
-var myId;
-var urlStr = "";
-var arr = model.get('links');
-
-for(i=0; i<arr.length; i++){
-if(arr[i].rel == 'self'){
-urlStr = arr[i].href;
-}
-}
-var idStr = urlStr.substring(urlStr.lastIndexOf('/')+1);
-if (parseInt(idStr, 10) != NaN)
-myId = idStr;
-
-%>
 
 <td class="padding-5">
     <table>

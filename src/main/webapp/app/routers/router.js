@@ -271,7 +271,7 @@ define([
             CommentsCollection.page = page;
             CommentsCollection.sort = sort;
             CommentsCollection.dir = dir;
-            CommentsCollection.fetchPage();
+            CommentsCollection.reset().fetchPage();
         },
 
 

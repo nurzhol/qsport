@@ -1,41 +1,29 @@
 <div class="block-4-header">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 additional-header-block">
         <span class="first-word">
-            <%= translite=== 'cyrillic' ? categoryLabel : '' %>
-            <%= translite=== 'latin' ? categoryLabelLt : '' %>
-            <%= translite=== 'arab' ? categoryLabelAr : '' %> </span>
+            <a href="#readcat/4">
+                <%= translite=== 'cyrillic' ? categoryLabel : '' %>
+                <%= translite=== 'latin' ? categoryLabelLt : '' %>
+                <%= translite=== 'arab' ? categoryLabelAr : '' %>
+            </a>
+        </span>
     </div>
     <div class="clearfix"></div>
 </div>
 
 <div class="block-4-news-items scrollbar-style">
 
-<% collection.each(function(model) { %>
+    <% collection.each(function(model) { %>
 
 
-<%
-var myId;
-var urlStr = "";
-var arr = model.get('links');
-
-for(i=0; i<arr.length; i++){
-if(arr[i].rel == 'self'){
-urlStr = arr[i].href;
-}
-}
-var idStr = urlStr.substring(urlStr.lastIndexOf('/')+1);
-if (parseInt(idStr, 10) != NaN)
-myId = idStr;
-
-%>
     <div class="news-item">
         <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                <img src="images/thumb/<%= model.get( 'imgUrl' ) %>" width="40" height="40" />
+                <img src="images/thumb/<%= model.get( 'imgUrl' ) %>" width="40" height="40"/>
             </div>
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                     <span class="item-block">
-                         <a href="<%='#readnews/'+myId%>">
+                         <a href="<%='#readnews/'+model.id%>">
                              <%= translite=== 'cyrillic' ? model.get( 'newsFeature' ) : '' %>
                              <%= translite=== 'latin' ? model.get( 'newsFeatureLt' ) : '' %>
                              <%= translite=== 'arab' ? model.get( 'newsFeatureAr' ) : '' %>
@@ -45,10 +33,7 @@ myId = idStr;
         </div>
     </div>
 
-<% }) %>
-
-
-
+    <% }) %>
 
 
 </div>

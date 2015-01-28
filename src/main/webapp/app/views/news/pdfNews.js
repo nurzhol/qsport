@@ -6,29 +6,29 @@ define([
     'underscore',
     'backbone',
     'collections/Hateoas',
-    'text!templates/news/categorynews.html',
-    'models/category'
-], function ($, _, Backbone, Hateoas, NewsTemplate, CategoryModel) {
+    'text!templates/news/pdfnews.html',
+    'models/pdf'
+], function ($, _, Backbone, Hateoas, PdfTemplate, PdfModel) {
     /**
      * User view which represents the user data grid
      */
-    var CategoryNewsView = Backbone.View.extend({
+    var PdfNewsView = Backbone.View.extend({
         // The view generate a div tag
         tagName: 'div',
 
-        model: CategoryModel,
+        model: PdfModel,
 
         el: '.newscontent',
         // Binding the users collection
 
         // Binding the DataGridTemplate loaded by text plugin of Require
-        template: _.template(NewsTemplate),
+        template: _.template(PdfTemplate),
 
 
         // View initialization with listening of the collection
         initialize: function () {
 
-            console.log("Category news rendered");
+            console.log("Pdf news rendered");
             this.model.on('change', this.render, this);
         },
 
@@ -44,7 +44,7 @@ define([
 
             });
             var collection0 = new NewsCollection1;
-            collection0.url = "data-rest/news/search/findByCategoryId?categoryId="+ this.model.id +"&lang="+language;
+            collection0.url = "data-rest/pdf";
 
             collection0.fetch().done(function(){
 
@@ -57,11 +57,13 @@ define([
                 $(".maincontent").hide();
                 $(".newscontent").show();
                 $('html,body').scrollTop(0);
+
+
             });
         }
 
        });
 
     // Return the view as the Require module
-    return CategoryNewsView;
+    return PdfNewsView;
 });

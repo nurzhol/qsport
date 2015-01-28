@@ -193,13 +193,9 @@ define([
             }
 
             var favorate = 0;
-            var shortNews = 0;
 
             if($('#favorate').prop('checked'))
                 favorate = 1;
-
-            if($('#shortNews').prop('checked'))
-                shortNews = 1;
 
             //var textContent = tinyMCE.get('newsDetailTMC').getContent();
             var textContent = CKEDITOR.instances.newsDetail.getData();
@@ -214,7 +210,6 @@ define([
                 newsDetailLt: this.transliterateLat(textContent),//tinymce.get('newsDetail').getContent(),
                 newsDetailAr: this.transliterateArab(textContent),//tinymce.get('newsDetail').getContent(),
                 favorate: favorate,
-                shortNews: shortNews,
                 imgUrl: imageName,
                 category: {
                     "rel": "news.News.category",

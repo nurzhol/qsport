@@ -76,13 +76,13 @@ define([
                 //func1(newOrderedCollectionArr, commentsArr, null, 0);
 
 
-                $(".maincontent").hide();
-                $(".newscontent").show();
-                $('html,body').scrollTop(0);
 
                 $(self.el).html(self.template({translite: translite, news: self.model, comments: comments}));
 
 
+                $(".maincontent").hide();
+                $(".newscontent").show();
+                $('html,body').scrollTop(0);
 
                 var promise = self.wait();
                 promise.done(function () {

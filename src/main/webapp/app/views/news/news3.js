@@ -24,11 +24,31 @@ define([
 
         // View initialization with listening of the collection
         initialize: function () {
-
             var language =  window.localStorage.getItem('locale')||'kz';
-            var translite =  window.localStorage.getItem('translite')||'cyrillic';
 
-            var self =this;
+            var NewsCollection1 = Hateoas.PageableCollection.extend({
+                url:''
+
+            });
+
+            var collection0 = new NewsCollection1;
+            collection0.page = 1;
+            collection0.sort = "createDate";
+            collection0.dir = "desc";
+            collection0.limit = 50;
+            this.model = collection0;
+
+            collection0.url = "data-rest/news/search/findByCategoryBatchByPage?lang="+language;
+
+            this.model.on('reset', this.render, this);
+
+            collection0.fetchPage();
+
+        },
+
+        render: function () {
+
+            var translite =  window.localStorage.getItem('translite')||'cyrillic';
 
             var model = Hateoas.Model.extend();
             var CategotyCollection1 = Hateoas.Collection.extend({
@@ -44,19 +64,10 @@ define([
 
             });
 
-            var NewsCollection1 = Hateoas.Collection.extend({
-                url:''
-            });
-            var collection0 = new NewsCollection1;
-            collection0.url = "data-rest/news/search/findByCategoryName?categoryName=cat3&lang="+language;
-
-            collection0.fetch().done(function(){
-                $(self.el).html(self.template({translite: translite,
-                    categoryLabel: model.get("categoryLabel"),
-                    categoryLabelLt: model.get("categoryLabelLt"),
-                    categoryLabelAr: model.get("categoryLabelAr"), collection: collection0}));
-            });
-
+            $(this.el).html(this.template({translite: translite,
+                categoryLabel: model.get("categoryLabel"),
+                categoryLabelLt: model.get("categoryLabelLt"),
+                categoryLabelAr: model.get("categoryLabelAr"), collection: this.model}));
         }
 
        });

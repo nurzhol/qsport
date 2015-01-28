@@ -1,0 +1,30 @@
+
+<% collection.each(function(model) { %>
+
+
+<div class="news">
+    <div class="newsImage">
+        <td><img src="images/thumb/<%=  model.get('pdfImageUrl') %>" width="100" height="100"/>
+    </div>
+
+    <div class="newsTitle">
+        <a href="http://<%= window.location.host %>/libs/pdfjs/web/viewer.html?file=http://<%= window.location.host %>/pdf/<%=  model.get('pdfUrl') %>"
+           target="_blank">
+            <%= translite=== 'cyrillic' ? 'Оқу' : '' %>
+            <%= translite=== 'latin' ? 'Oku' : '' %>
+            <%= translite=== 'arab' ? 'Oku' : '' %></a>
+        </a>
+    </div>
+
+    <div class="newsFeature">
+        <br/> <a href="http://<%= window.location.host %>/pdf/<%=  model.get('pdfUrl') %>">
+        <%= translite=== 'cyrillic' ? 'Жүктеп алу' : '' %>
+        <%= translite=== 'latin' ? 'Zhuktep alu' : '' %>
+        <%= translite=== 'arab' ? 'Zhuktep alu' : '' %>
+    </a>
+    </div>
+
+</div>
+
+<% }) %>
+

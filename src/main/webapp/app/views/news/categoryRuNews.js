@@ -33,6 +33,10 @@ define([
 
         render: function(){
             console.log("Category ru-en news rendered");
+            $(".maincontent").hide();
+            $(".newscontent").show();
+            $('html,body').scrollTop(0);
+
             var translite = window.localStorage.getItem('translite') || 'cyrillic';
             $(this.el).html(this.template({translite: translite, collection: this.model}));
         }

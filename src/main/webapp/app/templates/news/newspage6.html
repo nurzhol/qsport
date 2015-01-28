@@ -15,24 +15,8 @@
 
             <% collection.each(function(model) { %>
 
-
-            <%
-            var myId;
-            var urlStr = "";
-            var arr = model.get('links');
-
-            for(i=0; i <arr.length; i++){
-            if(arr[i].rel == 'self'){
-            urlStr = arr[i].href;
-            }
-            }
-            var idStr = urlStr.substring(urlStr.lastIndexOf('/')+1);
-            if (parseInt(idStr, 10) != NaN)
-            myId = idStr;
-
-            %>
             <li>
-                <a href="<%='#readnews/'+myId%>">
+                <a href="<%='#readnews/'+model.id%>">
                     <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
                     <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
                     <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>

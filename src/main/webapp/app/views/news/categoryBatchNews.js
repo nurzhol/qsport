@@ -6,17 +6,15 @@ define([
     'underscore',
     'backbone',
     'collections/Hateoas',
-    'text!templates/news/categorynews.html',
-    'models/category'
-], function ($, _, Backbone, Hateoas, NewsTemplate, CategoryModel) {
+    'text!templates/news/categorynews.html'
+], function ($, _, Backbone, Hateoas, NewsTemplate) {
     /**
      * User view which represents the user data grid
      */
-    var CategoryNewsView = Backbone.View.extend({
+    var CategoryBatchNewsView = Backbone.View.extend({
         // The view generate a div tag
         tagName: 'div',
 
-        model: CategoryModel,
 
         el: '.newscontent',
         // Binding the users collection
@@ -29,7 +27,6 @@ define([
         initialize: function () {
 
             console.log("Category news rendered");
-            this.model.on('change', this.render, this);
         },
 
         render: function(){
@@ -44,15 +41,15 @@ define([
 
             });
             var collection0 = new NewsCollection1;
-            collection0.url = "data-rest/news/search/findByCategoryId?categoryId="+ this.model.id +"&lang="+language;
+            collection0.url = "data-rest/news/search/findByCategoryBatch?lang="+language;
 
             collection0.fetch().done(function(){
 
 
                 $(self.el).html(self.template({translite: translite,
-                    categoryLabel: self.model.get("categoryLabel"),
-                    categoryLabelLt: self.model.get("categoryLabelLt"),
-                    categoryLabelAr: self.model.get("categoryLabelAr"), collection: collection0}));
+                    categoryLabel: "Жаңалықтар",
+                    categoryLabelLt: "ZHanaliqtar",
+                    categoryLabelAr: "ZHanaliqtar", collection: collection0}));
 
                 $(".maincontent").hide();
                 $(".newscontent").show();
@@ -63,5 +60,5 @@ define([
        });
 
     // Return the view as the Require module
-    return CategoryNewsView;
+    return CategoryBatchNewsView;
 });

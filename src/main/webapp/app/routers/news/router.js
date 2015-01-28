@@ -7,8 +7,11 @@ define([
     'backbone',
     'views/news/one',
     'views/news/categoryNews',
+    'views/news/categoryBatchNews',
+    'views/news/pdfNews',
     "models/news",
     "models/category",
+    "models/pdf",
     'views/news/news24_27',
     'collections/news/fotonews',
     'views/news/news10',
@@ -17,11 +20,14 @@ define([
     'collections/news/cat17news',
     'views/news/news17',
     'collections/news/ruennews',
+    'collections/news/ruennewspage',
     'views/news/categoryRuNews',
     'views/news/news28',
     'views/news/news18_1',
-    'collections/news/blognews'
-], function ($, youtube, Backbone, OneView, CategoryNewsView, NewsModel, CategoryModel, News24_27View, FotoNewsCollection, FotoNewsView, AoHoiNewsCollection, AiHoiNewsView, Cat17NewsCollection, Cat17NewsView, RuEnNewsCollection, CategoryRuNewsView, News28View, News18_1View, BlogNewsCollection) {
+    'collections/news/blognews',
+    'views/news/news13',
+    'views/news/news13_1'
+], function ($, youtube, Backbone, OneView, CategoryNewsView,  CategoryBatchNewsView, PdfNewsView, NewsModel, CategoryModel, PdfModel, News24_27View, FotoNewsCollection, FotoNewsView, AoHoiNewsCollection, AiHoiNewsView, Cat17NewsCollection, Cat17NewsView, RuEnNewsCollection, RuEnNewsCollectionPagable, CategoryRuNewsView, News28View, News18_1View, BlogNewsCollection, InfographicatView, DemativatorView) {
     /**
      * Url router for the applications. Defines routes with url and handlers
      */
@@ -31,6 +37,13 @@ define([
             '': 'index',
             'readnews/:id': 'showNews',
             'readcat/:id': 'showCategoryNews',
+            'readbatchcat': 'showCategoryBatchNews',
+
+            'readpdf': 'showPdfNews',
+
+            'infographica': 'infographica',
+
+            'demativator': 'demativator',
 
             'readshort': 'showRuEnShortNews',
             'readshort/:lang': 'showRuEnShortNews',
@@ -52,6 +65,8 @@ define([
         initialize: function () {
             this.oneView = null;
             this.categoryView = null;
+            this.categoryBatchView = null;
+            this.pdfView = null;
             this.categoryRuEnView = null;
             this.headerView = null;
             this.fotonewsView = null;
@@ -64,6 +79,15 @@ define([
         index: function(){
             $(".newscontent").hide();
             $(".maincontent").show();
+            $('html,body').scrollTop(0);
+        },
+
+        infographica: function(){
+            new InfographicatView();
+        },
+
+        demativator: function(){
+            new DemativatorView();
         },
 
         showNews: function (id) {
@@ -83,7 +107,25 @@ define([
             }
 
             CategoryModel.url = 'data-rest/category/' + id;
-            CategoryModel.fetch();
+            CategoryModel.clear().fetch();
+        },
+
+        showCategoryBatchNews: function () {
+            console.log("showCategoryBatchNews " );
+            if (!this.categoryBatchView) {
+                this.categoryBatchView = new CategoryBatchNewsView();
+            }
+            this.categoryBatchView.render();
+        },
+
+        showPdfNews: function () {
+            console.log("Show pdfView " );
+            if (!this.pdfView) {
+                this.pdfView = new PdfNewsView();
+            }
+
+            PdfModel.url = 'data-rest/pdf';
+            PdfModel.clear().fetch();
         },
 
         showRuEnCategoryNews: function (lang) {
@@ -97,7 +139,7 @@ define([
 
             var self =this;
             RuEnNewsCollection.url = 'data-rest/news/search/findByLang?lang=' + lang;
-            RuEnNewsCollection.fetch().done(function(){
+            RuEnNewsCollection.reset().fetch().done(function(){
                 self.categoryRuEnView.render();
             });
         },
@@ -111,11 +153,12 @@ define([
             if (!lang)
                 lang = 'zz';
 
-            var self =this;
-            RuEnNewsCollection.url = 'data-rest/news/search/findTop4ByLang?lang=' + lang;
-            RuEnNewsCollection.fetch().done(function(){
-                self.cat28View.render();
-            });
+            RuEnNewsCollectionPagable.page = 1;
+            RuEnNewsCollectionPagable.sort = "createDate";
+            RuEnNewsCollectionPagable.dir = "desc";
+            RuEnNewsCollectionPagable.limit = 9;
+            RuEnNewsCollectionPagable.url = 'data-rest/news/search/findByLangByPage?lang=' + lang;
+            RuEnNewsCollectionPagable.fetchPage();
         },
 
         showCategoryHeader: function (cat) {

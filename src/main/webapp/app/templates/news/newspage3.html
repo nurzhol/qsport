@@ -5,7 +5,7 @@
         </div>
         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
             <div class="categoryName">
-                <a href="#readcat/3">
+                <a href="#readbatchcat">
                     <%= translite=== 'cyrillic' ? categoryLabel : '' %>
                     <%= translite=== 'latin' ? categoryLabelLt : '' %>
                     <%= translite=== 'arab' ? categoryLabelAr : '' %>
@@ -19,26 +19,11 @@
         <% collection.each(function(model) { %>
 
 
-        <%
-        var myId;
-        var urlStr = "";
-        var arr = model.get('links');
-
-        for(i=0; i<arr.length; i++){
-        if(arr[i].rel == 'self'){
-        urlStr = arr[i].href;
-        }
-        }
-        var idStr = urlStr.substring(urlStr.lastIndexOf('/')+1);
-        if (parseInt(idStr, 10) != NaN)
-        myId = idStr;
-
-        %>
         <div class="news-item">
                     <span class="item-block">
 
                             <div class="newsTitle">
-                                <a href="<%='#readnews/'+myId%>">
+                                <a href="<%='#readnews/'+model.id%>">
                                     <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
                                     <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
                                     <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>
