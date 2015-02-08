@@ -10,7 +10,7 @@
     <img src="images/<%= model.get( 'imgUrl' ) %>" width="338" height="170">
 
     <div class="news-description">
-        <a href="<%='#readnews/'+model.id%>">
+        <a href="<%='#!readnews/'+model.id%>">
             <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
             <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
             <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>
@@ -30,7 +30,7 @@
     <% } else {%>
 
     <div class="another-news-item">
-        <a href="<%='#readnews/'+model.id%>">
+        <a href="<%='#!readnews/'+model.id%>">
             <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
             <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
             <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>

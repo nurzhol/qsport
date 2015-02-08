@@ -52,7 +52,7 @@ define([
             console.log("NewsOneView cat10.render", this.model);
 
             $(this.el).html(this.template({translite: translite,
-                link:'#fotonews',
+                link:'#!fotonews',
                 collection: this.model,
                 categoryLabel: model.get("categoryLabel"),
                 categoryLabelLt: model.get("categoryLabelLt"),

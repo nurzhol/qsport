@@ -67,6 +67,7 @@ require.config({
 })
 ;
 
+
 require([
     'bootstrap',
     'views/newspage',
@@ -135,6 +136,13 @@ require([
 
 
     });
+
+
+    window.addEventListener("hashchange", function() {
+        console.log("before hash" + window.location.hash);
+        window.location.hash = window.location.hash.replace('#!', '#');
+        console.log("after hash" + window.location.hash);
+    }, false);
 
     route = new Router();
     Backbone.history.start();

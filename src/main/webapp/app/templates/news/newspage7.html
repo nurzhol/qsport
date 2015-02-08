@@ -1,6 +1,6 @@
 <div class="row block-7-header">
     <div class="col-lg-12 col-md-12 text-right">
-        <a href="#readcat/7">
+        <a href="#!readcat/7">
             <%= translite=== 'cyrillic' ? categoryLabel : '' %>
             <%= translite=== 'latin' ? categoryLabelLt : '' %>
             <%= translite=== 'arab' ? categoryLabelAr : '' %>
@@ -18,7 +18,7 @@
 
 
             <li>
-                <a href="<%='#readnews/'+model.id%>">
+                <a href="<%='#!readnews/'+model.id%>">
                     <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
                     <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
                     <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>

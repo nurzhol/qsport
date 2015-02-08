@@ -3,7 +3,7 @@
 
 <% collection.each(function(model) { %>
 
-        <td><a href="<%='#readnews/'+model.id%>">
+        <td><a href="<%='#!readnews/'+model.id%>">
             <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
             <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
             <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>

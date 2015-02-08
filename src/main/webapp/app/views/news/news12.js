@@ -55,7 +55,7 @@ define([
             console.log("NewsOneView cat12.render", this.model);
 
             $(this.el).html(this.template({translite: translite,
-                link: '#aihoinews',
+                link: '#!aihoinews',
                 collection: this.model,
                 categoryLabel: model.get("categoryLabel"),
                 categoryLabelLt: model.get("categoryLabelLt"),

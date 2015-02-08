@@ -11,7 +11,7 @@
 
     </span>
 
-    <a href="<%='#readnews/'+model.id%>">
+    <a href="<%='#!readnews/'+model.id%>">
         <%= translite=== 'cyrillic' ? model.get( 'newsFeature' ) : '' %>
         <%= translite=== 'latin' ? model.get( 'newsFeatureLt' ) : '' %>
         <%= translite=== 'arab' ? model.get( 'newsFeatureAr' ) : '' %>

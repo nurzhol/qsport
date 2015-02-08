@@ -1,5 +1,5 @@
 <div class="categoryName">
-    <a href="#readcat/9">
+    <a href="#!readcat/9">
         <%= translite=== 'cyrillic' ? categoryLabel : '' %>
         <%= translite=== 'latin' ? categoryLabelLt : '' %>
         <%= translite=== 'arab' ? categoryLabelAr : '' %>
@@ -31,7 +31,7 @@ myId = idStr;
     </div>
 
     <div class="newsTitle">
-        <a href="<%='#readnews/'+myId%>">
+        <a href="<%='#!readnews/'+myId%>">
             <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
             <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
             <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>

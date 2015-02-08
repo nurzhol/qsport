@@ -7,7 +7,7 @@
                         <i class="glyphicon glyphicon-camera"></i>
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 text-left">
-                        <a href="#readcat/10">
+                        <a href="#!readcat/10">
                             <%= translite=== 'cyrillic' ? categoryLabel : '' %>
                             <%= translite=== 'latin' ? categoryLabelLt : '' %>
                             <%= translite=== 'arab' ? categoryLabelAr : '' %>
@@ -32,7 +32,7 @@
                                         <img src="images/<%= model.get( 'imgUrl' ) %>"/>
                                     </div>
                                     <div class="panel-footer dotted-panel-footer">
-                                        <a href="<%='#readnews/' + model.id %>">
+                                        <a href="<%='#1readnews/' + model.id %>">
                                             <%= translite=== 'cyrillic' ? model.get( 'newsFeature' ) : '' %>
                                             <%= translite=== 'latin' ? model.get( 'newsFeatureLt' ) : '' %>
                                             <%= translite=== 'arab' ? model.get( 'newsFeatureAr' ) : '' %>

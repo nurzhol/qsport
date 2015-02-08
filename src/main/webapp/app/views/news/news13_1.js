@@ -74,7 +74,7 @@ define([
                 categoryLabelLt: mod.get("categoryLabelLt"),
                 categoryLabelAr: mod.get("categoryLabelAr"), collection: this.model}));
 
-            $("#pictureSayHref").attr("href", "#readcat/" + 40);
+            $("#pictureSayHref").attr("href", "#!readcat/" + 40);
         }
 
        });

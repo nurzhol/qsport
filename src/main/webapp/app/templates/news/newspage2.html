@@ -5,7 +5,7 @@
                 <i class="glyphicon glyphicon-tags"></i>
             </div>
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                <a href="#readcat/2">
+                <a href="#!readcat/2">
                     <%= translite=== 'cyrillic' ? categoryLabel : '' %>
                     <%= translite=== 'latin' ? categoryLabelLt : '' %>
                     <%= translite=== 'arab' ? categoryLabelAr : '' %>
@@ -33,7 +33,7 @@
                     <img src="images/<%= model.get( 'imgUrl' ) %>" alt="" />
                     <div class="carousel-caption">
                         <h3>
-                            <a href="<%='#readnews/'+ model.id%>">
+                            <a href="<%='#!readnews/'+ model.id%>">
                                 <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
                                 <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
                                 <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>

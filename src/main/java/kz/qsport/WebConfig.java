@@ -1,12 +1,13 @@
 package kz.qsport;
 
+import org.quartz.*;
+import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.data.rest.webmvc.RepositoryRestExporterServlet;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.filter.HiddenHttpMethodFilter;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.DispatcherType;
@@ -44,6 +45,9 @@ public class WebConfig implements WebApplicationInitializer {
         // Add springSecurityFilterChain to the context
         FilterRegistration.Dynamic springSecurityFilterChain = container.addFilter("springSecurityFilterChain", DelegatingFilterProxy.class);
         springSecurityFilterChain.addMappingForUrlPatterns(null, false, "/*");
+
+        FilterRegistration.Dynamic redirectFilterChain = container.addFilter("redirectFilterChain", RedirectFilter.class);
+        redirectFilterChain.addMappingForUrlPatterns(null, false, "/*");
 
         FilterRegistration.Dynamic encodingFilter = container.addFilter("EncodingFilter", CharacterEncodingFilter.class);
         encodingFilter.setInitParameter("encoding", "UTF-8");

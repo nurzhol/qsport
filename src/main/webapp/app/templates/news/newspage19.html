@@ -3,7 +3,7 @@
 
 
 <div class="basire-block-item">
-    <a class="basire-block-item-label" href="<%='#readnews/'+model.id%>">
+    <a class="basire-block-item-label" href="<%='#!readnews/'+model.id%>">
         <%= translite=== 'cyrillic' ? model.get( 'newsTitle' ) : '' %>
         <%= translite=== 'latin' ? model.get( 'newsTitleLt' ) : '' %>
         <%= translite=== 'arab' ? model.get( 'newsTitleAr' ) : '' %>

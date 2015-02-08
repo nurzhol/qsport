@@ -38,7 +38,7 @@ define([
             console.log("NewsOneView cat17.render", this.model);
 
             $(this.el).html(this.template({translite:translite,
-                link: "#changecat17/" + this.model.cat17,
+                link: "#!changecat17/" + this.model.cat17,
                 collection: this.model}));
         }
 

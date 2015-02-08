@@ -19,8 +19,6 @@ public class ImageController {
         String contextPath = request.getServletContext().getRealPath(File.separator);
 
 
-
-
         try {
             writeFile(imageFile.getBytes(), contextPath  +  "images" + File.separator +imageFileName);
 
