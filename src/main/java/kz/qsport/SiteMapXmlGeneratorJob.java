@@ -49,13 +49,13 @@ public class SiteMapXmlGeneratorJob implements Job {
         try {
             List<Category> categoryList =  categoryRepository.findAll();
             for(Category category: categoryList){
-                wsg.addUrl("http://www.qqsport.mycloud.by/#!readcat/" + category.getId()); // repeat multiple times
+                wsg.addUrl("http://qqsport.mycloud.by/#!readcat/" + category.getId()); // repeat multiple times
             }
 
 
             List<News> newsList =  newsRepository.findAll();
             for(News news: newsList){
-                wsg.addUrl("http://www.qqsport.mycloud.by/#!readnews/" + news.getId()); // repeat multiple times
+                wsg.addUrl("http://qqsport.mycloud.by/#!readnews/" + news.getId()); // repeat multiple times
             }
             System.out.println("add url");
         } catch (MalformedURLException e) {
