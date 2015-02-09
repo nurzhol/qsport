@@ -12,6 +12,9 @@
 
     <script data-main="app/index" src="libs/require-2.0.6/require.js"></script>
     <script src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+    <script type="text/javascript">
+        window.location.hash = window.location.hash.replace('#!', '#');
+    </script>
 
     <!-- recaptcha -->
     <script type="text/javascript">
@@ -443,8 +446,10 @@
                             </li>
                             <li><a class="custom-link-style" id="cat17_3" href="#!changecat17/cat17_3">ТРЕНИНГТЕР</a>
                             </li>
-                            <li><a class="custom-link-style" id="cat17_4" href="#!changecat17/cat17_4">ЛЕКЦИЯЛАР</a></li>
-                            <li><a class="custom-link-style" id="cat17_5" href="#!changecat17/cat17_5">БАПКЕРЛЕР</a></li>
+                            <li><a class="custom-link-style" id="cat17_4" href="#!changecat17/cat17_4">ЛЕКЦИЯЛАР</a>
+                            </li>
+                            <li><a class="custom-link-style" id="cat17_5" href="#!changecat17/cat17_5">БАПКЕРЛЕР</a>
+                            </li>
                             <li><a class="custom-link-style" id="cat17_6" href="#!changecat17/cat17_6">ГРАНТТАР</a></li>
                             <li><a class="custom-link-style" id="cat17_7" href="#!changecat17/cat17_7">КӨРМЕЛЕР</a></li>
                             <li><a class="custom-link-style" id="cat17_8" href="#!changecat17/cat17_8">ТЕХНОЛОГИЯЛАР</a>
@@ -701,10 +706,13 @@
 
     <!-- ҰЛТТЫҚ ТАҒАМДАР -->
     <div id="#0.1_readcat/14" class="col-lg-12 col-md-12 block-16-wrapper">
-        <a href="#!readcat/13"><div class="block-16-header" id="cat14lable">
+        <a href="#!readcat/13">
+            <div class="block-16-header" id="cat14lable">
 
                 ҰЛТТЫҚ ТАҒАМДАР
-        </div></a>
+            </div>
+        </a>
+
         <div class="block-16-body" id="cat14">
 
         </div>

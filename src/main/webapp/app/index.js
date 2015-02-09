@@ -138,6 +138,8 @@ require([
     });
 
 
+    window.location.hash = window.location.hash.replace('#!', '#');
+
     window.addEventListener("hashchange", function() {
         console.log("before hash" + window.location.hash);
         window.location.hash = window.location.hash.replace('#!', '#');
