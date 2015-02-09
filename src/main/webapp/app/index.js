@@ -164,5 +164,10 @@ require([
         console.log("NewsPageView callback");
     });
 
+    $(document).ready(function(){
+        $(".gsc-control-cse").css("padding", 0);
+    });
+
+
 });
 

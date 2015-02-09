@@ -164,9 +164,22 @@
                                 <a id="bookmarkme" href="#" style="color: grey" onclick="addToBookmark()">Таңдаулыға
                                     қосу</a>
                             </span>
-                            <input type="text" class="form-control search-input-addon"
-                                   aria-describedby="sizing-addon3">
-                            <i class="glyphicon glyphicon-search form-control-feedback"></i>
+                            <span>
+                            <script>
+                                (function () {
+                                    var cx = '006590522763327435664:c7ztjxa8drw';
+                                    var gcse = document.createElement('script');
+                                    gcse.type = 'text/javascript';
+                                    gcse.async = true;
+                                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                                            '//www.google.com/cse/cse.js?cx=' + cx;
+                                    var s = document.getElementsByTagName('script')[0];
+                                    s.parentNode.insertBefore(gcse, s);
+
+                                })();
+                            </script>
+                            <gcse:search></gcse:search>
+                             </span>
                         </div>
                     </div>
                 </div>
