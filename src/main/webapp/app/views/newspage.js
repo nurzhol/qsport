@@ -232,6 +232,8 @@ define([
                 this.news00View = new News00View();
             }
 
+            $(".gsc-control-cse").css("padding", 0);
+
         },
 
         /*playVideo: function () {

@@ -33,7 +33,7 @@ public class SiteMapXmlGeneratorJob implements Job {
     @Override
     public void execute(JobExecutionContext arg0) throws JobExecutionException {
         System.out.println("Job started");
-        String baseUrl = "http://www.qqsport.mycloud.by/";
+        String baseUrl = "http://qqsport.mycloud.by/";
         //String path = "/home/yerganat/IdeaProjects/qsport/src/main/webapp";
         String path = System.getProperty("catalina.home") + "webapps/ROOT";
         File siteMapXmlDir = new File(path);
