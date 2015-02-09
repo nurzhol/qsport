@@ -12,6 +12,8 @@
   <http security="none" pattern="/google1592e89fdaa0c1d0.html"  />
   <http security="none" pattern="/sitemap_index.xml"  />
   <http security="none" pattern="/sitemap.xml"  />
+  <http security="none" pattern="/sitemap*"  />
+  <http security="none" pattern="/sitemap2.xml"  />
   <http security="none" pattern="/data-rest/video"  />
   <http security="none" pattern="/rest/login" />
   <http security="none" pattern="/images/*" />
